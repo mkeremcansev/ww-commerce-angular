@@ -10,3 +10,12 @@
 .layout-main {
     flex: 1 1 auto;
 }
+.ng-touched.ng-invalid-required {
+    border-color: #e24c4c;
+}
+.ng-dirty.ng-invalid {
+    border-color: #e24c4c;
+}
+.ng-submitted input.ng-invalid{
+    border-color: #e24c4c;
+}
