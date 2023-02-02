@@ -1,16 +1,19 @@
 <div class="surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden">
     <div class="flex flex-column align-items-center justify-content-center">
-            <div class="w-full surface-card pb-8 pt-6 px-5 sm:px-8 border-round-xl">
-                <h2 class="mb-5 text-center">{{appName}}</h2>
-                <form [formGroup]="form" (ngSubmit)="formInit()">
-                    <label for="email" class="block mb-2">Email</label>
-                    <input formControlName="email" id="email" pInputText type="text" placeholder="Email address" class="w-full md:w-30rem mb-5">
-                    <label for="password" class="block mb-2">Password</label>
-                    <input formControlName="password" id="password" pInputText type="password" placeholder="password" class="w-full md:w-30rem mb-5">
-                    <div class="gap-5">
-                        <button pButton [loading]="isLoading" label="{{'login' | translate}}" class="w-full"></button>
-                    </div>
-                </form>
-            </div>
+        <div class="w-full surface-card pb-8 pt-6 px-5 sm:px-8 border-round-xl">
+            <h2 class="mb-5 text-center">{{appName}}</h2>
+            <p-toast key="tst"></p-toast>
+            <form [formGroup]="form" (ngSubmit)="formInit()">
+                <label for="email" class="block mb-2">Email</label>
+                <input formControlName="email" id="email" pInputText type="text" placeholder="Email address"
+                       class="w-full md:w-30rem mb-5">
+                <label for="password" class="block mb-2">Password</label>
+                <input formControlName="password" id="password" pInputText type="password" placeholder="password"
+                       class="w-full md:w-30rem mb-5">
+                <div class="gap-5">
+                    <button pButton [loading]="isLoading" label="{{'login' | translate}}" class="w-full"></button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>

@@ -11,9 +11,15 @@ import {Router} from '@angular/router';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-
+    /**
+     * @param router
+     */
     constructor(private router: Router) {}
 
+    /**
+     * @param request
+     * @param next
+     */
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const token = localStorage.getItem('token');
 
@@ -23,13 +29,12 @@ export class AuthInterceptor implements HttpInterceptor {
                     Authorization: `Bearer ${token}`
                 }
             });
-        } else {
-            this.router.navigate(['/auth/login']);
         }
 
         return next.handle(request).pipe(
             catchError(error => {
                 if (error.status === 401) {
+                    localStorage.removeItem('token');
                     this.router.navigate(['/auth/login']);
                 }
                 return throwError(error);
