@@ -31,7 +31,6 @@ export class PermissionGuard implements CanActivate {
                 }
             }
         }
-        this.router.navigate(['/notfound']);
         return false;
     }
 

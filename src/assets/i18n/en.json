@@ -1,4 +1,7 @@
 {
     "dashboard": "Dashboard",
-    "login": "Login"
+    "login": "Login",
+    "brand": "Brand",
+    "create": "Create",
+    "list": "List"
 }

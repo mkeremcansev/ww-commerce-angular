@@ -1,10 +1,11 @@
-import { ChangeDetectorRef, Component, Host, HostBinding, Input, OnDestroy, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
-import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Subscription } from 'rxjs';
-import { filter } from 'rxjs/operators';
-import { MenuService } from './app.menu.service';
-import { LayoutService } from './service/app.layout.service';
+import {ChangeDetectorRef, Component, Host, HostBinding, Input, OnDestroy, OnInit} from '@angular/core';
+import {NavigationEnd, Router} from '@angular/router';
+import {animate, state, style, transition, trigger} from '@angular/animations';
+import {Subscription} from 'rxjs';
+import {filter} from 'rxjs/operators';
+import {MenuService} from './app.menu.service';
+import {LayoutService} from './service/app.layout.service';
+import {PermissionGuard} from "../guard/permission/permission.guard";
 
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
@@ -40,13 +41,18 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
 
     key: string = "";
 
-    constructor(public layoutService: LayoutService, private cd: ChangeDetectorRef, public router: Router, private menuService: MenuService) {
+    constructor(
+        public layoutService: LayoutService,
+        private cd: ChangeDetectorRef,
+        public router: Router,
+        private menuService: MenuService,
+        private permissionGuard: PermissionGuard
+    ) {
         this.menuSourceSubscription = this.menuService.menuSource$.subscribe(value => {
             Promise.resolve(null).then(() => {
                 if (value.routeEvent) {
                     this.active = (value.key === this.key || value.key.startsWith(this.key + '-')) ? true : false;
-                }
-                else {
+                } else {
                     if (value.key !== this.key && !value.key.startsWith(this.key + '-')) {
                         this.active = false;
                     }
@@ -75,10 +81,15 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
     }
 
     updateActiveStateFromRoute() {
-        let activeRoute = this.router.isActive(this.item.routerLink[0], { paths: 'exact', queryParams: 'ignored', matrixParams: 'ignored', fragment: 'ignored' });
+        let activeRoute = this.router.isActive(this.item.routerLink[0], {
+            paths: 'exact',
+            queryParams: 'ignored',
+            matrixParams: 'ignored',
+            fragment: 'ignored'
+        });
 
         if (activeRoute) {
-            this.menuService.onMenuStateChange({ key: this.key, routeEvent: true });
+            this.menuService.onMenuStateChange({key: this.key, routeEvent: true});
         }
     }
 
@@ -91,7 +102,7 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
 
         // execute command
         if (this.item.command) {
-            this.item.command({ originalEvent: event, item: this.item });
+            this.item.command({originalEvent: event, item: this.item});
         }
 
         // toggle active state
@@ -99,7 +110,7 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
             this.active = !this.active;
         }
 
-        this.menuService.onMenuStateChange({ key: this.key });
+        this.menuService.onMenuStateChange({key: this.key});
     }
 
     get submenuAnimation() {
@@ -119,5 +130,9 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
         if (this.menuResetSubscription) {
             this.menuResetSubscription.unsubscribe();
         }
+    }
+
+    canActivate(route: any) {
+        return this.permissionGuard.canActivate(route, route.data);
     }
 }

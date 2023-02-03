@@ -15,6 +15,7 @@ import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from "@angular/common/h
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AuthInterceptor } from './layout/interceptor/auth.interceptor';
+import { PermissionPipe } from './pipe/permission/permission.pipe';
 
 /**
  * @param httpClient
@@ -26,7 +27,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
 
 @NgModule({
     declarations: [
-        AppComponent, NotfoundComponent
+        AppComponent, NotfoundComponent, PermissionPipe
     ],
     imports: [
         AppRoutingModule,
@@ -42,7 +43,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
         })
     ],
     providers: [
-        { provide: LocationStrategy, useClass: HashLocationStrategy },
+        {provide: LocationStrategy, useClass: HashLocationStrategy},
         CountryService, CustomerService, EventService, IconService, NodeService,
         PhotoService, ProductService,
         {
@@ -50,6 +51,9 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
             useClass: AuthInterceptor,
             multi: true
         }
+    ],
+    exports: [
+        PermissionPipe
     ],
     bootstrap: [AppComponent]
 })
