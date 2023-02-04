@@ -14,4 +14,13 @@ export class LocalStorageService {
             }
         });
     }
+
+    /**
+     * @param keys
+     */
+    removeItems(keys: string[]) {
+        keys.forEach(key => {
+            localStorage.removeItem(key);
+        });
+    }
 }
