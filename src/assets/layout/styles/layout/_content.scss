@@ -19,3 +19,19 @@
 .ng-submitted input.ng-invalid{
     border-color: #e24c4c;
 }
+
+.p-datatable .p-datatable-thead > tr > th {
+    border: none;
+}
+.p-datatable .p-datatable-tbody > tr > td {
+    border: none;
+}
+.p-datatable > .p-datatable-wrapper {
+    border-radius: 12px;
+}
+.p-paginator.p-paginator-bottom {
+    border: none;
+}
+.p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+    pointer-events: none;
+}

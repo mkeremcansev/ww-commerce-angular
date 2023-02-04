@@ -1,0 +1,61 @@
+<div class="card">
+    <h3 class="mb-5">{{'brand.list' | translate}}</h3>
+    <p-table
+        #dt1
+        [value]="variables"
+        [lazy]="true"
+        (onLazyLoad)="load($event)"
+        dataKey="id"
+        [loading]="loading"
+        [rowHover]="true"
+        styleClass="p-datatable-gridlines"
+        [paginator]="true"
+        [rows]="rows"
+        [totalRecords]="recordsTotal"
+        esponsiveLayout="scroll">
+        <ng-template pTemplate="header">
+            <tr>
+                <th *ngFor="let column of table.columns">
+                    <div class="flex justify-content-between align-items-center">
+                        {{column.data | translate}}
+                        <p-columnFilter
+                            type="{{column.type}}"
+                            field="{{column.data}}"
+                            display="menu"
+                            placeholder="{{'searcyByAttribute' | translate: {attribute: column.data | translate} }}"
+                            [showAddButton]="false"
+                            [showMatchModes]="false"
+                            [showOperator]="false"
+                        ></p-columnFilter>
+
+                    </div>
+                </th>
+                <th>
+                    <div class="flex justify-content-between align-items-center">
+                        {{'edit' | translate}}
+                    </div>
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-variable>
+            <tr>
+                <td *ngFor="let view of viewColumnsForTable">
+                    {{variable[view?.data]}}
+                </td>
+                <td>
+                    <button pButton pRipple type="button" icon="pi pi-pencil"
+                            (click)="redirect('brand/edit/', variable.id)"
+                            class="p-button-rounded p-button-warning p-button-text"></button>
+                    <button pButton pRipple type="button" icon="pi pi-times" (click)="destroy(variable.id)"
+                            class="p-button-rounded p-button-danger p-button-text"></button>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="8" class="text-center">{{'dataNotFound' | translate}}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+<p-toast key="tst"></p-toast>

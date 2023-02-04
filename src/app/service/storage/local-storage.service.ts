@@ -20,7 +20,9 @@ export class LocalStorageService {
      */
     removeItems(keys: string[]) {
         keys.forEach(key => {
-            localStorage.removeItem(key);
+            if (localStorage.getItem(key)){
+                localStorage.removeItem(key);
+            }
         });
     }
 }

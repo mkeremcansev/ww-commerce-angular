@@ -61,7 +61,8 @@ export class AppMenuComponent implements OnInit {
                                         group: 'Brand',
                                         name: 'brand.index'
                                     }
-                                }
+                                },
+                                routerLink: ['/brand/list']
                             }
                         ]
                     }

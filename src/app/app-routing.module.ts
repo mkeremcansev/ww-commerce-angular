@@ -8,7 +8,8 @@ import {PermissionGuard} from "./guard/permission/permission.guard";
     imports: [
         RouterModule.forRoot([
             {
-                path: '', component: AppLayoutComponent,
+                path: '',
+                component: AppLayoutComponent,
                 children: [
                     {
                         path: '',
@@ -27,7 +28,10 @@ import {PermissionGuard} from "./guard/permission/permission.guard";
                     },
                 ]
             },
-            {path: 'auth', loadChildren: () => import('./feature/components/auth/auth.module').then(m => m.AuthModule)},
+            {
+                path: 'login',
+                loadChildren: () => import('./feature/components/login/login.module').then(m => m.LoginModule)
+            },
             {path: 'notfound', component: NotfoundComponent},
             {path: '**', redirectTo: '/notfound'},
         ], {scrollPositionRestoration: 'enabled', anchorScrolling: 'enabled', onSameUrlNavigation: 'reload'})

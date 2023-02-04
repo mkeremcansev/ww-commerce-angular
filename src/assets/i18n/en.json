@@ -4,11 +4,17 @@
     "brand": {
         "index": "Brand",
         "create": "Create Brand",
-        "edit": "Edit Brand"
+        "edit": "Edit Brand",
+        "list": "Brand List"
     },
     "create": "Create",
     "update": "Update",
     "list": "List",
     "title": "Title",
-    "path": "Path"
+    "path": "Path",
+    "id": "ID",
+    "slug": "Slug",
+    "edit": "Edit",
+    "dataNotFound": "Data not found",
+    "searcyByAttribute": "Search by {{attribute}}"
 }

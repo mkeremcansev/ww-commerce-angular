@@ -41,7 +41,7 @@ export class PermissionGuard implements CanActivate {
             }
         } else {
             this.storageService.removeItems(['token', 'permissions', 'user']);
-            this.router.navigate(['/auth/login']);
+            this.router.navigate(['/login/auth']);
             return false;
         }
         guard ? this.router.navigate(['/notfound']) : false;

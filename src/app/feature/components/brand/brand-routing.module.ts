@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {PermissionGuard} from "../../../guard/permission/permission.guard";
 import {BrandCreateComponent} from "./create/brand-create/brand-create.component";
 import {BrandEditComponent} from "./edit/brand-edit/brand-edit.component";
+import {BrandListComponent} from "./list/brand-list.component";
 
 const routes: Routes = [];
 
@@ -16,6 +17,17 @@ const routes: Routes = [];
               permission: {
                   group: 'Brand',
                   name: 'brand.create'
+              }
+          }
+      },
+      {
+          path: 'list',
+          component: BrandListComponent,
+          canActivate: [PermissionGuard],
+          data: {
+              permission: {
+                  group: 'Brand',
+                  name: 'brand.index'
               }
           }
       },

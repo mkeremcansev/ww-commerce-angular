@@ -19,7 +19,15 @@
          [ngClass]="{'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible}">
         <button class="p-link layout-topbar-button">
             <i class="pi pi-user"></i>
-            <span>Profile</span>
+            <span>{{'profile' | translate}}</span>
+        </button>
+        <button (click)="logout()" *ngIf="!isSpinner" class="p-link layout-topbar-button">
+            <i class="pi pi-sign-out"></i>
+            <span>{{'logout' | translate}}</span>
+        </button>
+        <button *ngIf="isSpinner" class="p-link layout-topbar-button" [disabled]="true">
+            <i class="pi pi-spin pi-spinner"></i>
+            <span>{{'logout' | translate}}</span>
         </button>
     </div>
 </div>
