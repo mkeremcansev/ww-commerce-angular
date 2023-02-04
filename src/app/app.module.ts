@@ -15,7 +15,11 @@ import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from "@angular/common/h
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AuthInterceptor } from './layout/interceptor/auth.interceptor';
-import { PermissionPipe } from './pipe/permission/permission.pipe';
+import { BrandCreateComponent } from './feature/components/brand/create/brand-create/brand-create.component';
+import {InputTextModule} from "primeng/inputtext";
+import {ButtonModule} from "primeng/button";
+import {ReactiveFormsModule} from "@angular/forms";
+import {ToastModule} from "primeng/toast";
 
 /**
  * @param httpClient
@@ -27,7 +31,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
 
 @NgModule({
     declarations: [
-        AppComponent, NotfoundComponent, PermissionPipe
+        AppComponent, NotfoundComponent, BrandCreateComponent
     ],
     imports: [
         AppRoutingModule,
@@ -40,7 +44,11 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
                 useFactory: HttpLoaderFactory,
                 deps: [HttpClient]
             }
-        })
+        }),
+        InputTextModule,
+        ButtonModule,
+        ReactiveFormsModule,
+        ToastModule
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
@@ -53,7 +61,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
         }
     ],
     exports: [
-        PermissionPipe
     ],
     bootstrap: [AppComponent]
 })

@@ -1,7 +1,14 @@
 {
     "dashboard": "Dashboard",
     "login": "Login",
-    "brand": "Brand",
+    "brand": {
+        "index": "Brand",
+        "create": "Create Brand",
+        "edit": "Edit Brand"
+    },
     "create": "Create",
-    "list": "List"
+    "update": "Update",
+    "list": "List",
+    "title": "Title",
+    "path": "Path"
 }

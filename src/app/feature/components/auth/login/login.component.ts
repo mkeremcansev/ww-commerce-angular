@@ -11,7 +11,6 @@ import {AlertService} from "../../../../service/alert/alert.service";
     selector: 'app-login',
     templateUrl: './login.component.html',
     providers: [MessageService]
-
 })
 export class LoginComponent extends AlertService{
 

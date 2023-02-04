@@ -17,10 +17,13 @@ export class PermissionGuard implements CanActivate {
     /**
      * @param route
      * @param state
+     * @param guard
      */
     canActivate(
         route: ActivatedRouteSnapshot,
-        state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+        state: RouterStateSnapshot,
+        guard: boolean = true
+    ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
         const permissions = JSON.parse(localStorage.getItem('permissions') || JSON.parse('{}'));
         for (const groupName in permissions) {
             if (permissions.hasOwnProperty(groupName)) {
@@ -31,6 +34,7 @@ export class PermissionGuard implements CanActivate {
                 }
             }
         }
+        guard ? this.router.navigate(['/notfound']) : false;
         return false;
     }
 
