@@ -23,6 +23,12 @@ export class DatatableComponent extends AlertService {
     public loading: boolean = true;
     public viewColumnsForTable: any = [];
 
+    /**
+     * @method constructor
+     * @param router
+     * @param messageService
+     * @param httpClient
+     */
     constructor(
         public router: Router,
         public messageService: MessageService,
@@ -31,6 +37,9 @@ export class DatatableComponent extends AlertService {
         super();
     }
 
+    /**
+     * @method ngOnInit
+     */
     ngOnInit() {
         this.table.start = this.start;
         this.table.length = this.rows;
@@ -42,11 +51,19 @@ export class DatatableComponent extends AlertService {
         ]
     }
 
+    /**
+     * @method clear
+     * @param table
+     */
     clear(table: Table) {
         table.clear();
         this.filter.nativeElement.value = '';
     }
 
+    /**
+     * @method load
+     * @param event
+     */
     load(event: LazyLoadEvent) {
         this.viewColumns();
         if (!_.isEmpty(event.filters)) {
@@ -71,7 +88,7 @@ export class DatatableComponent extends AlertService {
     }
 
     /**
-     * @param event
+     * @method formatter
      */
     formatter() {
         for (const [column, value] of Object.entries(this.filterItems)) {
@@ -86,6 +103,7 @@ export class DatatableComponent extends AlertService {
     }
 
     /**
+     * @method redirect
      * @param route
      * @param params
      */
@@ -94,6 +112,7 @@ export class DatatableComponent extends AlertService {
     }
 
     /**
+     * @method destroy
      * @param id
      */
     destroy(id: number) {
@@ -107,6 +126,7 @@ export class DatatableComponent extends AlertService {
     }
 
     /**
+     * @method action
      * @param type
      * @param id
      * @param data
@@ -124,6 +144,9 @@ export class DatatableComponent extends AlertService {
         }
     }
 
+    /**
+     * @method viewColumns
+     */
     viewColumns() {
         this.viewColumnsForTable = [];
         this.table.columns.forEach((column: any) => {
