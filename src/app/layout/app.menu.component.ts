@@ -33,7 +33,7 @@ export class AppMenuComponent implements OnInit {
                         routerLink: ['/']
                     },
                     {
-                        label: 'brand',
+                        label: 'brand.index',
                         icon: 'pi pi-fw pi-globe',
                         data: {
                             permission: {
@@ -50,7 +50,8 @@ export class AppMenuComponent implements OnInit {
                                         group: 'Brand',
                                         name: 'brand.create'
                                     }
-                                }
+                                },
+                                routerLink: ['/brand/create']
                             },
                             {
                                 label: 'list',

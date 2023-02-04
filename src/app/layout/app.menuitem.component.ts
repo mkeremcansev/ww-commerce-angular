@@ -133,6 +133,6 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
     }
 
     canActivate(route: any) {
-        return this.permissionGuard.canActivate(route, route.data);
+        return this.permissionGuard.canActivate(route, route.data, false);
     }
 }

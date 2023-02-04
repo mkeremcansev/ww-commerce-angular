@@ -1,0 +1,21 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="card p-fluid">
+            <h3 class="mb-5">{{'brand.create' | translate}}</h3>
+            <form [formGroup]="form" (ngSubmit)="submit()">
+                <div class="field">
+                    <label htmlFor="title">{{'title' | translate}}</label>
+                    <input pInputText id="title" type="text" formControlName="title" />
+                </div>
+                <div class="field">
+                    <label htmlFor="path">{{'path' | translate}}</label>
+                    <input pInputText id="path" type="text" formControlName="path" />
+                </div>
+                <div class="flex justify-content-end">
+                    <button class="w-auto" pButton [loading]="isButton" label="{{'create' | translate}}"></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<p-toast key="tst"></p-toast>

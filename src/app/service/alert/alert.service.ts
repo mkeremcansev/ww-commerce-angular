@@ -4,8 +4,7 @@ import {Injectable} from '@angular/core';
     providedIn: 'root',
 })
 export class AlertService {
-    constructor(
-    ) {
+    constructor() {
     }
 
     /**
@@ -16,6 +15,7 @@ export class AlertService {
             key: 'tst',
             severity: 'error',
             summary: 'Error Message',
+            life: 2500,
             detail: message
         };
     }
@@ -28,6 +28,7 @@ export class AlertService {
             key: 'tst',
             severity: 'success',
             summary: 'Success Message',
+            life: 2500,
             detail: message
         };
     }
