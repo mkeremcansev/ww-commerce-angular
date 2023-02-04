@@ -17,7 +17,7 @@ export class DatatableComponent extends AlertService {
     @ViewChild('filter') filter!: ElementRef;
     public variables = [];
     public filterItems: any = [];
-    public rows: number = 1;
+    public rows: number = 10;
     public start: number = 0;
     public recordsTotal: number = 0;
     public loading: boolean = true;
@@ -34,6 +34,12 @@ export class DatatableComponent extends AlertService {
     ngOnInit() {
         this.table.start = this.start;
         this.table.length = this.rows;
+        this.table.order = [
+            {
+                "column": 0,
+                "dir": "desc"
+            }
+        ]
     }
 
     clear(table: Table) {
@@ -98,6 +104,24 @@ export class DatatableComponent extends AlertService {
             (error) => {
                 this.messageService.add(this.error(error.error.message))
             });
+    }
+
+    /**
+     * @param type
+     * @param id
+     * @param data
+     */
+    action(type: string, id: number, data: any = {}) {
+        switch (type) {
+            case 'destroy':
+                this.destroy(id);
+                break;
+            case 'edit':
+                this.redirect(this.table.edit.url, id);
+                break;
+            default:
+                break;
+        }
     }
 
     viewColumns() {

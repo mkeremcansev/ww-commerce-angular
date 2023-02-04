@@ -43,11 +43,9 @@
                     {{variable[view?.data]}}
                 </td>
                 <td>
-                    <button pButton pRipple type="button" icon="pi pi-pencil"
-                            (click)="redirect('brand/edit/', variable.id)"
-                            class="p-button-rounded p-button-warning p-button-text"></button>
-                    <button pButton pRipple type="button" icon="pi pi-times" (click)="destroy(variable.id)"
-                            class="p-button-rounded p-button-danger p-button-text"></button>
+                    <button *ngFor="let button of table.buttons" pButton pRipple type="button" icon="{{button.icon}}"
+                            (click)="action(button.action, variable.id)"
+                            class="p-button-rounded p-button-{{ button.className }} p-button-text"></button>
                 </td>
             </tr>
         </ng-template>

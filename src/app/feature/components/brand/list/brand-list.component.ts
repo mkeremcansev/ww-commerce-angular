@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+
 @Component({
     selector: 'app-brand-list',
     templateUrl: './brand-list.component.html',
@@ -6,14 +7,17 @@ import {Component} from '@angular/core';
 })
 export class BrandListComponent {
     table = {
-        "url":"/brand",
+        "url": "/brand",
         "destroy": {
             "url": "/brand/",
+        },
+        "edit": {
+            "url": "/brand/edit/"
         },
         "columns": [
             {
                 "data": "id",
-                "type":"numeric",
+                "type": "numeric",
                 "name": "",
                 "orderable": true,
                 "search": {
@@ -23,7 +27,7 @@ export class BrandListComponent {
             },
             {
                 "data": "title",
-                "type":"text",
+                "type": "text",
                 "name": "",
                 "orderable": true,
                 "search": {
@@ -33,7 +37,7 @@ export class BrandListComponent {
             },
             {
                 "data": "slug",
-                "type":"text",
+                "type": "text",
                 "name": "",
                 "orderable": true,
                 "search": {
@@ -43,7 +47,7 @@ export class BrandListComponent {
             },
             {
                 "data": "path",
-                "type":"text",
+                "type": "text",
                 "name": "",
                 "orderable": true,
                 "search": {
@@ -52,17 +56,26 @@ export class BrandListComponent {
                 }
             }
         ],
-        "order": [
+        "buttons": [
             {
-                "column": 0,
-                "dir": "desc"
+                "icon": "pi pi-pencil",
+                "className": "warning",
+                "action": "edit",
+                "key": "id",
+                "url": "/brand/edit"
+            },
+            {
+                "icon": "pi pi-times",
+                "className": "danger",
+                "action": "destroy",
+                "key": "id",
+                "url": "/brand/"
             }
         ]
     }
 
 
-    constructor(
-    ) {
+    constructor() {
     }
 
     ngOnInit() {
