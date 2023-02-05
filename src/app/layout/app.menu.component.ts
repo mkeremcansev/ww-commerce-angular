@@ -65,6 +65,52 @@ export class AppMenuComponent implements OnInit {
                                 routerLink: ['/brand/list']
                             }
                         ]
+                    },
+                    {
+                        label: 'media.index',
+                        icon: 'pi pi-fw pi-book',
+                        data: {
+                            permission: {
+                                group: 'Media',
+                                name: 'media.index'
+                            }
+                        },
+                        items: [
+                            {
+                                label: 'image.index',
+                                icon: 'pi pi-fw pi-image',
+                                data: {
+                                    permission: {
+                                        group: 'Image',
+                                        name: 'image.index'
+                                    }
+                                },
+                                items: [
+                                    {
+                                        label: 'upload',
+                                        icon: 'pi pi-fw pi-plus',
+                                        data: {
+                                            permission: {
+                                                group: 'Image',
+                                                name: 'image.upload'
+                                            }
+                                        },
+                                        routerLink: ['/media/image/upload']
+                                    },
+                                    {
+                                        label: 'list',
+                                        icon: 'pi pi-fw pi-list',
+                                        data: {
+                                            permission: {
+                                                group: 'Image',
+                                                name: 'image.index'
+                                            }
+                                        },
+                                        routerLink: ['/media/image/list']
+                                    }
+                                ]
+                            }
+                        ]
                     }
                 ]
             }

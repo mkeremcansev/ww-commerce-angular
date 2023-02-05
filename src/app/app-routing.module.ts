@@ -26,6 +26,17 @@ import {PermissionGuard} from "./guard/permission/permission.guard";
                         },
                         loadChildren: () => import('./feature/components/brand/brand.module').then(m => m.BrandModule)
                     },
+                    {
+                        path: 'media',
+                        canActivate: [PermissionGuard],
+                        data: {
+                            permission: {
+                                group: 'Media',
+                                name: 'media.index'
+                            }
+                        },
+                        loadChildren: () => import('./feature/components/media/media.module').then(m => m.MediaModule)
+                    }
                 ]
             },
             {

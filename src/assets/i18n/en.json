@@ -16,5 +16,28 @@
     "slug": "Slug",
     "edit": "Edit",
     "dataNotFound": "Data not found",
-    "searcyByAttribute": "Search by {{attribute}}"
+    "upload": "Upload",
+    "searcyByAttribute": "Search by {{attribute}}",
+    "image": {
+        "index": "Image",
+        "upload": "Image Upload",
+        "list": "List",
+        "successMessage": "Images uploaded successfully",
+        "uploadValidation": {
+            "invalidFileLimitMessageSummary": "Maximum number of files exceeded,",
+            "invalidFileLimitMessageDetail": "you can upload {0} file at most.",
+            "invalidFileSizeMessageSummary": "File size is too large,",
+            "invalidFileSizeMessageDetail": "maximum file size is {0}."
+        },
+        "button": {
+            "choose": "Choose",
+            "cancel": "Cancel",
+            "upload": "Upload"
+        },
+        "notSelected": "File not selected."
+    },
+    "media": {
+        "index": "Media"
+    },
+    "kerem": "Limit is {0} at most."
 }

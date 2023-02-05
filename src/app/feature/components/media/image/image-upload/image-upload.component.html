@@ -1,0 +1,32 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="card p-fluid">
+            <h3 class="mb-5">{{'image.upload' | translate}}</h3>
+            <p-fileUpload
+                name="files[]"
+                [multiple]="true"
+                (onUpload)="onUpload($event)"
+                (onSelect)="onSelect()"
+                accept="image/*"
+                [maxFileSize]="500000"
+                [url]="url"
+                [fileLimit]="5"
+                [invalidFileLimitMessageSummary]="'image.uploadValidation.invalidFileLimitMessageSummary' | translate"
+                [invalidFileLimitMessageDetail]="'image.uploadValidation.invalidFileLimitMessageDetail' | translate"
+                [invalidFileSizeMessageSummary]="'image.uploadValidation.invalidFileSizeMessageSummary' | translate"
+                [invalidFileSizeMessageDetail]="'image.uploadValidation.invalidFileSizeMessageDetail' | translate"
+                [uploadLabel]="'image.button.upload' | translate"
+                [cancelLabel]="'image.button.cancel' | translate"
+                [chooseLabel]="'image.button.choose' | translate"
+                (onClear)="onClear()"
+            >
+                <ng-template pTemplate="content">
+                    <div class="text-center" *ngIf="isContent">
+                        <ng-container>{{ 'image.notSelected' | translate }}</ng-container>
+                    </div>
+                </ng-template>
+            </p-fileUpload>
+        </div>
+    </div>
+</div>
+<p-toast key="tst"></p-toast>
