@@ -52,6 +52,10 @@ export class AuthComponent extends AlertService {
         super();
     }
 
+    ngOnInit() {
+        this.localStorageService.removeItems(['token', 'permissions', 'user']);
+    }
+
     /**
      * @method formInit
      */

@@ -1,6 +1,9 @@
 {
     "dashboard": "Dashboard",
     "login": "Login",
+    "logout": "Logout",
+    "email": "Email",
+    "password": "Password",
     "brand": {
         "index": "Brand",
         "create": "Create Brand",
@@ -38,6 +41,5 @@
     },
     "media": {
         "index": "Media"
-    },
-    "kerem": "Limit is {0} at most."
+    }
 }

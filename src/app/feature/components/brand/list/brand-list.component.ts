@@ -7,6 +7,7 @@ import {Component} from '@angular/core';
 })
 export class BrandListComponent {
     table = {
+        "title":"brand.list",
         "url": "/brand",
         "destroy": {
             "url": "/brand/",
