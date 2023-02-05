@@ -22,7 +22,7 @@ export class UserService {
      * @method logout
      */
     logout() {
-        this.storageService.removeItems(['token', 'permissions', 'user']);
         this.redirectService.redirect('/login/auth', 0);
+        this.storageService.removeItems(['token', 'permissions', 'user']);
     }
 }
