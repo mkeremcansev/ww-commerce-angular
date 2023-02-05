@@ -15,6 +15,11 @@ export class ImageUploadComponent extends AlertService {
     public url: string = environment.api + '/image/upload';
     public isContent: boolean = true;
 
+    /**
+     * @constructor
+     * @param translateService
+     * @param messageService
+     */
     constructor(
         public translateService: TranslateService,
         public messageService: MessageService
@@ -22,10 +27,17 @@ export class ImageUploadComponent extends AlertService {
         super();
     }
 
+    /**
+     * @method ngOnInit
+     */
     ngOnInit() {
 
     }
 
+    /**
+     * @method onUpload
+     * @param event
+     */
     onUpload(event: { files: Blob[] }) {
         for (let file of event.files) {
             this.uploadedFiles.push(file);
@@ -33,14 +45,23 @@ export class ImageUploadComponent extends AlertService {
         this.messageService.add(this.success(this.message()));
     }
 
-    onSelect(){
+    /**
+     * @method onSelect
+     */
+    onSelect() {
         this.isContent = false;
     }
 
-    onClear(){
+    /**
+     * @method onClear
+     */
+    onClear() {
         this.isContent = true;
     }
 
+    /**
+     * @method message
+     */
     message() {
         let successMessage = '';
         this.translateService.get('image.successMessage').subscribe((message: string) => {
