@@ -4,6 +4,7 @@ import {BrandService} from "../../service/brand.service";
 import {MessageService} from "primeng/api";
 import {AlertService} from "../../../../../service/alert/alert.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import * as _ from "lodash";
 
 @Component({
     selector: 'app-brand-edit',
@@ -31,6 +32,7 @@ export class BrandEditComponent extends AlertService {
     public isSpinner: boolean = true;
 
     public id = Number(this.route.snapshot.paramMap.get('id'));
+    public selectedImages: string[] = [];
 
     /**
      * @param brandService
@@ -63,12 +65,21 @@ export class BrandEditComponent extends AlertService {
                         title: response.data.title,
                         path: response.data.path
                     })
-            this.isSpinner = false;
+                    this.selectedImages.push(response.data.path);
+                    this.isSpinner = false;
                 },
                 (error: any) => {
                     this.messageService.add(this.error(error.error.message))
                 })
             : this.router.navigate(['/']);
+    }
+
+    /**
+     * @method emit
+     * @param event
+     */
+    emit(event: string[]) {
+        event.length > 0 ? this.form.patchValue({path: _.first(event)}) : this.form.patchValue({path: ''});
     }
 
     /**

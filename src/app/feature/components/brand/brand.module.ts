@@ -17,6 +17,7 @@ import {SliderModule} from "primeng/slider";
 import {ProgressBarModule} from "primeng/progressbar";
 import {RippleModule} from "primeng/ripple";
 import {DatatableModule} from "../../modules/datatable/datatable.module";
+import {MediaModule} from "../media/media.module";
 
 @NgModule({
     declarations: [
@@ -39,7 +40,8 @@ import {DatatableModule} from "../../modules/datatable/datatable.module";
         SliderModule,
         ProgressBarModule,
         RippleModule,
-        DatatableModule
+        DatatableModule,
+        MediaModule
     ]
 })
 export class BrandModule {

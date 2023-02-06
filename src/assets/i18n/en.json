@@ -18,13 +18,14 @@
     "id": "ID",
     "slug": "Slug",
     "edit": "Edit",
-    "dataNotFound": "Data not found",
+    "dataNotFound": "Data not found.",
     "upload": "Upload",
     "searcyByAttribute": "Search by {{attribute}}",
     "image": {
         "index": "Image",
         "upload": "Image Upload",
         "list": "List",
+        "imageList": "Image List",
         "successMessage": "Images uploaded successfully",
         "uploadValidation": {
             "invalidFileLimitMessageSummary": "Maximum number of files exceeded,",
@@ -41,5 +42,7 @@
     },
     "media": {
         "index": "Media"
-    }
+    },
+    "deselect": "Deselect",
+    "deleteSelections": "Delete Selections"
 }

@@ -13,7 +13,7 @@
                     </div>
                     <div class="field">
                         <label htmlFor="path">{{'path' | translate}}</label>
-                        <input pInputText id="path" type="text" formControlName="path"/>
+                        <input pInputText id="path" type="text" formControlName="path" [readonly]="true"/>
                     </div>
                     <div class="flex justify-content-end">
                         <button class="w-auto" pButton [loading]="isLoading" label="{{'update' | translate}}"></button>
@@ -23,4 +23,12 @@
         </div>
     </div>
 </div>
+<app-image-list
+    [multiple]="false"
+    [selectedImages]="selectedImages"
+    [deselect]="false"
+    [deleteSelections]="false"
+    (selectedImagesEmitter)="emit($event)"
+>
+</app-image-list>
 <p-toast key="tst"></p-toast>

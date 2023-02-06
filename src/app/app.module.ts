@@ -22,6 +22,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {ToastModule} from "primeng/toast";
 import {TableModule} from "primeng/table";
 import {RippleModule} from "primeng/ripple";
+import {MediaModule} from "./feature/components/media/media.module";
 
 /**
  * @param httpClient
@@ -52,7 +53,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
         ReactiveFormsModule,
         ToastModule,
         TableModule,
-        RippleModule
+        RippleModule,
+        MediaModule
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

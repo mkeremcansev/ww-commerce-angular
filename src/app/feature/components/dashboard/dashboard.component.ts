@@ -12,6 +12,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     items!: MenuItem[];
 
+    asdasdas: string[] = [];
+
     products!: Product[];
 
     chartData: any;
@@ -34,6 +36,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
             { label: 'Add New', icon: 'pi pi-fw pi-plus' },
             { label: 'Remove', icon: 'pi pi-fw pi-minus' }
         ];
+    }
+
+    kerem(event: any) {
+        this.asdasdas = []
+        this.asdasdas.push(event)
+        console.log(this.asdasdas)
     }
 
     initChart() {

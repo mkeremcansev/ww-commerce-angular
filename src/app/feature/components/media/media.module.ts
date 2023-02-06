@@ -7,19 +7,36 @@ import { ImageUploadComponent } from './image/image-upload/image-upload.componen
 import {FileUploadModule} from "primeng/fileupload";
 import {TranslateModule} from "@ngx-translate/core";
 import {ToastModule} from "primeng/toast";
+import {ImageModule} from "primeng/image";
+import {RatingModule} from "primeng/rating";
+import {DataViewModule} from "primeng/dataview";
+import {DropdownModule} from "primeng/dropdown";
+import {InputTextModule} from "primeng/inputtext";
+import {FormsModule} from "@angular/forms";
+import {RippleModule} from "primeng/ripple";
 
 
 @NgModule({
-  declarations: [
-    ImageListComponent,
-    ImageUploadComponent
-  ],
+    declarations: [
+        ImageListComponent,
+        ImageUploadComponent
+    ],
+    exports: [
+        ImageListComponent
+    ],
     imports: [
         CommonModule,
         MediaRoutingModule,
         FileUploadModule,
         TranslateModule,
-        ToastModule
+        ToastModule,
+        ImageModule,
+        RatingModule,
+        DataViewModule,
+        DropdownModule,
+        InputTextModule,
+        FormsModule,
+        RippleModule
     ]
 })
 export class MediaModule { }

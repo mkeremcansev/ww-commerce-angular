@@ -5,11 +5,11 @@
             <form [formGroup]="form" (ngSubmit)="submit()">
                 <div class="field">
                     <label htmlFor="title">{{'title' | translate}}</label>
-                    <input pInputText id="title" type="text" formControlName="title" />
+                    <input pInputText id="title" type="text" formControlName="title"/>
                 </div>
                 <div class="field">
                     <label htmlFor="path">{{'path' | translate}}</label>
-                    <input pInputText id="path" type="text" formControlName="path" />
+                    <input pInputText id="path" type="text" formControlName="path" [readonly]="true"/>
                 </div>
                 <div class="flex justify-content-end">
                     <button class="w-auto" pButton [loading]="isButton" label="{{'create' | translate}}"></button>
@@ -18,4 +18,11 @@
         </div>
     </div>
 </div>
+<app-image-list
+    [multiple]="false"
+    [deselect]="false"
+    [deleteSelections]="false"
+    (selectedImagesEmitter)="emit($event)"
+>
+</app-image-list>
 <p-toast key="tst"></p-toast>
