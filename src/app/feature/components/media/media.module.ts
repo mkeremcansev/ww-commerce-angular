@@ -14,6 +14,7 @@ import {DropdownModule} from "primeng/dropdown";
 import {InputTextModule} from "primeng/inputtext";
 import {FormsModule} from "@angular/forms";
 import {RippleModule} from "primeng/ripple";
+import {ProgressSpinnerModule} from "primeng/progressspinner";
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import {RippleModule} from "primeng/ripple";
         DropdownModule,
         InputTextModule,
         FormsModule,
-        RippleModule
+        RippleModule,
+        ProgressSpinnerModule
     ]
 })
 export class MediaModule { }
