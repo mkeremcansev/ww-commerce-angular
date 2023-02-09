@@ -18,6 +18,12 @@
         "list": "Category List",
         "mainCategory": "Main Category"
     },
+    "attribute": {
+        "index": "Attribute",
+        "create": "Create Attribute",
+        "edit": "Edit Attribute",
+        "list": "Attribute List"
+    },
     "create": "Create",
     "update": "Update",
     "list": "List",

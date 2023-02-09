@@ -1,19 +1,19 @@
 import {Component} from '@angular/core';
 
 @Component({
-    selector: 'app-category-list',
-    templateUrl: './category-list.component.html',
-    styleUrls: ['./category-list.component.scss']
+    selector: 'app-attribute-list',
+    templateUrl: './attribute-list.component.html',
+    styleUrls: ['./attribute-list.component.scss']
 })
-export class CategoryListComponent {
+export class AttributeListComponent {
     public table = {
-        "title": "category.list",
-        "url": "/category",
+        "title": "attribute.list",
+        "url": "/attribute",
         "destroy": {
-            "url": "/category/",
+            "url": "/attribute/",
         },
         "edit": {
-            "url": "/category/edit/"
+            "url": "/attribute/edit/"
         },
         "columns": [
             {
@@ -35,26 +35,6 @@ export class CategoryListComponent {
                     "regex": false,
                     "value": null
                 }
-            },
-            {
-                "data": "slug",
-                "type": "text",
-                "name": "",
-                "orderable": true,
-                "search": {
-                    "regex": false,
-                    "value": null
-                }
-            },
-            {
-                "data": "path",
-                "type": "text",
-                "name": "",
-                "orderable": true,
-                "search": {
-                    "regex": false,
-                    "value": null
-                }
             }
         ],
         "buttons": [
@@ -63,21 +43,27 @@ export class CategoryListComponent {
                 "className": "warning",
                 "action": "edit",
                 "key": "id",
-                "url": "/category/edit"
+                "url": "/attribute/edit"
             },
             {
                 "icon": "pi pi-times",
                 "className": "danger",
                 "action": "destroy",
                 "key": "id",
-                "url": "/category/"
+                "url": "/attribute/"
             }
         ]
     }
 
+    /**
+     * @method constructor
+     */
     constructor() {
     }
 
+    /**
+     * @method ngOnInit
+     */
     ngOnInit() {
 
     }

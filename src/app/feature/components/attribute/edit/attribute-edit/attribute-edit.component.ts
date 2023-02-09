@@ -1,37 +1,37 @@
 import {Component} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {BrandService} from "../../service/brand.service";
+import {BrandService} from "../../../brand/service/brand.service";
 import {MessageService} from "primeng/api";
-import {AlertService} from "../../../../../service/alert/alert.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import * as _ from "lodash";
-import {RedirectService} from 'src/app/service/redirect/redirect.service';
+import {RedirectService} from "../../../../../service/redirect/redirect.service";
+import {AttributeService} from "../../service/attribute.service";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {AlertService} from "../../../../../service/alert/alert.service";
 
 @Component({
-    selector: 'app-brand-edit',
-    templateUrl: './brand-edit.component.html',
-    styleUrls: ['./brand-edit.component.scss'],
+    selector: 'app-attribute-edit',
+    templateUrl: './attribute-edit.component.html',
+    styleUrls: ['./attribute-edit.component.scss'],
     providers: [MessageService]
 })
-export class BrandEditComponent extends AlertService {
+export class AttributeEditComponent extends AlertService {
+
     public form: FormGroup = new FormGroup({
-        title: new FormControl('', Validators.required),
-        path: new FormControl('', Validators.required)
+        title: new FormControl('', Validators.required)
     });
     public isLoading: boolean = false;
     public isSpinner: boolean = true;
     public id = Number(this.route.snapshot.paramMap.get('id'));
-    public selectedImages: string[] = [];
 
     /**
-     * @param brandService
+     * @method constructor
+     * @param attributeService
      * @param messageService
      * @param route
      * @param router
      * @param redirectService
      */
     constructor(
-        public brandService: BrandService,
+        public attributeService: AttributeService,
         public messageService: MessageService,
         public route: ActivatedRoute,
         public router: Router,
@@ -51,12 +51,10 @@ export class BrandEditComponent extends AlertService {
      * @param id
      */
     setValue(id: number) {
-        !isNaN(id) ? this.brandService.edit(id).subscribe((response: any) => {
+        !isNaN(id) ? this.attributeService.edit(id).subscribe((response: any) => {
                     this.form.patchValue({
-                        title: response.data.title,
-                        path: response.data.path
+                        title: response.data.title
                     })
-                    this.selectedImages.push(response.data.path);
                     this.isSpinner = false;
                 },
                 () => {
@@ -66,20 +64,12 @@ export class BrandEditComponent extends AlertService {
     }
 
     /**
-     * @method emit
-     * @param event
-     */
-    emit(event: string[]) {
-        event.length > 0 ? this.form.patchValue({path: _.first(event)}) : this.form.patchValue({path: ''});
-    }
-
-    /**
      * @method submit
      */
     submit() {
         if (this.form.valid) {
             this.isLoading = true;
-            this.brandService.update(this.form.value, this.id).subscribe((response: any) => {
+            this.attributeService.update(this.form.value, this.id).subscribe((response: any) => {
                     this.messageService.add(this.success(response.message));
                     this.isLoading = false;
                 },

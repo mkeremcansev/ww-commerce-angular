@@ -22,6 +22,7 @@ export class CategoryCreateComponent extends AlertService {
         path: new FormControl('', Validators.required)
     });
     public isLoading: boolean = false;
+    public isSpinner: boolean = true;
     public tree: TreeNode[] = [];
     public selected: TreeNode = {};
 
@@ -52,6 +53,7 @@ export class CategoryCreateComponent extends AlertService {
      */
     setTree() {
         this.categoryService.create().subscribe((response: any) => {
+            this.isSpinner = false;
             this.tree = this.format(response.data);
         });
     }

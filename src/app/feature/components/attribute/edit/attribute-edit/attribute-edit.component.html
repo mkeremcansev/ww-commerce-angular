@@ -1,0 +1,22 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="card p-fluid">
+            <div class="progress-spinner flex justify-content-center" *ngIf="isSpinner">
+                <p-progressSpinner></p-progressSpinner>
+            </div>
+            <div *ngIf="!isSpinner">
+                <h3 class="mb-5">{{'attribute.edit' | translate}}</h3>
+                <form [formGroup]="form" (ngSubmit)="submit()">
+                    <div class="field">
+                        <label htmlFor="title">{{'title' | translate}}</label>
+                        <input pInputText id="title" type="text" formControlName="title"/>
+                    </div>
+                    <div class="flex justify-content-end">
+                        <button class="w-auto" pButton [loading]="isLoading" label="{{'create' | translate}}"></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<p-toast key="tst"></p-toast>

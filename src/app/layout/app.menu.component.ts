@@ -68,7 +68,7 @@ export class AppMenuComponent implements OnInit {
                     },
                     {
                         label: 'category.index',
-                        icon: 'pi pi-fw pi-globe',
+                        icon: 'pi pi-fw pi-sort-amount-up-alt',
                         data: {
                             permission: {
                                 group: 'Category',
@@ -97,6 +97,40 @@ export class AppMenuComponent implements OnInit {
                                     }
                                 },
                                 routerLink: ['/category/list']
+                            }
+                        ]
+                    },
+                    {
+                        label: 'attribute.index',
+                        icon: 'pi pi-fw pi-sort-alpha-up',
+                        data: {
+                            permission: {
+                                group: 'Attribute',
+                                name: 'attribute.index'
+                            }
+                        },
+                        items: [
+                            {
+                                label: 'create',
+                                icon: 'pi pi-fw pi-plus',
+                                data: {
+                                    permission: {
+                                        group: 'Attribute',
+                                        name: 'attribute.create'
+                                    }
+                                },
+                                routerLink: ['/attribute/create']
+                            },
+                            {
+                                label: 'list',
+                                icon: 'pi pi-fw pi-list',
+                                data: {
+                                    permission: {
+                                        group: 'Attribute',
+                                        name: 'attribute.index'
+                                    }
+                                },
+                                routerLink: ['/attribute/list']
                             }
                         ]
                     },
