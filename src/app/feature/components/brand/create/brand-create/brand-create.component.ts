@@ -14,19 +14,10 @@ import * as _ from 'lodash';
     providers: [MessageService]
 })
 export class BrandCreateComponent extends AlertService {
-    /**
-     * @var form
-     */
     public form: FormGroup = new FormGroup({
         title: new FormControl('', Validators.required),
         path: new FormControl('', Validators.required)
     });
-
-    display: boolean = true;
-
-    /**
-     * @var isLoading
-     */
     public isButton: boolean = false;
 
     /**

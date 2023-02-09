@@ -67,6 +67,40 @@ export class AppMenuComponent implements OnInit {
                         ]
                     },
                     {
+                        label: 'category.index',
+                        icon: 'pi pi-fw pi-globe',
+                        data: {
+                            permission: {
+                                group: 'Category',
+                                name: 'category.index'
+                            }
+                        },
+                        items: [
+                            {
+                                label: 'create',
+                                icon: 'pi pi-fw pi-plus',
+                                data: {
+                                    permission: {
+                                        group: 'Category',
+                                        name: 'category.create'
+                                    }
+                                },
+                                routerLink: ['/category/create']
+                            },
+                            {
+                                label: 'list',
+                                icon: 'pi pi-fw pi-list',
+                                data: {
+                                    permission: {
+                                        group: 'Category',
+                                        name: 'category.index'
+                                    }
+                                },
+                                routerLink: ['/category/list']
+                            }
+                        ]
+                    },
+                    {
                         label: 'media.index',
                         icon: 'pi pi-fw pi-book',
                         data: {

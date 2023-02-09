@@ -4,11 +4,19 @@
     "logout": "Logout",
     "email": "Email",
     "password": "Password",
+    "actions": "Actions",
     "brand": {
         "index": "Brand",
         "create": "Create Brand",
         "edit": "Edit Brand",
         "list": "Brand List"
+    },
+    "category": {
+        "index": "Category",
+        "create": "Create Category",
+        "edit": "Edit Category",
+        "list": "Category List",
+        "mainCategory": "Main Category"
     },
     "create": "Create",
     "update": "Update",

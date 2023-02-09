@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {PermissionGuard} from "../../../guard/permission/permission.guard";
-import {BrandCreateComponent} from "./create/brand-create/brand-create.component";
-import {BrandEditComponent} from "./edit/brand-edit/brand-edit.component";
-import {BrandListComponent} from "./list/brand-list/brand-list.component";
+import {CategoryCreateComponent} from "./create/category-create/category-create.component";
+import {CategoryEditComponent} from "./edit/category-edit/category-edit.component";
+import {CategoryListComponent} from "./list/category-list/category-list.component";
 
 const routes: Routes = [];
 
@@ -11,38 +11,38 @@ const routes: Routes = [];
   imports: [RouterModule.forChild([
       {
           path: 'create',
-          component: BrandCreateComponent,
+          component: CategoryCreateComponent,
           canActivate: [PermissionGuard],
           data: {
               permission: {
-                  group: 'Brand',
-                  name: 'brand.create'
+                  group: 'Category',
+                  name: 'category.create'
               }
           }
       },
       {
           path: 'list',
-          component: BrandListComponent,
+          component: CategoryListComponent,
           canActivate: [PermissionGuard],
           data: {
               permission: {
-                  group: 'Brand',
-                  name: 'brand.index'
+                  group: 'Category',
+                  name: 'category.index'
               }
           }
       },
       {
           path: 'edit/:id',
-          component: BrandEditComponent,
+          component: CategoryEditComponent,
           canActivate: [PermissionGuard],
           data: {
               permission: {
-                  group: 'Brand',
-                  name: 'brand.edit'
+                  group: 'Category',
+                  name: 'category.edit'
               }
           }
       }
   ])],
   exports: [RouterModule]
 })
-export class BrandRoutingModule { }
+export class CategoryRoutingModule { }

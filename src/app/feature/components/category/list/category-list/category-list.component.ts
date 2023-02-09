@@ -1,19 +1,19 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-    selector: 'app-brand-list',
-    templateUrl: './brand-list.component.html',
-    styleUrls: ['./brand-list.component.scss']
+  selector: 'app-category-list',
+  templateUrl: './category-list.component.html',
+  styleUrls: ['./category-list.component.scss']
 })
-export class BrandListComponent {
+export class CategoryListComponent {
     table = {
-        "title":"brand.list",
-        "url": "/brand",
+        "title":"category.list",
+        "url": "/category",
         "destroy": {
-            "url": "/brand/",
+            "url": "/category/",
         },
         "edit": {
-            "url": "/brand/edit/"
+            "url": "/category/edit/"
         },
         "columns": [
             {
@@ -63,22 +63,21 @@ export class BrandListComponent {
                 "className": "warning",
                 "action": "edit",
                 "key": "id",
-                "url": "/brand/edit"
+                "url": "/category/edit"
             },
             {
                 "icon": "pi pi-times",
                 "className": "danger",
                 "action": "destroy",
                 "key": "id",
-                "url": "/brand/"
+                "url": "/category/"
             }
         ]
     }
-
-
     constructor() {
     }
 
     ngOnInit() {
+
     }
 }

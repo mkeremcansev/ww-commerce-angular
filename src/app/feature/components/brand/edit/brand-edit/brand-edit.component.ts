@@ -5,6 +5,7 @@ import {MessageService} from "primeng/api";
 import {AlertService} from "../../../../../service/alert/alert.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import * as _ from "lodash";
+import { RedirectService } from 'src/app/service/redirect/redirect.service';
 
 @Component({
     selector: 'app-brand-edit',
@@ -39,12 +40,14 @@ export class BrandEditComponent extends AlertService {
      * @param messageService
      * @param route
      * @param router
+     * @param redirectService
      */
     constructor(
         public brandService: BrandService,
         public messageService: MessageService,
         public route: ActivatedRoute,
-        public router: Router
+        public router: Router,
+        public redirectService: RedirectService
     ) {
         super();
     }
@@ -68,10 +71,10 @@ export class BrandEditComponent extends AlertService {
                     this.selectedImages.push(response.data.path);
                     this.isSpinner = false;
                 },
-                (error: any) => {
-                    this.messageService.add(this.error(error.error.message))
+                () => {
+                    this.redirectService.redirect('/notfound', 0);
                 })
-            : this.router.navigate(['/']);
+            : this.redirectService.redirect('/notfound', 0);
     }
 
     /**
