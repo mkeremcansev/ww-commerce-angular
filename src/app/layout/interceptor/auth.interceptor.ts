@@ -39,7 +39,10 @@ export class AuthInterceptor implements HttpInterceptor {
         return next.handle(request).pipe(
             catchError(error => {
                 if (error.status === 401) {
-                    this.storageService.removeItems(['token', 'permissions', 'user']);
+                    console.log('401')
+                    this.router.navigate(['/login/auth']);
+                } else if (error.status === 403) {
+                    console.log('403')
                     this.router.navigate(['/login/auth']);
                 }
                 return throwError(error);
