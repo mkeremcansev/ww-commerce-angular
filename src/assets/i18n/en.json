@@ -24,11 +24,19 @@
         "edit": "Edit Attribute",
         "list": "Attribute List"
     },
+    "attribute_value": {
+        "index": "Attribute Value",
+        "create": "Create Attribute Value",
+        "edit": "Edit Attribute Value",
+        "list": "Attribute Value List",
+        "selectAttribute": "Select Attribute"
+    },
     "create": "Create",
     "update": "Update",
     "list": "List",
     "title": "Title",
     "path": "Path",
+    "code": "Code",
     "id": "ID",
     "slug": "Slug",
     "edit": "Edit",

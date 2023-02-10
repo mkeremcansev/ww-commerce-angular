@@ -135,6 +135,40 @@ export class AppMenuComponent implements OnInit {
                         ]
                     },
                     {
+                        label: 'attribute_value.index',
+                        icon: 'pi pi-fw pi-sort-alpha-up-alt',
+                        data: {
+                            permission: {
+                                group: 'AttributeValue',
+                                name: 'attribute_value.index'
+                            }
+                        },
+                        items: [
+                            {
+                                label: 'create',
+                                icon: 'pi pi-fw pi-plus',
+                                data: {
+                                    permission: {
+                                        group: 'AttributeValue',
+                                        name: 'attribute_value.create'
+                                    }
+                                },
+                                routerLink: ['/attribute/value/create']
+                            },
+                            {
+                                label: 'list',
+                                icon: 'pi pi-fw pi-list',
+                                data: {
+                                    permission: {
+                                        group: 'AttributeValue',
+                                        name: 'attribute_value.index'
+                                    }
+                                },
+                                routerLink: ['/attribute/value/list']
+                            }
+                        ]
+                    },
+                    {
                         label: 'media.index',
                         icon: 'pi pi-fw pi-book',
                         data: {

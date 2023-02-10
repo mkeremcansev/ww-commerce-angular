@@ -16,7 +16,7 @@ export class AttributeCreateComponent extends AlertService {
         title: new FormControl('', Validators.required)
     });
 
-    public isButton: boolean = false;
+    public isLoading: boolean = false;
 
     constructor(
         public attributeService: AttributeService,
@@ -26,6 +26,9 @@ export class AttributeCreateComponent extends AlertService {
         super();
     }
 
+    /**
+     * @method ngOnInit
+     */
     ngOnInit() {
 
     }
@@ -35,13 +38,13 @@ export class AttributeCreateComponent extends AlertService {
      */
     submit() {
         if (this.form.valid) {
-            this.isButton = true;
+            this.isLoading = true;
             this.attributeService.store(this.form.value).subscribe((response: any) => {
                 this.messageService.add(this.success(response.message))
                 this.form.disable();
                 this.redirectService.redirect('/attribute/edit/' + response.data.id, 3);
             }, (error: any) => {
-                this.isButton = false;
+                this.isLoading = false;
                 this.messageService.add(this.error(error.error.message))
             });
         } else {

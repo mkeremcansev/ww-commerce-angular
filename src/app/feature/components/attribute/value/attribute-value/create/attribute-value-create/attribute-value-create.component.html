@@ -5,33 +5,35 @@
                 <p-progressSpinner></p-progressSpinner>
             </div>
             <div *ngIf="!isSpinner">
-                <h3 class="mb-5">{{'category.edit' | translate}}</h3>
+                <h3 class="mb-5">{{'attribute_value.create' | translate}}</h3>
                 <form [formGroup]="form" (ngSubmit)="submit()">
                     <div class="field">
                         <label htmlFor="title">{{'title' | translate}}</label>
                         <input pInputText id="title" type="text" formControlName="title"/>
                     </div>
-
                     <div class="field">
-                        <label htmlFor="mainCategory">{{'category.mainCategory' | translate}}</label>
-                        <p-treeSelect
-                            id="mainCategory"
-                            selectionMode="single"
-                            [options]="tree"
-                            [filter]="true"
-                            [emptyMessage]="'dataNotFound' | translate"
-                            [(ngModel)]="selected"
-                            formControlName="category_id"
-                        >
-                        </p-treeSelect>
+                        <label htmlFor="code">{{'code' | translate}}</label>
+                        <input pInputText id="code" type="text" formControlName="code"/>
                     </div>
-
                     <div class="field">
                         <label htmlFor="path">{{'path' | translate}}</label>
                         <input pInputText id="path" type="text" formControlName="path" [readonly]="true"/>
                     </div>
+                    <div class="field">
+                        <label htmlFor="attribute_id">{{'attribute.index' | translate}}</label>
+                        <p-dropdown
+                            [options]="attributes"
+                            [optionValue]="'id'"
+                            [optionLabel]="'title'"
+                            formControlName="attribute_id"
+                            [required]="true"
+                            [ngClass]="form.invalid && form.touched ? 'ng-invalid ng-dirty' : null"
+                            placeholder="{{'attribute_value.selectAttribute' | translate}}" [showClear]="true"
+                            id="attribute_id">
+                        </p-dropdown>
+                    </div>
                     <div class="flex justify-content-end">
-                        <button class="w-auto" pButton [loading]="isLoading" label="{{'update' | translate}}"></button>
+                        <button class="w-auto" pButton [loading]="isLoading" label="{{'create' | translate}}"></button>
                     </div>
                 </form>
             </div>
@@ -43,6 +45,6 @@
     [deselect]="false"
     [deleteSelections]="false"
     (selectedImagesEmitter)="emit($event)"
-    [selectedImages]="selectedImages"
-></app-image-list>
+>
+</app-image-list>
 <p-toast key="tst"></p-toast>

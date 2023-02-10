@@ -3,6 +3,7 @@ import {NgModule} from '@angular/core';
 import {NotfoundComponent} from './feature/components/notfound/notfound.component';
 import {AppLayoutComponent} from "./layout/app.layout.component";
 import {PermissionGuard} from "./guard/permission/permission.guard";
+import {AttributeValueModule} from "./feature/components/attribute/value/attribute-value/attribute-value.module";
 
 @NgModule({
     imports: [
@@ -47,6 +48,17 @@ import {PermissionGuard} from "./guard/permission/permission.guard";
                             }
                         },
                         loadChildren: () => import('./feature/components/attribute/attribute.module').then(m => m.AttributeModule)
+                    },
+                    {
+                        path: 'attribute/value',
+                        canActivate: [PermissionGuard],
+                        data: {
+                            permission: {
+                                group: 'AttributeValue',
+                                name: 'attribute_value.index'
+                            }
+                        },
+                        loadChildren: () => import('./feature/components/attribute/value/attribute-value/attribute-value.module').then(m => m.AttributeValueModule)
                     },
                     {
                         path: 'media',
