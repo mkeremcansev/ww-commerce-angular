@@ -18,6 +18,23 @@
         "list": "Category List",
         "mainCategory": "Main Category"
     },
+    "product": {
+        "index": "Product",
+        "create": "Create Product",
+        "edit": "Edit Product",
+        "list": "Product List",
+        "selectCategory": "Select Category",
+        "variant": "Variant",
+        "price": "Price",
+        "content": "Content",
+        "stock": "Stock",
+        "variantCreate": "Create Variant",
+        "selectBrand": "Select Brand",
+        "brand": "Brand",
+        "category": "Category",
+        "status": "Status",
+        "variantStatus": "Variant Status"
+    },
     "attribute": {
         "index": "Attribute",
         "create": "Create Attribute",

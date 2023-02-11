@@ -61,6 +61,17 @@ import {AttributeValueModule} from "./feature/components/attribute/value/attribu
                         loadChildren: () => import('./feature/components/attribute/value/attribute-value/attribute-value.module').then(m => m.AttributeValueModule)
                     },
                     {
+                        path: 'product',
+                        canActivate: [PermissionGuard],
+                        data: {
+                            permission: {
+                                group: 'Product',
+                                name: 'product.index'
+                            }
+                        },
+                        loadChildren: () => import('./feature/components/product/product.module').then(m => m.ProductModule)
+                    },
+                    {
                         path: 'media',
                         canActivate: [PermissionGuard],
                         data: {
