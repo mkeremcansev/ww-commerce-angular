@@ -33,6 +33,29 @@ export class AppMenuComponent implements OnInit {
                         routerLink: ['/']
                     },
                     {
+                        label: 'product.index',
+                        icon: 'pi pi-fw pi-box',
+                        data: {
+                            permission: {
+                                group: 'Product',
+                                name: 'product.index'
+                            }
+                        },
+                        items: [
+                            {
+                                label: 'create',
+                                icon: 'pi pi-fw pi-plus',
+                                data: {
+                                    permission: {
+                                        group: 'Product',
+                                        name: 'product.create'
+                                    }
+                                },
+                                routerLink: ['/product/create']
+                            }
+                        ]
+                    },
+                    {
                         label: 'brand.index',
                         icon: 'pi pi-fw pi-globe',
                         data: {
