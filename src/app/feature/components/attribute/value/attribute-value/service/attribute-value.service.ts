@@ -50,3 +50,4 @@ export class AttributeValueService {
         return this.httpClient.patch<AttributeValueStoreResponse>(environment.api + '/attribute/value/' + id + '/update', data)
     }
 }
+

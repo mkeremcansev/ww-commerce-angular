@@ -1,7 +1,11 @@
 import {Component} from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ProductService} from "../../service/product.service";
-import {CombinationAttributeValue, ProductCreateResponse, ProductCreateResponseStatusFormat} from "../../entity/entity";
+import {
+    CombinationAttributeValue,
+    ProductCreateResponse,
+    ProductCreateResponseStatusFormat
+} from "../../entity/entity";
 import {MultiSelect} from "primeng/multiselect";
 import {first} from "lodash";
 import {MessageService, TreeNode} from "primeng/api";
@@ -104,7 +108,6 @@ export class ProductCreateComponent extends AlertService {
     setCombination() {
         this.variationCombinations = this.combinations(this.selectedAttributes);
         this.selectedAttributes = [];
-
         this.variationCombinations.forEach((item: CombinationAttributeValue[]) => {
             const modifiedItem = item.map((value: CombinationAttributeValue) => {
                 const attributeValueId = {...value};
@@ -127,7 +130,22 @@ export class ProductCreateComponent extends AlertService {
      */
     onChange(event: MultiSelect) {
         this.selectedAttributes.push(event.value);
+        const group: Record<string, any[]> = {};
 
+        for (let attribute of this.selectedAttributes) {
+            for (let item of attribute) {
+                if (!group[item.attribute_id]) {
+                    group[item.attribute_id] = [item];
+                } else {
+                    group[item.attribute_id].push(item);
+                }
+            }
+        }
+        const filter: { [key: string]: any[] } = {};
+        for (const [attributeId, values] of Object.entries(group)) {
+            filter[attributeId] = [...new Set(values.flat())];
+        }
+        this.selectedAttributes = Object.values(filter);
     }
 
     /**
@@ -156,6 +174,9 @@ export class ProductCreateComponent extends AlertService {
         return result;
     }
 
+    /**
+     * @method categoryIdSetter
+     */
     categoryIdSetter() {
         let categoryId: number[] = [];
         this.selectedCategories.forEach((category: TreeNode) => {
@@ -164,6 +185,9 @@ export class ProductCreateComponent extends AlertService {
         return categoryId;
     }
 
+    /**
+     * @method submit
+     */
     submit() {
         this.matchSelectedCategories = this.selectedCategories;
         if (this.form.valid) {
@@ -189,5 +213,4 @@ export class ProductCreateComponent extends AlertService {
             this.form.markAllAsTouched();
         }
     }
-
 }

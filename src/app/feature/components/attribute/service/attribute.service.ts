@@ -1,6 +1,11 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {AttributeStoreRequest, AttributeUpdateRequest, AttributeUpdateResponse} from "../entity/entity";
+import {
+    AttributeStoreRequest,
+    AttributeStoreResponse,
+    AttributeUpdateRequest,
+    AttributeUpdateResponse
+} from "../entity/entity";
 import {environment} from "../../../../../environments/environment";
 
 @Injectable({
@@ -22,7 +27,7 @@ export class AttributeService {
      * @param data
      */
     public store(data: AttributeStoreRequest) {
-        return this.http.post(environment.api + '/attribute/store', data);
+        return this.http.post<AttributeStoreResponse>(environment.api + '/attribute/store', data);
     }
 
     edit(id: number) {
