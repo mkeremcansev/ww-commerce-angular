@@ -83,5 +83,11 @@
         "index": "Media"
     },
     "deselect": "Deselect",
-    "deleteSelections": "Delete Selections"
+    "deleteSelections": "Delete Selections",
+    "selectedImageCount": "{{count}} Image Selected",
+    "tooltip": {
+        "media": {
+            "image": "You can choose by clicking the pictures below. Selected images are surrounded by the main color. If you want to remove the selected image from the selection, just click it again."
+        }
+    }
 }

@@ -5,45 +5,36 @@
                 <p-progressSpinner></p-progressSpinner>
             </div>
             <div *ngIf="!isSpinner">
-                <h3 class="mb-5 ml-3">{{'image.imageList' | translate}}</h3>
-                <div class="my-2 col-12" *ngIf="deselect || deleteSelections">
+                <div class="flex">
+                    <h3 class="mb-5 ml-3 inline">{{'image.imageList' | translate}}
+                        <i class="pi pi-question-circle question-icon-size ml-1"
+                           pTooltip="{{'tooltip.media.image' | translate}}"></i>
+                    </h3>
+                </div>
+                <div class="my-2 col-12 flex" *ngIf="deselect || deleteSelections">
                     <button *ngIf="deselect" pButton pRipple label="{{'deselect' | translate}}" icon="pi pi-times"
                             class="p-button-warning mr-2" (click)="deselectImages()"
                             [disabled]="selectedImages.length <= 0"></button>
                     <button *ngIf="deleteSelections" pButton pRipple label="{{'deleteSelections' | translate}}"
                             icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedImages()"
                             [disabled]="selectedImages.length <= 0"></button>
+                    <p class="ml-auto mb-auto mt-auto font-bold"
+                       *ngIf="selectedImages.length > 0 && multiple">{{'selectedImageCount' | translate: {count: selectedImages.length} }}</p>
                 </div>
                 <p-dataView #dv [value]="images" [paginator]="images.length > 0" [rows]="8" layout="grid"
                             [emptyMessage]="'dataNotFound' | translate">
                     <ng-template let-image pTemplate="gridItem" let-i="rowIndex">
                         <div class="col-12 md:col-3">
-                            <div class="card m-3 border-1 surface-border p-1">
+                            <div class="card border-1 surface-border p-1" style="border: none;">
                                 <div class="flex flex-column align-items-center text-center" *ngIf="multiple">
                                     <img [src]="image" [alt]="image"
-                                         class="w-9 shadow-2 my-5 mx-0 media-image-list-item cursor-pointer"
+                                         class="w-10 shadow-2 my-5 mx-0 media-image-list-item cursor-pointer {{selectedImages.includes(image) ? 'selected' : null}}"
                                          (click)="selectAndDelete(image)"/>
-                                    <button (click)="selectAndDelete(image)" *ngIf="!selectedImages.includes(image)"
-                                            pButton
-                                            pRipple icon="pi pi-check"
-                                            class="p-button-rounded p-button-success mb-5"></button>
-                                    <button (click)="selectAndDelete(image)" *ngIf="selectedImages.includes(image)"
-                                            pButton
-                                            pRipple icon="pi pi-times"
-                                            class="p-button-rounded p-button-danger mb-5"></button>
                                 </div>
-                                <div class="flex flex-column align-items-center text-center" *ngIf="!multiple">
+                                <div class="flex flex-column align-items-center text-center kerem" *ngIf="!multiple">
                                     <img [src]="image" [alt]="image"
-                                         class="w-9 shadow-2 my-5 mx-0 media-image-list-item cursor-pointer"
+                                         class="w-9 shadow-2 my-5 mx-0 media-image-list-item cursor-pointer {{selectedImages.includes(image) ? 'selected' : null}}"
                                          (click)="selectAndDelete(image)"/>
-                                    <button (click)="selectAndDelete(image)" *ngIf="!selectedImages.includes(image)"
-                                            pButton
-                                            pRipple icon="pi pi-check"
-                                            class="p-button-rounded p-button-success mb-5"></button>
-                                    <button (click)="selectAndDelete(image)" *ngIf="selectedImages.includes(image)"
-                                            pButton
-                                            pRipple icon="pi pi-times"
-                                            class="p-button-rounded p-button-danger mb-5"></button>
                                 </div>
                             </div>
                         </div>

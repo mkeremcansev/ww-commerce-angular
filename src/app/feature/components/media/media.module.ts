@@ -15,6 +15,7 @@ import {InputTextModule} from "primeng/inputtext";
 import {FormsModule} from "@angular/forms";
 import {RippleModule} from "primeng/ripple";
 import {ProgressSpinnerModule} from "primeng/progressspinner";
+import {TooltipModule} from "primeng/tooltip";
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import {ProgressSpinnerModule} from "primeng/progressspinner";
         InputTextModule,
         FormsModule,
         RippleModule,
-        ProgressSpinnerModule
+        ProgressSpinnerModule,
+        TooltipModule
     ]
 })
 export class MediaModule { }
