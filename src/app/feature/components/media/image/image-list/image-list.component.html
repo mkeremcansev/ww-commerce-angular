@@ -21,11 +21,11 @@
                     <p class="ml-auto mb-auto mt-auto font-bold"
                        *ngIf="selectedImages.length > 0 && multiple">{{'selectedImageCount' | translate: {count: selectedImages.length} }}</p>
                 </div>
-                <p-dataView #dv [value]="images" [paginator]="images.length > 0" [rows]="8" layout="grid"
+                <p-dataView #dv [value]="images" [paginator]="images.length > 0" [rows]="12" layout="grid"
                             [emptyMessage]="'dataNotFound' | translate">
                     <ng-template let-image pTemplate="gridItem" let-i="rowIndex">
-                        <div class="col-12 md:col-3">
-                            <div class="card border-1 surface-border p-1" style="border: none;">
+                        <div class="col-12 md:col-2">
+                            <div class="card border-1 surface-border p-1 image-card">
                                 <div class="flex flex-column align-items-center text-center" *ngIf="multiple">
                                     <img [src]="image" [alt]="image"
                                          class="w-10 shadow-2 my-5 mx-0 media-image-list-item cursor-pointer {{selectedImages.includes(image) ? 'selected' : null}}"
