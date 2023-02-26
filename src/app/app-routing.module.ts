@@ -3,7 +3,6 @@ import {NgModule} from '@angular/core';
 import {NotfoundComponent} from './feature/components/notfound/notfound.component';
 import {AppLayoutComponent} from "./layout/app.layout.component";
 import {PermissionGuard} from "./guard/permission/permission.guard";
-import {AttributeValueModule} from "./feature/components/attribute/value/attribute-value/attribute-value.module";
 
 @NgModule({
     imports: [
