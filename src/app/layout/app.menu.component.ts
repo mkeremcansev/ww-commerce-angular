@@ -26,8 +26,8 @@ export class AppMenuComponent implements OnInit {
                         icon: 'pi pi-fw pi-home',
                         data: {
                             permission: {
-                                group: 'Attribute',
-                                name: 'attribute.index'
+                                group: 'Dashboard',
+                                name: 'dashboard.index'
                             }
                         },
                         routerLink: ['/']
@@ -37,8 +37,8 @@ export class AppMenuComponent implements OnInit {
                         icon: 'pi pi-fw pi-box',
                         data: {
                             permission: {
-                                group: 'Product',
-                                name: 'product.index'
+                                group: 'Image',
+                                name: 'image.index'
                             }
                         },
                         items: [

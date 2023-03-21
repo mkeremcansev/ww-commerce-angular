@@ -11,8 +11,8 @@ import {PermissionGuard} from "../../../guard/permission/permission.guard";
             canActivate: [PermissionGuard],
             data: {
                 permission: {
-                    group: 'Attribute',
-                    name: 'attribute.index'
+                    group: 'Dashboard',
+                    name: 'dashboard.index'
                 }
             }
         },
