@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-    api: 'https://canseworks.net/api',
+    api: 'https://yourdomain.com/api',
     appName: 'WW-Commerce'
 };
