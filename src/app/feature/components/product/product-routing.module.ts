@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {ProductCreateComponent} from "./create/product-create/product-create.component";
 import {ProductEditComponent} from "./edit/product-edit/product-edit.component";
+import {ProductListComponent} from "./list/product-list/product-list.component";
 
 const routes: Routes = [];
 
@@ -14,6 +15,16 @@ const routes: Routes = [];
                 permission: {
                     group: 'Product',
                     name: 'product.create'
+                }
+            }
+        },
+        {
+            path: 'list',
+            component: ProductListComponent,
+            data: {
+                permission: {
+                    group: 'Product',
+                    name: 'product.index'
                 }
             }
         },

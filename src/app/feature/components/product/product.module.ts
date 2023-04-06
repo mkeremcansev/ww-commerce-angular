@@ -16,12 +16,15 @@ import {ProgressSpinnerModule} from "primeng/progressspinner";
 import {InputSwitchModule} from "primeng/inputswitch";
 import { ProductEditComponent } from './edit/product-edit/product-edit.component';
 import {MediaModule} from "../media/media.module";
+import { ProductListComponent } from './list/product-list/product-list.component';
+import {DatatableModule} from "../../modules/datatable/datatable.module";
 
 
 @NgModule({
   declarations: [
     ProductCreateComponent,
-    ProductEditComponent
+    ProductEditComponent,
+    ProductListComponent
   ],
     imports: [
         CommonModule,
@@ -40,7 +43,8 @@ import {MediaModule} from "../media/media.module";
         TreeSelectModule,
         ProgressSpinnerModule,
         InputSwitchModule,
-        MediaModule
+        MediaModule,
+        DatatableModule
     ]
 })
 export class ProductModule { }
