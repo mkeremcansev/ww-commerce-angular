@@ -16,7 +16,6 @@ import {RedirectService} from "../../../../service/redirect/redirect.service";
 
 })
 export class AuthComponent extends AlertService {
-
     /**
      * @var form
      */
