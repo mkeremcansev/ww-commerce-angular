@@ -15,6 +15,7 @@ import {TreeSelectModule} from "primeng/treeselect";
 import {ProgressSpinnerModule} from "primeng/progressspinner";
 import {InputSwitchModule} from "primeng/inputswitch";
 import { ProductEditComponent } from './edit/product-edit/product-edit.component';
+import {MediaModule} from "../media/media.module";
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { ProductEditComponent } from './edit/product-edit/product-edit.component
         MultiSelectModule,
         TreeSelectModule,
         ProgressSpinnerModule,
-        InputSwitchModule
+        InputSwitchModule,
+        MediaModule
     ]
 })
 export class ProductModule { }

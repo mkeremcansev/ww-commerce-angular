@@ -12,6 +12,7 @@ import {MessageService, TreeNode} from "primeng/api";
 import {CategoryCreateResponse} from "../../../category/entity/entity";
 import {AlertService} from "../../../../../service/alert/alert.service";
 import {RedirectService} from "../../../../../service/redirect/redirect.service";
+import * as _ from "lodash";
 
 @Component({
     selector: 'app-product-create',
@@ -28,7 +29,8 @@ export class ProductCreateComponent extends AlertService {
         category_id: new FormControl('', Validators.required),
         variants: new FormArray([]),
         status: new FormControl('', Validators.required),
-        variant_status: new FormControl(true, Validators.required)
+        variant_status: new FormControl(true, Validators.required),
+        images: new FormControl([], Validators.nullValidator)
     });
 
     public matchSelectedCategories: TreeNode[] = [];
@@ -43,6 +45,7 @@ export class ProductCreateComponent extends AlertService {
     public isLoading: boolean = false;
     public isSpinner: boolean = true;
     public isVariant: boolean = true;
+    public selectedImages: string[] = [];
 
     /**
      * @method constructor
@@ -193,7 +196,8 @@ export class ProductCreateComponent extends AlertService {
         if (this.form.valid) {
             this.isLoading = true;
             this.form.patchValue({
-                category_id: this.categoryIdSetter()
+                category_id: this.categoryIdSetter(),
+                images: this.selectedImages
             })
             this.productService.store(this.form.value).subscribe((response) => {
                 this.messageService.add(this.success(response.message))
@@ -212,5 +216,13 @@ export class ProductCreateComponent extends AlertService {
             })
             this.form.markAllAsTouched();
         }
+    }
+
+    /**
+     * @method emit
+     * @param event
+     */
+    emitImages(event: string[]) {
+        event.length > 0 ? this.selectedImages = event : this.selectedImages = [];
     }
 }

@@ -15,6 +15,7 @@ export interface ProductEditResponse {
     brand: number;
     status: number;
     categories:CategoryCreateResponse[];
+    images: ProductEditImageResponse[];
     attribute_id: Attribute[];
     category_id: CategoryCreateResponse[];
     brand_id: Brand[];
@@ -104,4 +105,9 @@ export interface ProductEditVariantGroup {
     price: number;
     stock: number;
     attributes: AttributeValue[];
+}
+
+export interface ProductEditImageResponse {
+    id: number;
+    path: string;
 }

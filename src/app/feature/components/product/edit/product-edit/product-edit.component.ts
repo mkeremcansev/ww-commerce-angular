@@ -29,7 +29,8 @@ export class ProductEditComponent extends AlertService {
         category_id: new FormControl('', Validators.required),
         variants: new FormArray([]),
         status: new FormControl('', Validators.required),
-        variant_status: new FormControl(true, Validators.required)
+        variant_status: new FormControl(true, Validators.required),
+        images: new FormControl([], Validators.nullValidator)
     });
 
     public matchSelectedCategories: TreeNode[] = [];
@@ -46,6 +47,7 @@ export class ProductEditComponent extends AlertService {
     public isVariant: boolean = true;
     public id = Number(this.route.snapshot.paramMap.get('id'));
     public isVariationReset: boolean = false;
+    public selectedImages: string[] = [];
 
     /**
      * @method constructor
@@ -78,13 +80,18 @@ export class ProductEditComponent extends AlertService {
             this.statuses = response.status_type.map((status, index) => {
                 return {id: index, title: status};
             });
+            response.images.forEach((image) => {
+                this.selectedImages.push(image.path);
+            });
             this.form.patchValue({
                 title: response.title,
                 content: response.content,
                 price: response.price,
                 brand_id: response.brand,
-                status: response.status
+                status: response.status,
+                images: this.selectedImages
             });
+
             this.setVariation(response.variant_groups);
             this.selectedCategories = this.format(response.categories);
             this.tree = this.format(response.category_id);
@@ -224,7 +231,8 @@ export class ProductEditComponent extends AlertService {
         if (this.form.valid) {
             this.isLoading = true;
             this.form.patchValue({
-                category_id: this.categoryIdSetter()
+                category_id: this.categoryIdSetter(),
+                images: this.selectedImages
             })
             this.productService.update(this.id, this.form.value).subscribe((response) => {
                 this.messageService.add(this.success(response.message))
@@ -245,5 +253,13 @@ export class ProductEditComponent extends AlertService {
             })
             this.form.markAllAsTouched();
         }
+    }
+
+    /**
+     * @method emit
+     * @param event
+     */
+    emitImages(event: string[]) {
+        event.length > 0 ? this.selectedImages = event : this.selectedImages = [];
     }
 }

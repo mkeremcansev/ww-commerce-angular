@@ -116,5 +116,11 @@
         </div>
     </div>
 </div>
+<app-image-list
+    [multiple]="true"
+    [deselect]="false"
+    [deleteSelections]="false"
+    (selectedImagesEmitter)="emitImages($event)"
+></app-image-list>
 
 <p-toast key="tst"></p-toast>
