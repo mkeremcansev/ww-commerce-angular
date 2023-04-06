@@ -14,11 +14,13 @@ import {MultiSelectModule} from "primeng/multiselect";
 import {TreeSelectModule} from "primeng/treeselect";
 import {ProgressSpinnerModule} from "primeng/progressspinner";
 import {InputSwitchModule} from "primeng/inputswitch";
+import { ProductEditComponent } from './edit/product-edit/product-edit.component';
 
 
 @NgModule({
   declarations: [
-    ProductCreateComponent
+    ProductCreateComponent,
+    ProductEditComponent
   ],
     imports: [
         CommonModule,

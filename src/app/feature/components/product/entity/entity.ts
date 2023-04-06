@@ -7,6 +7,21 @@ export interface ProductCreateResponse {
     status: string[];
 }
 
+export interface ProductEditResponse {
+    id: number;
+    title: string;
+    content: string;
+    price: number;
+    brand: number;
+    status: number;
+    categories:CategoryCreateResponse[];
+    attribute_id: Attribute[];
+    category_id: CategoryCreateResponse[];
+    brand_id: Brand[];
+    status_type: string[];
+    variant_groups: ProductEditVariantGroup[];
+}
+
 export interface ProductCreateResponseStatusFormat {
     id: number;
     title: string;
@@ -48,6 +63,22 @@ export interface ProductStoreRequest {
     variants: AttributeCombination[];
 }
 
+export interface ProductUpdateRequest {
+    title: string;
+    content: string;
+    price: number;
+    brand_id: number;
+    category_id: number[];
+    variants: AttributeCombination[];
+}
+
+export interface ProductUpdateResponse {
+    message: string;
+    data: {
+        id: number;
+    }
+}
+
 export interface ProductStoreResponse {
     message: string;
     data: {
@@ -67,4 +98,10 @@ export interface AttributeCombination {
     path: string;
     attribute_id: number;
     attribute_value_id: number;
+}
+
+export interface ProductEditVariantGroup {
+    price: number;
+    stock: number;
+    attributes: AttributeValue[];
 }

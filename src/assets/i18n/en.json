@@ -30,10 +30,12 @@
         "stock": "Stock",
         "variantCreate": "Create Variant",
         "selectBrand": "Select Brand",
+        "selectStatus": "Select Status",
         "brand": "Brand",
         "category": "Category",
         "status": "Status",
-        "variantStatus": "Variant Status"
+        "variantStatus": "Variant Status",
+        "variantReset": "Reset Variant"
     },
     "attribute": {
         "index": "Attribute",

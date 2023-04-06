@@ -29,7 +29,8 @@
                             formControlName="brand_id"
                             [required]="true"
                             [ngClass]="form.invalid && form.touched ? 'ng-invalid ng-dirty' : null"
-                            placeholder="{{'product.selectBrand' | translate}}" [showClear]="true"
+                            placeholder="{{'product.selectBrand' | translate}}"
+                            [showClear]="true"
                             id="brand_id">
                         </p-dropdown>
                     </div>
@@ -64,9 +65,9 @@
                     </div>
                     <div class="field">
                         <p>{{'product.variantStatus' | translate}}</p>
-                    <p-inputSwitch [(ngModel)]="isVariant" formControlName="variant_status"></p-inputSwitch>
+                        <p-inputSwitch [(ngModel)]="isVariant" formControlName="variant_status"></p-inputSwitch>
                     </div>
-                    <div class="p-formgrid grid" *ngIf="isVariation && isVariant">
+                    <div class="p-formgrid grid" *ngIf="isVariation && isVariant && isVariationReset">
                         <div class="field col" *ngFor="let attribute of attributes">
                             <label htmlFor="{{attribute.title}}">{{attribute.title}}</label>
                             <p-multiSelect
@@ -86,10 +87,12 @@
                         </div>
                     </div>
                     <div class="flex justify-content-center">
+                        <button class="w-auto mb-5" *ngIf="!isVariationReset" pButton type="button" (click)="resetVariant()"
+                                label="{{'product.variantReset' | translate}}"></button>
                         <button *ngIf="selectedAttributes.length > 0" class="w-auto" pButton (click)="setCombination()"
                                 label="{{'product.variantCreate' | translate}}"></button>
                     </div>
-                    <ng-container formArrayName="variants">
+                    <ng-container formArrayName="variants" *ngIf="isVariant">
                         <div class="p-formgrid grid" [formGroupName]="i"
                              *ngFor="let subItem of variants.controls; let i = index">
                             <div class="field col" *ngFor="let variantItem of subItem.value.attributes">
@@ -109,7 +112,7 @@
                         </div>
                     </ng-container>
                     <div class="flex justify-content-end">
-                        <button class="w-auto" pButton [loading]="isLoading" label="{{'create' | translate}}"></button>
+                        <button class="w-auto" pButton [loading]="isLoading" label="{{'update' | translate}}"></button>
                     </div>
                 </form>
             </div>

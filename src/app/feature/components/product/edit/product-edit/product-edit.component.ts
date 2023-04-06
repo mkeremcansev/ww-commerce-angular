@@ -1,25 +1,26 @@
 import {Component} from '@angular/core';
-import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ProductService} from "../../service/product.service";
+import {CategoryCreateResponse} from "../../../category/entity/entity";
+import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import {
     CombinationAttributeValue,
     ProductCreateResponse,
-    ProductCreateResponseStatusFormat
+    ProductCreateResponseStatusFormat,
+    ProductEditVariantGroup
 } from "../../entity/entity";
 import {MultiSelect} from "primeng/multiselect";
 import {first} from "lodash";
 import {MessageService, TreeNode} from "primeng/api";
-import {CategoryCreateResponse} from "../../../category/entity/entity";
-import {AlertService} from "../../../../../service/alert/alert.service";
 import {RedirectService} from "../../../../../service/redirect/redirect.service";
+import {AlertService} from "../../../../../service/alert/alert.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
-    selector: 'app-product-create',
-    templateUrl: './product-create.component.html',
-    styleUrls: ['./product-create.component.scss'],
-    providers: [MessageService]
+    selector: 'app-product-edit',
+    templateUrl: './product-edit.component.html',
+    styleUrls: ['./product-edit.component.scss']
 })
-export class ProductCreateComponent extends AlertService {
+export class ProductEditComponent extends AlertService {
     public form: FormGroup = new FormGroup({
         title: new FormControl('', Validators.required),
         content: new FormControl('', Validators.required),
@@ -43,41 +44,52 @@ export class ProductCreateComponent extends AlertService {
     public isLoading: boolean = false;
     public isSpinner: boolean = true;
     public isVariant: boolean = true;
+    public id = Number(this.route.snapshot.paramMap.get('id'));
+    public isVariationReset: boolean = false;
 
     /**
      * @method constructor
      * @param productService
      * @param messageService
      * @param redirectService
+     * @param route
      */
     constructor(
         public productService: ProductService,
         public messageService: MessageService,
-        public redirectService: RedirectService
+        public redirectService: RedirectService,
+        public route: ActivatedRoute
     ) {
         super();
     }
 
-    /**
-     * @method ngOnInit
-     */
     ngOnInit() {
-        this.setData();
+        this.setValue(this.id);
     }
+
 
     /**
      * @method setData
      */
-    setData() {
-        this.productService.create().subscribe((response) => {
+    setValue(id: number) {
+        !isNaN(id) ? this.productService.edit(id).subscribe((response) => {
             this.attributes = response.attribute_id;
             this.brands = response.brand_id;
-            this.statuses = response.status.map((status, index) => {
+            this.statuses = response.status_type.map((status, index) => {
                 return {id: index, title: status};
             });
+            this.form.patchValue({
+                title: response.title,
+                content: response.content,
+                price: response.price,
+                brand_id: response.brand,
+                status: response.status
+            });
+            this.setVariation(response.variant_groups);
+            this.selectedCategories = this.format(response.categories);
             this.tree = this.format(response.category_id);
             this.isSpinner = false;
-        })
+        }) : this.redirectService.redirect('/notfound', 0);
     }
 
     /**
@@ -100,6 +112,11 @@ export class ProductCreateComponent extends AlertService {
      */
     get variants(): FormArray {
         return this.form.get('variants') as FormArray;
+    }
+
+    resetVariant() {
+        this.variants.controls = [];
+        this.isVariationReset = true;
     }
 
     /**
@@ -175,6 +192,20 @@ export class ProductCreateComponent extends AlertService {
     }
 
     /**
+     * @method setVariation
+     * @param variants
+     */
+    setVariation(variants: ProductEditVariantGroup[]) {
+        variants.forEach((variant: ProductEditVariantGroup) => {
+            (this.form.get('variants') as FormArray).push(new FormGroup({
+                attributes: new FormControl(variant.attributes, Validators.required),
+                price: new FormControl(variant.price, Validators.required),
+                stock: new FormControl(variant.stock, Validators.required),
+            }));
+        })
+    }
+
+    /**
      * @method categoryIdSetter
      */
     categoryIdSetter() {
@@ -195,10 +226,12 @@ export class ProductCreateComponent extends AlertService {
             this.form.patchValue({
                 category_id: this.categoryIdSetter()
             })
-            this.productService.store(this.form.value).subscribe((response) => {
+            this.productService.update(this.id, this.form.value).subscribe((response) => {
                 this.messageService.add(this.success(response.message))
-                this.form.disable();
-                this.redirectService.redirect('/product/edit/'+response.data.id, 3);
+                this.form.patchValue({
+                    category_id: this.matchSelectedCategories
+                })
+                this.isLoading = false;
             }, (error: any) => {
                 this.isLoading = false;
                 this.messageService.add(this.error(error.error.message))
