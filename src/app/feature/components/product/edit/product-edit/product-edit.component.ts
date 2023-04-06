@@ -91,7 +91,6 @@ export class ProductEditComponent extends AlertService {
                 status: response.status,
                 images: this.selectedImages
             });
-
             this.setVariation(response.variant_groups);
             this.selectedCategories = this.format(response.categories);
             this.tree = this.format(response.category_id);
@@ -155,7 +154,6 @@ export class ProductEditComponent extends AlertService {
     onChange(event: MultiSelect) {
         this.selectedAttributes.push(event.value);
         const group: Record<string, any[]> = {};
-
         for (let attribute of this.selectedAttributes) {
             for (let item of attribute) {
                 if (!group[item.attribute_id]) {
