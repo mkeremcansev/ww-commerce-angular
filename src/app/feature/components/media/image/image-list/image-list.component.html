@@ -31,9 +31,9 @@
                                          class="w-10 my-5 mx-0 media-image-list-item cursor-pointer selected-transparent {{selectedImages.includes(image) ? 'selected' : null}}"
                                          (click)="selectAndDelete(image)"/>
                                 </div>
-                                <div class="flex flex-column align-items-center text-center kerem" *ngIf="!multiple">
+                                <div class="flex flex-column align-items-center text-center" *ngIf="!multiple">
                                     <img [src]="image" [alt]="image"
-                                         class="w-9 my-5 mx-0 media-image-list-item cursor-pointer {{selectedImages.includes(image) ? 'selected' : null}}"
+                                         class="w-9 my-5 mx-0 media-image-list-item cursor-pointer selected-transparent {{selectedImages.includes(image) ? 'selected' : null}}"
                                          (click)="selectAndDelete(image)"/>
                                 </div>
                             </div>
