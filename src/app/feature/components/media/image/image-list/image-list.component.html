@@ -11,13 +11,26 @@
                            pTooltip="{{'tooltip.media.image' | translate}}"></i>
                     </h3>
                 </div>
-                <div class="my-2 col-12 flex" *ngIf="deselect || deleteSelections">
+                <div class="my-2 col-12 flex" *ngIf="deselect || deleteSelections || upload">
                     <button *ngIf="deselect" pButton pRipple label="{{'deselect' | translate}}" icon="pi pi-times"
                             class="p-button-warning mr-2" (click)="deselectImages()"
                             [disabled]="selectedImages.length <= 0"></button>
                     <button *ngIf="deleteSelections" pButton pRipple label="{{'deleteSelections' | translate}}"
                             icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedImages()"
                             [disabled]="selectedImages.length <= 0"></button>
+                    <div *ngIf="upload">
+                        <button
+                            type="button"
+                            pButton
+                            icon="pi pi-plus"
+                            label="{{'upload' | translate}}"
+                            (click)="image_upload.toggle($event)"
+                            class="p-button-success ml-2"
+                        ></button>
+                        <p-overlayPanel #image_upload [showCloseIcon]="true" (onHide)="reloadImages()">
+                            <app-image-upload></app-image-upload>
+                        </p-overlayPanel>
+                    </div>
                     <p class="ml-auto mb-auto mt-auto font-bold"
                        *ngIf="selectedImages.length > 0 && multiple">{{'selectedImageCount' | translate: {count: selectedImages.length} }}</p>
                 </div>

@@ -16,6 +16,7 @@ import {FormsModule} from "@angular/forms";
 import {RippleModule} from "primeng/ripple";
 import {ProgressSpinnerModule} from "primeng/progressspinner";
 import {TooltipModule} from "primeng/tooltip";
+import {OverlayPanelModule} from "primeng/overlaypanel";
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import {TooltipModule} from "primeng/tooltip";
         FormsModule,
         RippleModule,
         ProgressSpinnerModule,
-        TooltipModule
+        TooltipModule,
+        OverlayPanelModule
     ]
 })
 export class MediaModule { }

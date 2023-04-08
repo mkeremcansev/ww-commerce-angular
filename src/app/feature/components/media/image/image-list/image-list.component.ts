@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, Input, Output} from '@angular/core';
 import {ImageService} from "../service/image.service";
 import {AlertService} from "../../../../../service/alert/alert.service";
 import {MessageService} from "primeng/api";
@@ -13,6 +13,7 @@ export class ImageListComponent extends AlertService {
     @Input() public multiple: boolean = true
     @Input() public deselect: boolean = true;
     @Input() public deleteSelections: boolean = true;
+    @Input() public upload: boolean = true;
     @Output() public selectedImagesEmitter = new EventEmitter<string[]>();
     @Input() public selectedImages: string[] = [];
     public images = [];
@@ -69,6 +70,10 @@ export class ImageListComponent extends AlertService {
      */
     deselectImages() {
         this.selectedImages = [];
+    }
+
+    reloadImages() {
+        this.index();
     }
 
     /**

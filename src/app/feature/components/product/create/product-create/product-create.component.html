@@ -118,8 +118,9 @@
 </div>
 <app-image-list
     [multiple]="true"
-    [deselect]="false"
+    [deselect]="true"
     [deleteSelections]="false"
+    [upload]="true"
     (selectedImagesEmitter)="emitImages($event)"
 ></app-image-list>
 
