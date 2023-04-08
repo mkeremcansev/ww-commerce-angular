@@ -247,7 +247,41 @@ export class AppMenuComponent implements OnInit {
                                 ]
                             }
                         ]
-                    }
+                    },
+                    {
+                        label: 'role.index',
+                        icon: 'pi pi-fw pi-unlock',
+                        data: {
+                            permission: {
+                                group: 'Role',
+                                name: 'role.index'
+                            }
+                        },
+                        items: [
+                            {
+                                label: 'create',
+                                icon: 'pi pi-fw pi-plus',
+                                data: {
+                                    permission: {
+                                        group: 'Role',
+                                        name: 'role.create'
+                                    }
+                                },
+                                routerLink: ['/role/create']
+                            },
+                            {
+                                label: 'list',
+                                icon: 'pi pi-fw pi-list',
+                                data: {
+                                    permission: {
+                                        group: 'Role',
+                                        name: 'role.index'
+                                    }
+                                },
+                                routerLink: ['/role/list']
+                            }
+                        ]
+                    },
                 ]
             }
         ];

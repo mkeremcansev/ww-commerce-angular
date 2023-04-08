@@ -80,6 +80,17 @@ import {PermissionGuard} from "./guard/permission/permission.guard";
                             }
                         },
                         loadChildren: () => import('./feature/components/media/media.module').then(m => m.MediaModule)
+                    },
+                    {
+                        path: 'role',
+                        canActivate: [PermissionGuard],
+                        data: {
+                            permission: {
+                                group: 'Role',
+                                name: 'role.index'
+                            }
+                        },
+                        loadChildren: () => import('./feature/components/role/role.module').then(m => m.RoleModule)
                     }
                 ]
             },

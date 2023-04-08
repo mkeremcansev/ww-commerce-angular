@@ -37,6 +37,13 @@
         "variantStatus": "Variant Status",
         "variantReset": "Reset Variant"
     },
+    "role": {
+        "index": "Role",
+        "create": "Create Role",
+        "edit": "Edit Role",
+        "list": "Role List",
+        "selectPermission": "Select Permission"
+    },
     "attribute": {
         "index": "Attribute",
         "create": "Create Attribute",
