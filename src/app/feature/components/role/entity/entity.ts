@@ -19,3 +19,22 @@ export interface RoleStoreResponse {
         id: number;
     }
 }
+
+export interface RoleEditResponse {
+    id: number;
+    name: string;
+    permissions: RoleCreatePermissionResponse[];
+    permission_id: RoleCreatePermissionResponse[];
+}
+
+export interface RoleUpdateRequest {
+    title: string;
+    permission_id: number[];
+}
+
+export interface RoleUpdateResponse {
+    message: string;
+    data: {
+        id: number;
+    }
+}

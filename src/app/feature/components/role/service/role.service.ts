@@ -1,10 +1,16 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../../environments/environment";
-import {RoleCreateResponse, RoleStoreRequest, RoleStoreResponse} from "../entity/entity";
+import {
+    RoleCreateResponse,
+    RoleEditResponse,
+    RoleStoreRequest,
+    RoleStoreResponse,
+    RoleUpdateRequest, RoleUpdateResponse
+} from "../entity/entity";
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class RoleService {
 
@@ -12,9 +18,10 @@ export class RoleService {
      * Constructor
      * @param httpClient
      */
-  constructor(
-      public httpClient: HttpClient,
-  ) { }
+    constructor(
+        public httpClient: HttpClient,
+    ) {
+    }
 
     /**
      * @method create
@@ -29,5 +36,19 @@ export class RoleService {
      */
     store(data: RoleStoreRequest) {
         return this.httpClient.post<RoleStoreResponse>(environment.api + '/role/store', data);
+    }
+
+    /**
+     * @method edit
+     */
+    edit(id: number) {
+        return this.httpClient.get<RoleEditResponse>(environment.api + '/role/' + id + '/edit');
+    }
+
+    /**
+     * @method update
+     */
+    update(data: RoleUpdateRequest, id: number) {
+        return this.httpClient.patch<RoleUpdateResponse>(environment.api + '/role/' + id + '/update', data);
     }
 }

@@ -11,11 +11,14 @@ import {TreeModule} from "primeng/tree";
 import {CheckboxModule} from "primeng/checkbox";
 import {AccordionModule} from "primeng/accordion";
 import {ToastModule} from "primeng/toast";
+import { RoleEditComponent } from './edit/role-edit/role-edit.component';
+import {ProgressSpinnerModule} from "primeng/progressspinner";
 
 
 @NgModule({
   declarations: [
-    RoleCreateComponent
+    RoleCreateComponent,
+    RoleEditComponent
   ],
     imports: [
         CommonModule,
@@ -27,7 +30,8 @@ import {ToastModule} from "primeng/toast";
         TreeModule,
         CheckboxModule,
         AccordionModule,
-        ToastModule
+        ToastModule,
+        ProgressSpinnerModule
     ]
 })
 export class RoleModule { }

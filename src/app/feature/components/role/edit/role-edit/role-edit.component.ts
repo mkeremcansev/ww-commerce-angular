@@ -1,18 +1,18 @@
 import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {RoleService} from "../../service/role.service";
-import * as lodash from "lodash";
 import {MessageService} from "primeng/api";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {RedirectService} from "../../../../../service/redirect/redirect.service";
 import {AlertService} from "../../../../../service/alert/alert.service";
+import * as lodash from "lodash";
 
 @Component({
-    selector: 'app-role-create',
-    templateUrl: './role-create.component.html',
-    styleUrls: ['./role-create.component.scss']
+    selector: 'app-role-edit',
+    templateUrl: './role-edit.component.html',
+    styleUrls: ['./role-edit.component.scss']
 })
-export class RoleCreateComponent extends AlertService {
+export class RoleEditComponent extends AlertService {
     public form: FormGroup = new FormGroup({
         name: new FormControl('', Validators.required),
         permission_id: new FormControl([], Validators.nullValidator)
@@ -22,6 +22,7 @@ export class RoleCreateComponent extends AlertService {
     public permissionsByGroupName: {} = {};
     public selectedPermissions: number[] = [];
     public isSpinner: boolean = true;
+    public id = Number(this.route.snapshot.paramMap.get('id'));
 
     /**
      * Constructor
@@ -29,28 +30,47 @@ export class RoleCreateComponent extends AlertService {
      * @param messageService
      * @param router
      * @param redirectService
+     * @param route
      */
     constructor(
         public roleService: RoleService,
         public messageService: MessageService,
         public router: Router,
-        public redirectService: RedirectService
+        public redirectService: RedirectService,
+        public route: ActivatedRoute
     ) {
         super();
     }
 
     ngOnInit() {
-        this.roleService.create().subscribe(response => {
-            this.permissionsByGroupName = lodash.groupBy(response.permission_id, 'group_name');
-            this.isSpinner = false;
-        });
+        this.setValue(this.id);
+    }
+
+    /**
+     * @param id
+     */
+    setValue(id: number) {
+        !isNaN(id) ? this.roleService.edit(id).subscribe((response: any) => {
+                    this.permissionsByGroupName = lodash.groupBy(response.permission_id, 'group_name');
+                    const permissions = response.permissions.map((item: any) => item.id);
+                    this.form.patchValue({
+                        name: response.name,
+                        permission_id: permissions
+                    })
+                    this.selectedPermissions = permissions;
+                    this.isSpinner = false;
+                },
+                () => {
+                    this.redirectService.redirect('/notfound', 0);
+                })
+            : this.redirectService.redirect('/notfound', 0);
     }
 
     /**
      *@method onChange
      * @param id
      */
-    onChange(id: number) {
+    onChange( id: number) {
         if (lodash.includes(this.selectedPermissions, id)) {
             lodash.pull(this.selectedPermissions, id);
         } else {
@@ -67,10 +87,9 @@ export class RoleCreateComponent extends AlertService {
             this.form.patchValue({
                 permission_id: this.selectedPermissions
             });
-            this.roleService.store(this.form.value).subscribe(response => {
+            this.roleService.update(this.form.value, this.id).subscribe(response => {
                 this.messageService.add(this.success(response.message))
-                this.form.disable();
-                this.redirectService.redirect('/role/edit/' + response.data.id, 3);
+                this.isButton = false;
             }, (error: any) => {
                 this.isButton = false;
                 this.messageService.add(this.error(error.error.message))
