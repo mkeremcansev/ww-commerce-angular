@@ -45,6 +45,14 @@ export class ImageUploadComponent extends AlertService {
     }
 
     /**
+     * @method log
+     * @param event
+     */
+    log(event: any) {
+        this.messageService.add(this.error(event?.error?.error?.message));
+    }
+
+    /**
      * @method onSelect
      */
     onSelect() {
