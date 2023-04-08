@@ -17,8 +17,7 @@ import * as _ from "lodash";
 @Component({
     selector: 'app-product-create',
     templateUrl: './product-create.component.html',
-    styleUrls: ['./product-create.component.scss'],
-    providers: [MessageService]
+    styleUrls: ['./product-create.component.scss']
 })
 export class ProductCreateComponent extends AlertService {
     public form: FormGroup = new FormGroup({

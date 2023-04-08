@@ -10,8 +10,7 @@ import * as _ from 'lodash';
 @Component({
     selector: 'app-brand-create',
     templateUrl: './brand-create.component.html',
-    styleUrls: ['./brand-create.component.scss'],
-    providers: [MessageService]
+    styleUrls: ['./brand-create.component.scss']
 })
 export class BrandCreateComponent extends AlertService {
     public form: FormGroup = new FormGroup({

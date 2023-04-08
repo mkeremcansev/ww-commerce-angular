@@ -7,7 +7,6 @@ import {TranslateModule} from "@ngx-translate/core";
 import {ButtonModule} from "primeng/button";
 import {ReactiveFormsModule} from "@angular/forms";
 import {InputTextModule} from "primeng/inputtext";
-import {ToastModule} from "primeng/toast";
 import { AttributeEditComponent } from './edit/attribute-edit/attribute-edit.component';
 import {ProgressSpinnerModule} from "primeng/progressspinner";
 import { AttributeListComponent } from './list/attribute-list/attribute-list.component';
@@ -27,7 +26,6 @@ import {DatatableModule} from "../../modules/datatable/datatable.module";
         ButtonModule,
         ReactiveFormsModule,
         InputTextModule,
-        ToastModule,
         ProgressSpinnerModule,
         DatatableModule
     ]

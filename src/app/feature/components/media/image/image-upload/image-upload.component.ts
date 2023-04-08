@@ -7,8 +7,7 @@ import {AlertService} from "../../../../../service/alert/alert.service";
 @Component({
     selector: 'app-image-upload',
     templateUrl: './image-upload.component.html',
-    styleUrls: ['./image-upload.component.scss'],
-    providers: [MessageService]
+    styleUrls: ['./image-upload.component.scss']
 })
 export class ImageUploadComponent extends AlertService {
     public uploadedFiles: any[] = [];

@@ -3,12 +3,14 @@ import {
     HttpRequest,
     HttpHandler,
     HttpEvent,
-    HttpInterceptor
+    HttpInterceptor,
+    HttpStatusCode
 } from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
-import {Router} from '@angular/router';
+import {NavigationExtras, Router} from '@angular/router';
 import {LocalStorageService} from "../../service/storage/local-storage.service";
+import {MessageService} from "primeng/api";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -19,7 +21,8 @@ export class AuthInterceptor implements HttpInterceptor {
     constructor(
         private router: Router,
         public storageService: LocalStorageService
-    ) {}
+    ) {
+    }
 
     /**
      * @param request
@@ -27,7 +30,6 @@ export class AuthInterceptor implements HttpInterceptor {
      */
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const token = localStorage.getItem('token');
-
         if (token) {
             request = request.clone({
                 setHeaders: {
@@ -38,10 +40,14 @@ export class AuthInterceptor implements HttpInterceptor {
 
         return next.handle(request).pipe(
             catchError(error => {
-                if (error.status === 401) {
-                    this.router.navigate(['/login/auth']);
-                } else if (error.status === 403) {
-                    this.router.navigate(['/']);
+                switch (error.status) {
+                    case HttpStatusCode.Unauthorized:
+                        this.router.navigate(['/login/auth']);
+                        break;
+                    case HttpStatusCode.Forbidden:
+                        break;
+                    default:
+                        break;
                 }
                 return throwError(error);
             })

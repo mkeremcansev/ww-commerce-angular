@@ -6,7 +6,6 @@ import { ImageListComponent } from './image/image-list/image-list.component';
 import { ImageUploadComponent } from './image/image-upload/image-upload.component';
 import {FileUploadModule} from "primeng/fileupload";
 import {TranslateModule} from "@ngx-translate/core";
-import {ToastModule} from "primeng/toast";
 import {ImageModule} from "primeng/image";
 import {RatingModule} from "primeng/rating";
 import {DataViewModule} from "primeng/dataview";
@@ -32,7 +31,6 @@ import {OverlayPanelModule} from "primeng/overlaypanel";
         MediaRoutingModule,
         FileUploadModule,
         TranslateModule,
-        ToastModule,
         ImageModule,
         RatingModule,
         DataViewModule,

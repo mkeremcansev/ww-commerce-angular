@@ -11,8 +11,7 @@ import {CategoryCreateResponse} from "../../entity/entity";
 @Component({
     selector: 'app-category-edit',
     templateUrl: './category-edit.component.html',
-    styleUrls: ['./category-edit.component.scss'],
-    providers: [MessageService]
+    styleUrls: ['./category-edit.component.scss']
 })
 export class CategoryEditComponent extends AlertService {
     public isLoading: boolean = false;

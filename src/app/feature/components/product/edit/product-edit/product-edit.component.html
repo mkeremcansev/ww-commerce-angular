@@ -5,7 +5,7 @@
                 <p-progressSpinner></p-progressSpinner>
             </div>
             <div *ngIf="!isSpinner">
-                <h3 class="mb-5">{{'product.create' | translate}}</h3>
+                <h3 class="mb-5">{{'product.edit' | translate}}</h3>
                 <form [formGroup]="form" (ngSubmit)="submit()">
                     <div class="field">
                         <label htmlFor="title">{{'title' | translate}}</label>
@@ -127,4 +127,3 @@
     [upload]="true"
     (selectedImagesEmitter)="emitImages($event)"
 ></app-image-list>
-<p-toast key="tst"></p-toast>

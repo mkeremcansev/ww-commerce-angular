@@ -3,7 +3,7 @@ import {AlertService} from "../../../../service/alert/alert.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {environment} from "../../../../../environments/environment";
 import {LayoutService} from "../../../../layout/service/app.layout.service";
-import {AuthService} from "../../auth/auth.service";
+import {AuthService} from "../service/auth.service";
 import {MessageService} from "primeng/api";
 import {LocalStorageService} from "../../../../service/storage/local-storage.service";
 import {RedirectService} from "../../../../service/redirect/redirect.service";
@@ -11,9 +11,7 @@ import {RedirectService} from "../../../../service/redirect/redirect.service";
 @Component({
     selector: 'app-auth',
     templateUrl: './auth.component.html',
-    styleUrls: ['./auth.component.scss'],
-    providers: [MessageService]
-
+    styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent extends AlertService {
     /**

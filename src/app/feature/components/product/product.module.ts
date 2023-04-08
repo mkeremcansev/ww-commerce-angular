@@ -7,7 +7,6 @@ import {ButtonModule} from "primeng/button";
 import {TranslateModule} from "@ngx-translate/core";
 import {InputTextModule} from "primeng/inputtext";
 import {EditorModule} from "primeng/editor";
-import {ToastModule} from "primeng/toast";
 import {InputNumberModule} from "primeng/inputnumber";
 import {DropdownModule} from "primeng/dropdown";
 import {MultiSelectModule} from "primeng/multiselect";
@@ -30,12 +29,10 @@ import {DatatableModule} from "../../modules/datatable/datatable.module";
         CommonModule,
         ProductRoutingModule,
         ReactiveFormsModule,
-        ToastModule,
         ButtonModule,
         TranslateModule,
         InputTextModule,
         EditorModule,
-        ToastModule,
         FormsModule,
         InputNumberModule,
         DropdownModule,

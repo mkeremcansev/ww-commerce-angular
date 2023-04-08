@@ -7,7 +7,6 @@ import {InputTextModule} from "primeng/inputtext";
 import {ButtonModule} from "primeng/button";
 import {TranslateModule} from "@ngx-translate/core";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {ToastModule} from "primeng/toast";
 import {ProgressSpinnerModule} from "primeng/progressspinner";
 import {BrandListComponent} from "./list/brand-list/brand-list.component";
 import {TableModule} from "primeng/table";
@@ -31,7 +30,6 @@ import {MediaModule} from "../media/media.module";
         ButtonModule,
         TranslateModule,
         ReactiveFormsModule,
-        ToastModule,
         ProgressSpinnerModule,
         TableModule,
         MultiSelectModule,
@@ -41,7 +39,7 @@ import {MediaModule} from "../media/media.module";
         ProgressBarModule,
         RippleModule,
         DatatableModule,
-        MediaModule
+        MediaModule,
     ]
 })
 export class BrandModule {

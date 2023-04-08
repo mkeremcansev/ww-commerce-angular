@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {CategoryRoutingModule} from './category-routing.module';
-import {ToastModule} from "primeng/toast";
 import {ButtonModule} from "primeng/button";
 import {InputTextModule} from "primeng/inputtext";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -26,7 +25,6 @@ import {DatatableModule} from "../../modules/datatable/datatable.module";
     imports: [
         CommonModule,
         CategoryRoutingModule,
-        ToastModule,
         ButtonModule,
         InputTextModule,
         ReactiveFormsModule,

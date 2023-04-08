@@ -6,8 +6,7 @@ import {MessageService} from "primeng/api";
 @Component({
     selector: 'app-image-list',
     templateUrl: './image-list.component.html',
-    styleUrls: ['./image-list.component.scss'],
-    providers: [MessageService]
+    styleUrls: ['./image-list.component.scss']
 })
 export class ImageListComponent extends AlertService {
     @Input() public multiple: boolean = true
@@ -81,9 +80,12 @@ export class ImageListComponent extends AlertService {
      */
     deleteSelectedImages() {
         this.imageService.destroy({paths: this.selectedImages}).subscribe((response: any) => {
-            this.images = this.images.filter(item => !this.selectedImages.includes(item));
-            this.selectedImages = [];
-            this.messageService.add(this.success(response.message));
-        });
+                this.images = this.images.filter(item => !this.selectedImages.includes(item));
+                this.selectedImages = [];
+                this.messageService.add(this.success(response.message));
+            },
+            (error: any) => {
+                this.messageService.add(this.error(error.error.message));
+            });
     }
 }

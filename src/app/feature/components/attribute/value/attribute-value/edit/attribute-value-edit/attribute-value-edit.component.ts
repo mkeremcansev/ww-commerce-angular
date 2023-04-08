@@ -11,8 +11,7 @@ import * as _ from "lodash";
 @Component({
     selector: 'app-attribute-value-edit',
     templateUrl: './attribute-value-edit.component.html',
-    styleUrls: ['./attribute-value-edit.component.scss'],
-    providers: [MessageService]
+    styleUrls: ['./attribute-value-edit.component.scss']
 })
 export class AttributeValueEditComponent extends AlertService {
     public form: FormGroup = new FormGroup({

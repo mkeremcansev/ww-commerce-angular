@@ -7,7 +7,6 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {TranslateModule} from "@ngx-translate/core";
 import {ButtonModule} from "primeng/button";
 import {InputTextModule} from "primeng/inputtext";
-import {ToastModule} from "primeng/toast";
 import {DropdownModule} from "primeng/dropdown";
 import {MediaModule} from "../../../media/media.module";
 import {ProgressSpinnerModule} from "primeng/progressspinner";
@@ -29,7 +28,6 @@ import {DatatableModule} from "../../../../modules/datatable/datatable.module";
         TranslateModule,
         ButtonModule,
         InputTextModule,
-        ToastModule,
         DropdownModule,
         MediaModule,
         ProgressSpinnerModule,

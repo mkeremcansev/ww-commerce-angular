@@ -10,8 +10,7 @@ import {AlertService} from "../../../../../service/alert/alert.service";
 @Component({
     selector: 'app-attribute-edit',
     templateUrl: './attribute-edit.component.html',
-    styleUrls: ['./attribute-edit.component.scss'],
-    providers: [MessageService]
+    styleUrls: ['./attribute-edit.component.scss']
 })
 export class AttributeEditComponent extends AlertService {
 

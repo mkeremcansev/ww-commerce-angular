@@ -10,8 +10,7 @@ import {AttributeValueCreateResponse} from "../../entity/entity";
 @Component({
     selector: 'app-attribute-value-create',
     templateUrl: './attribute-value-create.component.html',
-    styleUrls: ['./attribute-value-create.component.scss'],
-    providers: [MessageService]
+    styleUrls: ['./attribute-value-create.component.scss']
 })
 export class AttributeValueCreateComponent extends AlertService {
     public form: FormGroup = new FormGroup({

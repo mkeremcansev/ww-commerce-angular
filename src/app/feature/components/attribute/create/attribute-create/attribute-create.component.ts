@@ -8,8 +8,7 @@ import {RedirectService} from "../../../../../service/redirect/redirect.service"
 @Component({
     selector: 'app-attribute-create',
     templateUrl: './attribute-create.component.html',
-    styleUrls: ['./attribute-create.component.scss'],
-    providers: [MessageService]
+    styleUrls: ['./attribute-create.component.scss']
 })
 export class AttributeCreateComponent extends AlertService {
     public form: FormGroup = new FormGroup({

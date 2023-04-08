@@ -10,8 +10,7 @@ import {RedirectService} from 'src/app/service/redirect/redirect.service';
 @Component({
     selector: 'app-brand-edit',
     templateUrl: './brand-edit.component.html',
-    styleUrls: ['./brand-edit.component.scss'],
-    providers: [MessageService]
+    styleUrls: ['./brand-edit.component.scss']
 })
 export class BrandEditComponent extends AlertService {
     public form: FormGroup = new FormGroup({

@@ -10,7 +10,6 @@ import {ButtonModule} from "primeng/button";
 import {TreeModule} from "primeng/tree";
 import {CheckboxModule} from "primeng/checkbox";
 import {AccordionModule} from "primeng/accordion";
-import {ToastModule} from "primeng/toast";
 import { RoleEditComponent } from './edit/role-edit/role-edit.component';
 import {ProgressSpinnerModule} from "primeng/progressspinner";
 import { RoleListComponent } from './list/role-list/role-list.component';
@@ -33,7 +32,6 @@ import {DatatableModule} from "../../modules/datatable/datatable.module";
         TreeModule,
         CheckboxModule,
         AccordionModule,
-        ToastModule,
         ProgressSpinnerModule,
         DatatableModule
     ]

@@ -6,7 +6,6 @@ import {TranslateModule} from "@ngx-translate/core";
 import {TableModule} from "primeng/table";
 import {ButtonModule} from "primeng/button";
 import {RippleModule} from "primeng/ripple";
-import {ToastModule} from "primeng/toast";
 
 
 @NgModule({
@@ -23,7 +22,6 @@ import {ToastModule} from "primeng/toast";
         TableModule,
         ButtonModule,
         RippleModule,
-        ToastModule,
         TableModule
     ]
 })
