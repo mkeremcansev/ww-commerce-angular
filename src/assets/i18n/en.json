@@ -43,7 +43,14 @@
         "create": "Create User",
         "edit": "Edit User",
         "list": "User List",
-        "selectRole": "Select Role"
+        "selectRole": "Select Role",
+        "profile": {
+            "index": "Profile",
+            "edit": "Edit Profile",
+            "oldPassword": "Old Password",
+            "newPassword": "New Password",
+            "newPasswordConfirmation": "New Password Confirmation"
+        }
     },
     "role": {
         "index": "Role",

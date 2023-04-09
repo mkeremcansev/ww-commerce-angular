@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { LayoutService } from "./service/app.layout.service";
 import {UserService} from "../service/user/user.service";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-topbar',
@@ -23,10 +24,12 @@ export class AppTopBarComponent {
      * @method constructor
      * @param layoutService
      * @param userService
+     * @param router
      */
     constructor(
         public layoutService: LayoutService,
-        public userService: UserService
+        public userService: UserService,
+        public router: Router
     ) { }
 
     /**
@@ -35,5 +38,9 @@ export class AppTopBarComponent {
     logout(){
         this.isSpinner = true;
         this.userService.logout();
+    }
+
+    profile(){
+        this.router.navigate(['/user/profile']);
     }
 }
