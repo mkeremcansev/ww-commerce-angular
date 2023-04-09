@@ -8,7 +8,6 @@ import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from "@angular/common/h
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {AuthInterceptor} from './layout/interceptor/auth.interceptor';
-import {BrandCreateComponent} from './feature/components/brand/create/brand-create/brand-create.component';
 import {InputTextModule} from "primeng/inputtext";
 import {ButtonModule} from "primeng/button";
 import {ReactiveFormsModule} from "@angular/forms";
@@ -27,7 +26,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
 
 @NgModule({
     declarations: [
-        AppComponent, NotfoundComponent, BrandCreateComponent
+        AppComponent, NotfoundComponent
     ],
     imports: [
         AppRoutingModule,

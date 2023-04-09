@@ -3,6 +3,7 @@
     "login": "Login",
     "logout": "Logout",
     "email": "Email",
+    "name": "Name",
     "password": "Password",
     "actions": "Actions",
     "brand": {
@@ -36,6 +37,13 @@
         "status": "Status",
         "variantStatus": "Variant Status",
         "variantReset": "Reset Variant"
+    },
+    "user": {
+        "index": "User",
+        "create": "Create User",
+        "edit": "Edit User",
+        "list": "User List",
+        "selectRole": "Select Role"
     },
     "role": {
         "index": "Role",

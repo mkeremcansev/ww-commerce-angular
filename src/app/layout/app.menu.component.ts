@@ -282,6 +282,29 @@ export class AppMenuComponent implements OnInit {
                             }
                         ]
                     },
+                    {
+                        label: 'user.index',
+                        icon: 'pi pi-fw pi-users',
+                        data: {
+                            permission: {
+                                group: 'User',
+                                name: 'user.index'
+                            }
+                        },
+                        items: [
+                            {
+                                label: 'list',
+                                icon: 'pi pi-fw pi-list',
+                                data: {
+                                    permission: {
+                                        group: 'User',
+                                        name: 'user.index'
+                                    }
+                                },
+                                routerLink: ['/user/list']
+                            }
+                        ]
+                    }
                 ]
             }
         ];

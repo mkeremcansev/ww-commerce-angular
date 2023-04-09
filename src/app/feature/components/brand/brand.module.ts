@@ -17,9 +17,11 @@ import {ProgressBarModule} from "primeng/progressbar";
 import {RippleModule} from "primeng/ripple";
 import {DatatableModule} from "../../modules/datatable/datatable.module";
 import {MediaModule} from "../media/media.module";
+import {BrandCreateComponent} from "./create/brand-create/brand-create.component";
 
 @NgModule({
     declarations: [
+        BrandCreateComponent,
         BrandEditComponent,
         BrandListComponent
     ],

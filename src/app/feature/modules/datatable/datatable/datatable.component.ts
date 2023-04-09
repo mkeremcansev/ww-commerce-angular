@@ -72,19 +72,25 @@ export class DatatableComponent extends AlertService {
             // @ts-ignore
             this.table.start = event.first;
             this.formatter();
-            this.httpClient.post(environment.api + this.table.url, this.table).subscribe((response: any) => {
-                this.loading = false;
-                this.variables = response.data;
-                this.recordsTotal = response.recordsFiltered;
-            })
+            this.tableRequest();
         } else {
             this.loading = true;
-            this.httpClient.post(environment.api + this.table.url, this.table).subscribe((response: any) => {
+            this.tableRequest();
+        }
+    }
+
+    tableRequest() {
+        this.httpClient.post(environment.api + this.table.url, this.table).subscribe((response: any) => {
                 this.loading = false;
                 this.variables = response.data;
                 this.recordsTotal = response.recordsFiltered;
-            })
-        }
+            },
+            (error: any) => {
+                this.loading = false;
+                this.variables = [];
+                this.recordsTotal = 0;
+                this.messageService.add(this.error(error.error.message))
+            });
     }
 
     /**

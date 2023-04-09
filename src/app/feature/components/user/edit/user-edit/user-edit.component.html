@@ -1,0 +1,30 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="card p-fluid">
+            <div class="progress-spinner flex justify-content-center" *ngIf="isSpinner">
+                <p-progressSpinner></p-progressSpinner>
+            </div>
+            <div *ngIf="!isSpinner">
+                <h3 class="mb-5">{{'user.edit' | translate}}</h3>
+                <form [formGroup]="form" (ngSubmit)="submit()">
+                    <div class="field">
+                        <label htmlFor="name">{{'name' | translate}}</label>
+                        <input pInputText id="name" type="text" formControlName="name"/>
+                    </div>
+                    <div class="field">
+                        <label htmlFor="email">{{'email' | translate}}</label>
+                        <input pInputText id="email" type="email" formControlName="email"/>
+                    </div>
+                    <div class="field">
+                        <label htmlFor="roles">{{'user.selectRole' | translate}}</label>
+                        <p-multiSelect [options]="roles" formControlName="role_id" optionLabel="name"></p-multiSelect>
+
+                    </div>
+                    <div class="flex justify-content-end">
+                        <button class="w-auto" pButton [loading]="isLoading" label="{{'update' | translate}}"></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

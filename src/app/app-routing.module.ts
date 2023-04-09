@@ -91,6 +91,17 @@ import {PermissionGuard} from "./guard/permission/permission.guard";
                             }
                         },
                         loadChildren: () => import('./feature/components/role/role.module').then(m => m.RoleModule)
+                    },
+                    {
+                        path: 'user',
+                        canActivate: [PermissionGuard],
+                        data: {
+                            permission: {
+                                group: 'User',
+                                name: 'user.index'
+                            }
+                        },
+                        loadChildren: () => import('./feature/components/user/user.module').then(m => m.UserModule)
                     }
                 ]
             },
