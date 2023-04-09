@@ -19,7 +19,7 @@ export class UserEditComponent extends AlertService {
         role_id: new FormControl([], Validators.required),
     });
     public isLoading: boolean = false;
-    public isSpinner: boolean = false;
+    public isSpinner: boolean = true;
     public id = Number(this.route.snapshot.paramMap.get('id'));
     public roles: UserEditRoleResponse[] = [];
 
