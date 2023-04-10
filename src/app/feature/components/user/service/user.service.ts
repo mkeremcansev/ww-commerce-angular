@@ -28,6 +28,6 @@ export class UserService {
      * @method update
      */
     update(data: UserUpdateRequest, id: number) {
-        return this.httpClient.patch(environment.api + '/user/' + id + '/update', data);
+        return this.httpClient.patch(environment.api + '/user/' + id, data);
     }
 }

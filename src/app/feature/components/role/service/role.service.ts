@@ -49,6 +49,6 @@ export class RoleService {
      * @method update
      */
     update(data: RoleUpdateRequest, id: number) {
-        return this.httpClient.patch<RoleUpdateResponse>(environment.api + '/role/' + id + '/update', data);
+        return this.httpClient.patch<RoleUpdateResponse>(environment.api + '/role/' + id, data);
     }
 }

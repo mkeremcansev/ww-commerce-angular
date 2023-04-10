@@ -49,6 +49,6 @@ export class CategoryService {
      * @param id
      */
     update(data: CategoryUpdateRequest, id: number) {
-        return this.httpClient.patch<CategoryUpdateResponse>(environment.api + '/category/' + id + '/update', data);
+        return this.httpClient.patch<CategoryUpdateResponse>(environment.api + '/category/' + id , data);
     }
 }

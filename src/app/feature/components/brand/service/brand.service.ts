@@ -40,6 +40,6 @@ export class BrandService {
      * @param id
      */
     update(data: BrandUpdateRequest, id: number) {
-        return this.httpClient.patch<BrandUpdateResponse>(environment.api + '/brand/' + id + '/update', data);
+        return this.httpClient.patch<BrandUpdateResponse>(environment.api + '/brand/' + id, data);
     }
 }

@@ -47,7 +47,7 @@ export class AttributeValueService {
      * @param id
      */
     update(data: AttributeValueUpdateRequest, id: number) {
-        return this.httpClient.patch<AttributeValueStoreResponse>(environment.api + '/attribute/value/' + id + '/update', data)
+        return this.httpClient.patch<AttributeValueStoreResponse>(environment.api + '/attribute/value/' + id, data)
     }
 }
 

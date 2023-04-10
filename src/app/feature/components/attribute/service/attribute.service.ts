@@ -40,6 +40,6 @@ export class AttributeService {
      * @param id
      */
     update(data: AttributeUpdateRequest, id: number) {
-        return this.http.patch<AttributeUpdateResponse>(environment.api + '/attribute/' + id + '/update', data);
+        return this.http.patch<AttributeUpdateResponse>(environment.api + '/attribute/' + id, data);
     }
 }
