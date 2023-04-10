@@ -10,10 +10,10 @@ export class ImageService {
 
     /**
      * @method constructor
-     * @param http
+     * @param httpClient
      */
     constructor(
-        public http: HttpClient
+        public httpClient: HttpClient
     ) {
     }
 
@@ -21,7 +21,7 @@ export class ImageService {
      * @method index
      */
     index() {
-        return this.http.get(environment.api + '/image');
+        return this.httpClient.get(environment.api + '/image');
     }
 
     /**
@@ -29,6 +29,6 @@ export class ImageService {
      * @param paths
      */
     destroy(paths: ImageDestroyRequest) {
-        return this.http.post<ImageDestroyResponse>(environment.api + '/image/destroy', paths);
+        return this.httpClient.post<ImageDestroyResponse>(environment.api + '/image/destroy', paths);
     }
 }

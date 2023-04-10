@@ -1,0 +1,61 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="card p-fluid">
+            <div class="progress-spinner flex justify-content-center" *ngIf="isSpinner">
+                <p-progressSpinner></p-progressSpinner>
+            </div>
+            <div *ngIf="!isSpinner">
+                <h3 class="mb-5">{{'coupon.edit' | translate}}</h3>
+                <form [formGroup]="form" (ngSubmit)="submit()">
+                    <div class="field">
+                        <label htmlFor="code">{{'coupon.code' | translate}}</label>
+                        <input pInputText id="code" type="text" formControlName="code"/>
+                    </div>
+                    <div class="field">
+                        <label htmlFor="value">{{'coupon.value' | translate}}</label>
+                        <p-inputNumber mode="decimal" [minFractionDigits]="2" [maxFractionDigits]="2"
+                                       formControlName="value"></p-inputNumber>
+                    </div>
+                    <div class="field">
+                        <label htmlFor="usage_limit">{{'coupon.usageLimit' | translate}}</label>
+                        <p-inputNumber inputId="integerOnly" [min]="0" [max]="1000000000"
+                                       formControlName="usage_limit"></p-inputNumber>
+                    </div>
+                    <div class="field">
+                        <label htmlFor="expired_at">{{'coupon.expiredAt' | translate}}</label>
+                        <input pInputText id="expired_at" type="datetime-local" formControlName="expired_at"/>
+                    </div>
+                    <div class="field">
+                        <label htmlFor="type">{{'coupon.type' | translate}}</label>
+                        <p-dropdown
+                            [options]="types"
+                            [optionValue]="'id'"
+                            [optionLabel]="'title'"
+                            formControlName="type"
+                            [required]="true"
+                            [ngClass]="form.invalid && form.touched ? 'ng-invalid ng-dirty' : null"
+                            placeholder="{{'coupon.selectType' | translate}}" [showClear]="true"
+                            id="type">
+                        </p-dropdown>
+                    </div>
+                    <div class="field">
+                        <label htmlFor="status">{{'coupon.status' | translate}}</label>
+                        <p-dropdown
+                            [options]="statuses"
+                            [optionValue]="'id'"
+                            [optionLabel]="'title'"
+                            formControlName="status"
+                            [required]="true"
+                            [ngClass]="form.invalid && form.touched ? 'ng-invalid ng-dirty' : null"
+                            placeholder="{{'coupon.selectStatus' | translate}}" [showClear]="true"
+                            id="status">
+                        </p-dropdown>
+                    </div>
+                    <div class="flex justify-content-end">
+                        <button class="w-auto" pButton [loading]="isLoading" label="{{'update' | translate}}"></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

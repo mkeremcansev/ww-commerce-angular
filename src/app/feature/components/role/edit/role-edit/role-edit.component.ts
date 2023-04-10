@@ -18,7 +18,7 @@ export class RoleEditComponent extends AlertService {
         permission_id: new FormControl([], Validators.nullValidator)
     });
 
-    public isButton: boolean = false;
+    public isLoading: boolean = false;
     public permissionsByGroupName: {} = {};
     public selectedPermissions: number[] = [];
     public isSpinner: boolean = true;
@@ -83,15 +83,15 @@ export class RoleEditComponent extends AlertService {
      */
     submit() {
         if (this.form.valid) {
-            this.isButton = true;
+            this.isLoading = true;
             this.form.patchValue({
                 permission_id: this.selectedPermissions
             });
             this.roleService.update(this.form.value, this.id).subscribe(response => {
                 this.messageService.add(this.success(response.message))
-                this.isButton = false;
+                this.isLoading = false;
             }, (error: any) => {
-                this.isButton = false;
+                this.isLoading = false;
                 this.messageService.add(this.error(error.error.message))
             });
         } else {

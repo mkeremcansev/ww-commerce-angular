@@ -203,6 +203,40 @@ export class AppMenuComponent implements OnInit {
                         ]
                     },
                     {
+                        label: 'coupon.index',
+                        icon: 'pi pi-fw pi-percentage',
+                        data: {
+                            permission: {
+                                group: 'Coupon',
+                                name: 'coupon.index'
+                            }
+                        },
+                        items: [
+                            {
+                                label: 'create',
+                                icon: 'pi pi-fw pi-plus',
+                                data: {
+                                    permission: {
+                                        group: 'Coupon',
+                                        name: 'coupon.create'
+                                    }
+                                },
+                                routerLink: ['/coupon/create']
+                            },
+                            {
+                                label: 'list',
+                                icon: 'pi pi-fw pi-list',
+                                data: {
+                                    permission: {
+                                        group: 'Coupon',
+                                        name: 'coupon.index'
+                                    }
+                                },
+                                routerLink: ['/coupon/list']
+                            }
+                        ]
+                    },
+                    {
                         label: 'media.index',
                         icon: 'pi pi-fw pi-book',
                         data: {

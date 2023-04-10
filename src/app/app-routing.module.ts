@@ -113,6 +113,17 @@ import {PermissionGuard} from "./guard/permission/permission.guard";
                             }
                         },
                         loadChildren: () => import('./feature/components/user/value/user-profile/user-profile.module').then(m => m.UserProfileModule)
+                    },
+                    {
+                        path: 'coupon',
+                        canActivate: [PermissionGuard],
+                        data: {
+                            permission: {
+                                group: 'Coupon',
+                                name: 'coupon.index'
+                            }
+                        },
+                        loadChildren: () => import('./feature/components/coupon/coupon.module').then(m => m.CouponModule)
                     }
                 ]
             },

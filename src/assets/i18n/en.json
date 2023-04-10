@@ -76,6 +76,10 @@
     "update": "Update",
     "list": "List",
     "title": "Title",
+    "usage_limit": "Usage Limit",
+    "value": "Value",
+    "expired_at": "Expired At",
+    "price": "Price",
     "path": "Path",
     "code": "Code",
     "id": "ID",
@@ -102,6 +106,21 @@
             "upload": "Upload"
         },
         "notSelected": "File not selected."
+    },
+    "coupon": {
+        "index": "Coupon",
+        "create": "Create Coupon",
+        "edit": "Edit Coupon",
+        "list": "Coupon List",
+        "selectStatus": "Select Status",
+        "status": "Status",
+        "selectType": "Select Type",
+        "type": "Type",
+        "code": "Code",
+        "usageLimit": "Usage Limit",
+        "expiredAt": "Expired At",
+        "value": "Value",
+        "price": "Price"
     },
     "media": {
         "index": "Media"

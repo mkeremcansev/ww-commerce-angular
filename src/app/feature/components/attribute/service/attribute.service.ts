@@ -15,10 +15,10 @@ export class AttributeService {
 
     /**
      * @method constructor
-     * @param http
+     * @param httpClient
      */
     constructor(
-        public http: HttpClient
+        public httpClient: HttpClient
     ) {
     }
 
@@ -27,11 +27,11 @@ export class AttributeService {
      * @param data
      */
     public store(data: AttributeStoreRequest) {
-        return this.http.post<AttributeStoreResponse>(environment.api + '/attribute/store', data);
+        return this.httpClient.post<AttributeStoreResponse>(environment.api + '/attribute/store', data);
     }
 
     edit(id: number) {
-        return this.http.get(environment.api + '/attribute/' + id + '/edit');
+        return this.httpClient.get(environment.api + '/attribute/' + id + '/edit');
     }
 
     /**
@@ -40,6 +40,6 @@ export class AttributeService {
      * @param id
      */
     update(data: AttributeUpdateRequest, id: number) {
-        return this.http.patch<AttributeUpdateResponse>(environment.api + '/attribute/' + id, data);
+        return this.httpClient.patch<AttributeUpdateResponse>(environment.api + '/attribute/' + id, data);
     }
 }
