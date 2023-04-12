@@ -6,7 +6,7 @@ import {MessageService} from "primeng/api";
 import {AttributeValueService} from "../../service/attribute-value.service";
 import {RedirectService} from "../../../../../../../service/redirect/redirect.service";
 import {ActivatedRoute} from '@angular/router';
-import * as _ from "lodash";
+import * as lodash from "lodash";
 
 @Component({
     selector: 'app-attribute-value-edit',
@@ -77,7 +77,7 @@ export class AttributeValueEditComponent extends AlertService {
      * @param event
      */
     emit(event: string[]) {
-        event.length > 0 ? this.form.patchValue({path: _.first(event)}) : this.form.patchValue({path: ''});
+        event.length > 0 ? this.form.patchValue({path: lodash.first(event)}) : this.form.patchValue({path: ''});
     }
 
     /**

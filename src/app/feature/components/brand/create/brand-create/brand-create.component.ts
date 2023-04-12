@@ -5,7 +5,7 @@ import {MessageService} from "primeng/api";
 import {AlertService} from "../../../../../service/alert/alert.service";
 import {Router} from "@angular/router";
 import {RedirectService} from "../../../../../service/redirect/redirect.service";
-import * as _ from 'lodash';
+import * as lodash from 'lodash';
 
 @Component({
     selector: 'app-brand-create',
@@ -58,6 +58,6 @@ export class BrandCreateComponent extends AlertService {
      * @param event
      */
     emit(event: string[]) {
-        event.length > 0 ? this.form.patchValue({path: _.first(event)}) : this.form.patchValue({path: ''});
+        event.length > 0 ? this.form.patchValue({path: lodash.first(event)}) : this.form.patchValue({path: ''});
     }
 }

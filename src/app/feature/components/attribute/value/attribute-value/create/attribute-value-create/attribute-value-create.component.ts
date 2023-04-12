@@ -3,7 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {MessageService} from "primeng/api";
 import {RedirectService} from "../../../../../../../service/redirect/redirect.service";
 import {AlertService} from "../../../../../../../service/alert/alert.service";
-import * as _ from "lodash";
+import * as lodash from "lodash";
 import {AttributeValueService} from "../../service/attribute-value.service";
 import {AttributeValueCreateResponse} from "../../entity/entity";
 
@@ -78,6 +78,6 @@ export class AttributeValueCreateComponent extends AlertService {
      * @param event
      */
     emit(event: string[]) {
-        event.length > 0 ? this.form.patchValue({path: _.first(event)}) : this.form.patchValue({path: ''});
+        event.length > 0 ? this.form.patchValue({path: lodash.first(event)}) : this.form.patchValue({path: ''});
     }
 }

@@ -3,7 +3,7 @@ import {Router} from "@angular/router";
 import {LazyLoadEvent, MessageService} from "primeng/api";
 import {AlertService} from "../../../../service/alert/alert.service";
 import {Table} from "primeng/table";
-import * as _ from "lodash";
+import * as lodash from "lodash";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../../environments/environment";
 
@@ -66,7 +66,7 @@ export class DatatableComponent extends AlertService {
      */
     load(event: LazyLoadEvent) {
         this.viewColumns();
-        if (!_.isEmpty(event.filters)) {
+        if (!lodash.isEmpty(event.filters)) {
             this.loading = true;
             this.filterItems = event.filters;
             // @ts-ignore

@@ -6,7 +6,7 @@ import {RedirectService} from "../../../../../service/redirect/redirect.service"
 import {CategoryService} from "../../service/category.service";
 import {AlertService} from "../../../../../service/alert/alert.service";
 import {CategoryCreateResponse, CategorySelectedItem} from "../../entity/entity";
-import * as _ from "lodash";
+import * as lodash from "lodash";
 
 @Component({
     selector: 'app-category-create',
@@ -77,7 +77,7 @@ export class CategoryCreateComponent extends AlertService {
      * @param event
      */
     emit(event: string[]) {
-        event.length > 0 ? this.form.patchValue({path: _.first(event)}) : this.form.patchValue({path: ''});
+        event.length > 0 ? this.form.patchValue({path: lodash.first(event)}) : this.form.patchValue({path: ''});
     }
 
     /**
