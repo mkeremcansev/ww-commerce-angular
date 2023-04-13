@@ -69,7 +69,6 @@ export class DatatableComponent extends AlertService {
         if (!lodash.isEmpty(event.filters)) {
             this.loading = true;
             this.filterItems = event.filters;
-            // @ts-ignore
             this.table.start = event.first;
             this.formatter();
             this.tableRequest();
@@ -99,10 +98,8 @@ export class DatatableComponent extends AlertService {
     formatter() {
         for (const [column, value] of Object.entries(this.filterItems)) {
             for (const [key, val] of Object.entries(this.table.columns)) {
-                // @ts-ignore
-                if (column == val.data) {
-                    // @ts-ignore
-                    this.table.columns[key].search.value = value[0].value;
+                if (column == (val as any).data) {
+                    this.table.columns[key].search.value = (value as any)[0].value;
                 }
             }
         }
