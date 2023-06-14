@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../../../environments/environment";
-import {ImageDestroyRequest, ImageDestroyResponse, ImageIndexResponse} from "../entity/entity";
+import {ImageDestroyResponse, ImageIndexResponse} from "../entity/entity";
 
 @Injectable({
     providedIn: 'root'
