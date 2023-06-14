@@ -13,6 +13,7 @@ import {CategoryCreateResponse} from "../../../category/entity/entity";
 import {AlertService} from "../../../../../service/alert/alert.service";
 import {RedirectService} from "../../../../../service/redirect/redirect.service";
 import * as _ from "lodash";
+import {ImageIndexResponse} from "../../../media/image/entity/entity";
 
 @Component({
     selector: 'app-product-create',
@@ -29,7 +30,7 @@ export class ProductCreateComponent extends AlertService {
         variants: new FormArray([]),
         status: new FormControl('', Validators.required),
         variant_status: new FormControl(true, Validators.required),
-        images: new FormControl([], Validators.nullValidator)
+        media: new FormControl([], Validators.nullValidator)
     });
 
     public matchSelectedCategories: TreeNode[] = [];
@@ -44,7 +45,8 @@ export class ProductCreateComponent extends AlertService {
     public isLoading: boolean = false;
     public isSpinner: boolean = true;
     public isVariant: boolean = true;
-    public selectedImages: string[] = [];
+    public isVariationReset: boolean = false;
+    public selectedImages: ImageIndexResponse[] = [];
 
     /**
      * @method constructor
@@ -105,6 +107,15 @@ export class ProductCreateComponent extends AlertService {
     }
 
     /**
+     * @method resetVariant
+     */
+    resetVariant() {
+        this.variants.controls = [];
+        this.isVariationReset = true;
+        this.isVariation = true;
+    }
+
+    /**
      * @method setCombination
      */
     setCombination() {
@@ -123,6 +134,7 @@ export class ProductCreateComponent extends AlertService {
                 stock: new FormControl(0, Validators.required),
             }));
         });
+        this.isVariationReset = false;
         this.isVariation = false;
     }
 
@@ -196,7 +208,7 @@ export class ProductCreateComponent extends AlertService {
             this.isLoading = true;
             this.form.patchValue({
                 category_id: this.categoryIdSetter(),
-                images: this.selectedImages
+                media: this.selectedImages
             })
             this.productService.store(this.form.value).subscribe((response) => {
                 this.messageService.add(this.success(response.message))
@@ -221,7 +233,7 @@ export class ProductCreateComponent extends AlertService {
      * @method emit
      * @param event
      */
-    emitImages(event: string[]) {
+    emit(event: ImageIndexResponse[]) {
         event.length > 0 ? this.selectedImages = event : this.selectedImages = [];
     }
 }

@@ -46,16 +46,6 @@ export class CategoryListComponent {
                     "value": null
                 }
             },
-            {
-                "data": "path",
-                "type": "text",
-                "name": "",
-                "orderable": true,
-                "search": {
-                    "regex": false,
-                    "value": null
-                }
-            }
         ],
         "buttons": [
             {

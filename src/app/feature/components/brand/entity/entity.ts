@@ -1,3 +1,5 @@
+import {ImageIndexResponse} from "../../media/image/entity/entity";
+
 export interface BrandStoreRequest{
     title: string;
     path: string;
@@ -14,12 +16,12 @@ export interface BrandEditResponse{
         id: number;
         title: string;
         slug: string;
-        path: string;
+        media: ImageIndexResponse[];
     }
 }
 export interface BrandUpdateRequest{
     title: string;
-    path: string;
+    media: ImageIndexResponse;
 }
 
 export interface BrandUpdateResponse{

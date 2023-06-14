@@ -6,6 +6,7 @@ import {AlertService} from "../../../../../service/alert/alert.service";
 import {Router} from "@angular/router";
 import {RedirectService} from "../../../../../service/redirect/redirect.service";
 import * as lodash from 'lodash';
+import {ImageIndexResponse} from "../../../media/image/entity/entity";
 
 @Component({
     selector: 'app-brand-create',
@@ -15,7 +16,7 @@ import * as lodash from 'lodash';
 export class BrandCreateComponent extends AlertService {
     public form: FormGroup = new FormGroup({
         title: new FormControl('', Validators.required),
-        path: new FormControl('', Validators.required)
+        media: new FormControl('', Validators.required)
     });
     public isLoading: boolean = false;
 
@@ -57,7 +58,7 @@ export class BrandCreateComponent extends AlertService {
      * @method emit
      * @param event
      */
-    emit(event: string[]) {
-        event.length > 0 ? this.form.patchValue({path: lodash.first(event)}) : this.form.patchValue({path: ''});
+    emit(event: ImageIndexResponse[]) {
+        event.length > 0 ? this.form.patchValue({media: lodash.first(event)}) : this.form.patchValue({media: ''});
     }
 }

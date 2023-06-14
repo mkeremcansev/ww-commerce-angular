@@ -36,18 +36,24 @@
                 </div>
                 <p-dataView #dv [value]="images" [paginator]="images.length > 0" [rows]="12" layout="grid"
                             [emptyMessage]="'dataNotFound' | translate">
-                    <ng-template let-image pTemplate="gridItem" let-i="rowIndex">
+                    <ng-template let-media pTemplate="gridItem" let-i="rowIndex">
                         <div class="col-12 md:col-2">
                             <div class="card border-1 surface-border p-1 image-card">
-                                <div class="flex flex-column align-items-center text-center" *ngIf="multiple">
-                                    <img [src]="image" [alt]="image"
-                                         class="w-10 my-5 mx-0 media-image-list-item cursor-pointer selected-transparent {{selectedImages.includes(image) ? 'selected' : null}}"
-                                         (click)="selectAndDelete(image)"/>
+                                <div class="flex flex-column align-items-center text-center image-card-position"
+                                     *ngIf="multiple">
+                                    <img [src]="media.full_path" [alt]="media.full_path"
+                                         class="w-10 my-5 mx-0 media-image-list-item cursor-pointer selected-transparent image-object {{ selectControl(media) ? 'selected' : null}}"
+                                         (click)="selectAndDelete(media)"/>
+                                    <span class="image-mime-type-info"
+                                          (click)="selectAndDelete(media)">{{'image.imageDetailInfo' | translate: {extension: media.extension.toUpperCase(), size: (media.size / 1000).toFixed(2) | translate} }}</span>
                                 </div>
-                                <div class="flex flex-column align-items-center text-center" *ngIf="!multiple">
-                                    <img [src]="image" [alt]="image"
-                                         class="w-9 my-5 mx-0 media-image-list-item cursor-pointer selected-transparent {{selectedImages.includes(image) ? 'selected' : null}}"
-                                         (click)="selectAndDelete(image)"/>
+                                <div class="flex flex-column align-items-center text-center image-card-position"
+                                     *ngIf="!multiple">
+                                    <img [src]="media.full_path" [alt]="media.full_path"
+                                         class="w-9 my-5 mx-0 media-image-list-item cursor-pointer selected-transparent image-object {{ selectControl(media) ? 'selected' : null}}"
+                                         (click)="selectAndDelete(media)"/>
+                                    <span class="image-mime-type-info"
+                                          (click)="selectAndDelete(media)">{{'image.imageDetailInfo' | translate: {extension: media.extension.toUpperCase(), size: (media.size / 1000).toFixed(2) | translate} }}</span>
                                 </div>
                             </div>
                         </div>

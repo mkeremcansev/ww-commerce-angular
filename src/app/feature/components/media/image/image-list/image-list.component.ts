@@ -1,7 +1,8 @@
-import {ChangeDetectorRef, Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {ImageService} from "../service/image.service";
 import {AlertService} from "../../../../../service/alert/alert.service";
 import {MessageService} from "primeng/api";
+import {ImageIndexResponse} from "../entity/entity";
 
 @Component({
     selector: 'app-image-list',
@@ -13,9 +14,9 @@ export class ImageListComponent extends AlertService {
     @Input() public deselect: boolean = true;
     @Input() public deleteSelections: boolean = true;
     @Input() public upload: boolean = true;
-    @Output() public selectedImagesEmitter = new EventEmitter<string[]>();
-    @Input() public selectedImages: string[] = [];
-    public images = [];
+    @Output() public selectedImagesEmitter = new EventEmitter<ImageIndexResponse[]>();
+    @Input() public selectedImages: ImageIndexResponse[] = [];
+    public images : ImageIndexResponse[] = [];
     public isSpinner: boolean = true;
 
     /**
@@ -49,17 +50,17 @@ export class ImageListComponent extends AlertService {
 
     /**
      * @method selectAndDelete
-     * @param path
+     * @param media
      */
-    selectAndDelete(path: string) {
+    selectAndDelete(media: ImageIndexResponse) {
         if (this.multiple) {
-            this.selectedImages = this.selectedImages.includes(path)
-                ? this.selectedImages.filter(item => item !== path)
-                : [...this.selectedImages, path];
+            this.selectedImages = this.selectedImages.some(item => item.id === media.id)
+                ? this.selectedImages.filter(item => item.id !== media.id)
+                : [...this.selectedImages, media];
         } else {
-            this.selectedImages.includes(path)
+            this.selectedImages.some(item => item.id === media.id)
                 ? this.selectedImages = []
-                : this.selectedImages = [path];
+                : this.selectedImages = [media];
         }
         this.selectedImagesEmitter.emit(this.selectedImages);
     }
@@ -79,7 +80,7 @@ export class ImageListComponent extends AlertService {
      * @method deleteSelectedImages
      */
     deleteSelectedImages() {
-        this.imageService.destroy({paths: this.selectedImages}).subscribe((response: any) => {
+        this.imageService.destroy(this.selectedImages).subscribe((response: any) => {
                 this.images = this.images.filter(item => !this.selectedImages.includes(item));
                 this.selectedImages = [];
                 this.messageService.add(this.success(response.message));
@@ -87,5 +88,13 @@ export class ImageListComponent extends AlertService {
             (error: any) => {
                 this.messageService.add(this.error(error.error.message));
             });
+    }
+
+    /**
+     * @method selectControl
+     * @param media
+     */
+    selectControl(media: ImageIndexResponse) {
+        return this.selectedImages.some(item => item.id === media.id);
     }
 }

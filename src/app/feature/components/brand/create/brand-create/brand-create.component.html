@@ -7,10 +7,6 @@
                     <label htmlFor="title">{{'title' | translate}}</label>
                     <input pInputText id="title" type="text" formControlName="title"/>
                 </div>
-                <div class="field">
-                    <label htmlFor="path">{{'path' | translate}}</label>
-                    <input pInputText id="path" type="text" formControlName="path" [readonly]="true"/>
-                </div>
                 <div class="flex justify-content-end">
                     <button class="w-auto" pButton [loading]="isLoading" label="{{'create' | translate}}"></button>
                 </div>

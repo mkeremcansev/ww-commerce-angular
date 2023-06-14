@@ -14,6 +14,7 @@ import {MessageService, TreeNode} from "primeng/api";
 import {RedirectService} from "../../../../../service/redirect/redirect.service";
 import {AlertService} from "../../../../../service/alert/alert.service";
 import {ActivatedRoute} from "@angular/router";
+import {ImageIndexResponse} from "../../../media/image/entity/entity";
 
 @Component({
     selector: 'app-product-edit',
@@ -30,7 +31,7 @@ export class ProductEditComponent extends AlertService {
         variants: new FormArray([]),
         status: new FormControl('', Validators.required),
         variant_status: new FormControl(true, Validators.required),
-        images: new FormControl([], Validators.nullValidator)
+        media: new FormControl([], Validators.nullValidator)
     });
 
     public matchSelectedCategories: TreeNode[] = [];
@@ -47,7 +48,7 @@ export class ProductEditComponent extends AlertService {
     public isVariant: boolean = true;
     public id = Number(this.route.snapshot.paramMap.get('id'));
     public isVariationReset: boolean = false;
-    public selectedImages: string[] = [];
+    public selectedImages: ImageIndexResponse[] = [];
 
     /**
      * @method constructor
@@ -80,8 +81,8 @@ export class ProductEditComponent extends AlertService {
             this.statuses = response.status_type.map((status, index) => {
                 return {id: index, title: status};
             });
-            response.images.forEach((image) => {
-                this.selectedImages.push(image.path);
+            response.media.forEach((media) => {
+                this.selectedImages.push(media);
             });
             this.form.patchValue({
                 title: response.title,
@@ -89,7 +90,7 @@ export class ProductEditComponent extends AlertService {
                 price: response.price,
                 brand_id: response.brand,
                 status: response.status,
-                images: this.selectedImages
+                media: this.selectedImages
             });
             this.setVariation(response.variant_groups);
             this.selectedCategories = this.format(response.categories);
@@ -120,15 +121,20 @@ export class ProductEditComponent extends AlertService {
         return this.form.get('variants') as FormArray;
     }
 
+    /**
+     * @method resetVariant
+     */
     resetVariant() {
         this.variants.controls = [];
         this.isVariationReset = true;
+        this.isVariation = true;
     }
 
     /**
      * @method setCombination
      */
     setCombination() {
+        this.isVariationReset = false;
         this.variationCombinations = this.combinations(this.selectedAttributes);
         this.selectedAttributes = [];
         this.variationCombinations.forEach((item: CombinationAttributeValue[]) => {
@@ -230,7 +236,7 @@ export class ProductEditComponent extends AlertService {
             this.isLoading = true;
             this.form.patchValue({
                 category_id: this.categoryIdSetter(),
-                images: this.selectedImages
+                media: this.selectedImages
             })
             this.productService.update(this.id, this.form.value).subscribe((response) => {
                 this.messageService.add(this.success(response.message))
@@ -257,7 +263,7 @@ export class ProductEditComponent extends AlertService {
      * @method emit
      * @param event
      */
-    emitImages(event: string[]) {
+    emit(event: ImageIndexResponse[]) {
         event.length > 0 ? this.selectedImages = event : this.selectedImages = [];
     }
 }

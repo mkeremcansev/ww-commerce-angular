@@ -1,3 +1,5 @@
+import {ImageIndexResponse} from "../../media/image/entity/entity";
+
 export interface CategoryCreateResponse {
     id: number;
     title: string;
@@ -24,13 +26,13 @@ export interface CategorySelectedItem {
 export interface CategoryStoreRequest {
     title: string;
     category_id: number;
-    path: string;
+    media: ImageIndexResponse;
 }
 
 export interface CategoryUpdateRequest {
     title: string;
     category_id: number | null;
-    path: string;
+    media: ImageIndexResponse;
 }
 
 export interface CategoryStoreResponse {

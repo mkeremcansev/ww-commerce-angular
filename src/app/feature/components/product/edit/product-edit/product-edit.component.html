@@ -67,7 +67,7 @@
                         <p>{{'product.variantStatus' | translate}}</p>
                         <p-inputSwitch [(ngModel)]="isVariant" formControlName="variant_status"></p-inputSwitch>
                     </div>
-                    <div class="p-formgrid grid" *ngIf="isVariation && isVariant && isVariationReset">
+                    <div class="p-formgrid grid" *ngIf="isVariation && isVariant">
                         <div class="field col" *ngFor="let attribute of attributes">
                             <label htmlFor="{{attribute.title}}">{{attribute.title}}</label>
                             <p-multiSelect
@@ -79,7 +79,6 @@
                             >
                                 <ng-template let-value pTemplate="item">
                                     <div class="flex align-items-center">
-                                        <img src="{{value.path}}" alt="" class="w-1"/>
                                         <span class="ml-2">{{value.title}}</span>
                                     </div>
                                 </ng-template>
@@ -87,7 +86,7 @@
                         </div>
                     </div>
                     <div class="flex justify-content-center">
-                        <button class="w-auto mb-5" *ngIf="!isVariationReset" pButton type="button" (click)="resetVariant()"
+                        <button class="w-auto mb-5" *ngIf="!isVariationReset && isVariant && variants.length > 0" pButton type="button" (click)="resetVariant()"
                                 label="{{'product.variantReset' | translate}}"></button>
                         <button *ngIf="selectedAttributes.length > 0" class="w-auto" pButton (click)="setCombination()"
                                 label="{{'product.variantCreate' | translate}}"></button>
@@ -125,5 +124,5 @@
     [deleteSelections]="false"
     [selectedImages]="selectedImages"
     [upload]="true"
-    (selectedImagesEmitter)="emitImages($event)"
+    (selectedImagesEmitter)="emit($event)"
 ></app-image-list>

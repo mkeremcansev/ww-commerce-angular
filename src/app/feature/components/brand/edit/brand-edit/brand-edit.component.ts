@@ -6,6 +6,7 @@ import {AlertService} from "../../../../../service/alert/alert.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import * as lodash from "lodash";
 import {RedirectService} from 'src/app/service/redirect/redirect.service';
+import {ImageIndexResponse} from "../../../media/image/entity/entity";
 
 @Component({
     selector: 'app-brand-edit',
@@ -15,12 +16,12 @@ import {RedirectService} from 'src/app/service/redirect/redirect.service';
 export class BrandEditComponent extends AlertService {
     public form: FormGroup = new FormGroup({
         title: new FormControl('', Validators.required),
-        path: new FormControl('', Validators.required)
+        media: new FormControl('', Validators.required)
     });
     public isLoading: boolean = false;
     public isSpinner: boolean = true;
     public id = Number(this.route.snapshot.paramMap.get('id'));
-    public selectedImages: string[] = [];
+    public selectedImages: ImageIndexResponse[] = [];
 
     /**
      * @param brandService
@@ -53,9 +54,9 @@ export class BrandEditComponent extends AlertService {
         !isNaN(id) ? this.brandService.edit(id).subscribe((response: any) => {
                     this.form.patchValue({
                         title: response.data.title,
-                        path: response.data.path
+                        media: response.data.media
                     })
-                    this.selectedImages.push(response.data.path);
+                    response.data.media && this.selectedImages.push(response.data.media);
                     this.isSpinner = false;
                 },
                 () => {
@@ -68,8 +69,8 @@ export class BrandEditComponent extends AlertService {
      * @method emit
      * @param event
      */
-    emit(event: string[]) {
-        event.length > 0 ? this.form.patchValue({path: lodash.first(event)}) : this.form.patchValue({path: ''});
+    emit(event: ImageIndexResponse[]) {
+        event.length > 0 ? this.form.patchValue({media: lodash.first(event)}) : this.form.patchValue({media: ''});
     }
 
     /**

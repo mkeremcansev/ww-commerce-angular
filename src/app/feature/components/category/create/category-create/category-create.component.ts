@@ -7,6 +7,7 @@ import {CategoryService} from "../../service/category.service";
 import {AlertService} from "../../../../../service/alert/alert.service";
 import {CategoryCreateResponse, CategorySelectedItem} from "../../entity/entity";
 import * as lodash from "lodash";
+import {ImageIndexResponse} from "../../../media/image/entity/entity";
 
 @Component({
     selector: 'app-category-create',
@@ -18,7 +19,7 @@ export class CategoryCreateComponent extends AlertService {
     public form: FormGroup = new FormGroup({
         title: new FormControl('', Validators.required),
         category_id: new FormControl('', Validators.nullValidator),
-        path: new FormControl('', Validators.required)
+        media: new FormControl('', Validators.required)
     });
     public isLoading: boolean = false;
     public isSpinner: boolean = true;
@@ -76,8 +77,8 @@ export class CategoryCreateComponent extends AlertService {
      * @method emit
      * @param event
      */
-    emit(event: string[]) {
-        event.length > 0 ? this.form.patchValue({path: lodash.first(event)}) : this.form.patchValue({path: ''});
+    emit(event: ImageIndexResponse[]) {
+        event.length > 0 ? this.form.patchValue({media: lodash.first(event)}) : this.form.patchValue({media: ''});
     }
 
     /**

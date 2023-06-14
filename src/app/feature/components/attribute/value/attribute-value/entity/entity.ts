@@ -1,3 +1,5 @@
+import {ImageIndexResponse} from "../../../../media/image/entity/entity";
+
 export interface AttributeValueCreateResponse {
     id: number;
     title: string;
@@ -6,7 +8,7 @@ export interface AttributeValueCreateResponse {
 export interface AttributeValueStoreRequest {
     title: string;
     code: string;
-    path: string;
+    path: ImageIndexResponse;
     attribute_id: number;
 }
 
@@ -21,7 +23,7 @@ export interface AttributeValueEditResponse {
     id: number;
     title: string;
     code: string;
-    path: string;
+    media: ImageIndexResponse;
     attribute_id: number;
     attributes: AttributeValueCreateResponse[];
 }

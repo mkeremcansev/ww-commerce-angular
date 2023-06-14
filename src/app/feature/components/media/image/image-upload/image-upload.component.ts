@@ -11,7 +11,7 @@ import {AlertService} from "../../../../../service/alert/alert.service";
 })
 export class ImageUploadComponent extends AlertService {
     public uploadedFiles: any[] = [];
-    public url: string = environment.api + '/image/upload';
+    public url: string = environment.api + '/media/store';
     public isContent: boolean = true;
 
     /**

@@ -1,4 +1,5 @@
 import {CategoryCreateResponse} from "../../category/entity/entity";
+import {ImageIndexResponse} from "../../media/image/entity/entity";
 
 export interface ProductCreateResponse {
     attribute_id: Attribute[];
@@ -15,7 +16,7 @@ export interface ProductEditResponse {
     brand: number;
     status: number;
     categories:CategoryCreateResponse[];
-    images: ProductEditImageResponse[];
+    media: ImageIndexResponse[];
     attribute_id: Attribute[];
     category_id: CategoryCreateResponse[];
     brand_id: Brand[];
@@ -32,7 +33,7 @@ export interface AttributeValue {
     id: number;
     title: string;
     code: string;
-    path: string;
+    media: ImageIndexResponse;
 }
 
 export interface Attribute {
@@ -71,6 +72,7 @@ export interface ProductUpdateRequest {
     brand_id: number;
     category_id: number[];
     variants: AttributeCombination[];
+    media: ImageIndexResponse[];
 }
 
 export interface ProductUpdateResponse {
@@ -105,9 +107,4 @@ export interface ProductEditVariantGroup {
     price: number;
     stock: number;
     attributes: AttributeValue[];
-}
-
-export interface ProductEditImageResponse {
-    id: number;
-    path: string;
 }

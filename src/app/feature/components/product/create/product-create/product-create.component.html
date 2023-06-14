@@ -86,6 +86,8 @@
                         </div>
                     </div>
                     <div class="flex justify-content-center">
+                        <button class="w-auto mb-5" *ngIf="!isVariationReset && variants.length > 0" pButton type="button" (click)="resetVariant()"
+                                label="{{'product.variantReset' | translate}}"></button>
                         <button *ngIf="selectedAttributes.length > 0" class="w-auto" pButton (click)="setCombination()"
                                 label="{{'product.variantCreate' | translate}}"></button>
                     </div>
@@ -121,5 +123,5 @@
     [deselect]="true"
     [deleteSelections]="false"
     [upload]="true"
-    (selectedImagesEmitter)="emitImages($event)"
+    (selectedImagesEmitter)="emit($event)"
 ></app-image-list>

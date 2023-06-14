@@ -7,6 +7,7 @@ import {AlertService} from "../../../../../service/alert/alert.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import * as lodash from "lodash";
 import {CategoryCreateResponse} from "../../entity/entity";
+import {ImageIndexResponse} from "../../../media/image/entity/entity";
 
 @Component({
     selector: 'app-category-edit',
@@ -17,14 +18,14 @@ export class CategoryEditComponent extends AlertService {
     public isLoading: boolean = false;
     public isSpinner: boolean = true;
     public id = Number(this.route.snapshot.paramMap.get('id'));
-    public selectedImages: string[] = [];
+    public selectedImages: ImageIndexResponse[] = [];
     public tree: TreeNode[] = [];
     public selected: TreeNode = {};
 
     public form: FormGroup = new FormGroup({
         title: new FormControl('', Validators.required),
         category_id: new FormControl('', Validators.nullValidator),
-        path: new FormControl('', Validators.required)
+        media: new FormControl('', Validators.required)
     });
 
     /**
@@ -60,9 +61,9 @@ export class CategoryEditComponent extends AlertService {
                     this.form.patchValue({
                         title: response.data.title,
                         category_id: response.data.category_id,
-                        path: response.data.path
+                        media: response.data.media
                     })
-                    this.selectedImages.push(response.data.path);
+                    response.data.media && this.selectedImages.push(response.data.media);
                     this.tree = this.format(response.data.categories);
                     this.isSpinner = false;
                     this.selected = this.deepSearch(this.tree, response.data.category_id);
@@ -77,8 +78,8 @@ export class CategoryEditComponent extends AlertService {
      * @method emit
      * @param event
      */
-    emit(event: string[]) {
-        event.length > 0 ? this.form.patchValue({path: lodash.first(event)}) : this.form.patchValue({path: ''});
+    emit(event: ImageIndexResponse[]) {
+        event.length > 0 ? this.form.patchValue({media: lodash.first(event)}) : this.form.patchValue({media: ''});
     }
 
     /**

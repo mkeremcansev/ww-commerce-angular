@@ -7,6 +7,7 @@ import {AttributeValueService} from "../../service/attribute-value.service";
 import {RedirectService} from "../../../../../../../service/redirect/redirect.service";
 import {ActivatedRoute} from '@angular/router';
 import * as lodash from "lodash";
+import {ImageIndexResponse} from "../../../../../media/image/entity/entity";
 
 @Component({
     selector: 'app-attribute-value-edit',
@@ -17,7 +18,7 @@ export class AttributeValueEditComponent extends AlertService {
     public form: FormGroup = new FormGroup({
         title: new FormControl('', Validators.required),
         code: new FormControl('', Validators.required),
-        path: new FormControl('', Validators.required),
+        media: new FormControl('', Validators.required),
         attribute_id: new FormControl('', Validators.required),
     });
 
@@ -25,7 +26,7 @@ export class AttributeValueEditComponent extends AlertService {
     public isLoading: boolean = false;
     public isSpinner: boolean = true;
     public id = Number(this.route.snapshot.paramMap.get('id'));
-    public selectedImages: string[] = [];
+    public selectedImages: ImageIndexResponse[] = [];
 
     /**
      * @method constructor
@@ -59,11 +60,11 @@ export class AttributeValueEditComponent extends AlertService {
                     this.form.patchValue({
                         title: response.data.title,
                         code: response.data.code,
-                        path: response.data.path,
+                        media: response.data.media,
                         attribute_id: response.data.attribute_id
                     })
                     this.attributes = response.data.attributes
-                    this.selectedImages.push(response.data.path);
+                    response.data.media && this.selectedImages.push(response.data.media);
                     this.isSpinner = false;
                 },
                 () => {
@@ -76,8 +77,8 @@ export class AttributeValueEditComponent extends AlertService {
      * @method emit
      * @param event
      */
-    emit(event: string[]) {
-        event.length > 0 ? this.form.patchValue({path: lodash.first(event)}) : this.form.patchValue({path: ''});
+    emit(event: ImageIndexResponse[]) {
+        event.length > 0 ? this.form.patchValue({media: lodash.first(event)}) : this.form.patchValue({media: ''});
     }
 
     /**
