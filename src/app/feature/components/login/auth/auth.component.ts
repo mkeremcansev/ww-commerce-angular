@@ -67,7 +67,16 @@ export class AuthComponent extends AlertService {
                 });
                 this.messageService.add(this.success(response.message));
                 this.form.disable();
-                this.redirectService.redirect('/', 3);
+                const backUrl = localStorage.getItem('back_url');
+                if (backUrl){
+                    this.localStorageService.removeItems([
+                        'back_url'
+                    ]);
+                    this.redirectService.redirect(backUrl, 3);
+                } else {
+                    this.redirectService.redirect('/', 3);
+                }
+
             }, (error) => {
                 this.isLoading = false;
                 this.messageService.add(this.error(error.error.message));

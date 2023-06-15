@@ -42,9 +42,13 @@ export class AuthInterceptor implements HttpInterceptor {
             catchError(error => {
                 switch (error.status) {
                     case HttpStatusCode.Unauthorized:
+                        this.storageService.setItems({
+                            back_url: this.router.url
+                        });
                         this.router.navigate(['/login/auth']);
                         break;
                     case HttpStatusCode.Forbidden:
+                        //TODO: redirect to 403 page
                         break;
                     default:
                         break;
