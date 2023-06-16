@@ -17,11 +17,11 @@
 
     <div #topbarmenu class="layout-topbar-menu"
          [ngClass]="{'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible}">
-        <button (click)="changeTheme('lara-dark-indigo', 'dark')" *ngIf="!isSpinner && checkTheme() === 'light'" class="p-link layout-topbar-button">
+        <button (click)="changeTheme('lara-dark-indigo', 'dark')" *ngIf="checkTheme() === 'light'" class="p-link layout-topbar-button">
             <i class="pi pi-moon"></i>
             <span>{{'logout' | translate}}</span>
         </button>
-        <button (click)="changeTheme('lara-light-indigo', 'light')" *ngIf="!isSpinner && checkTheme() === 'dark'" class="p-link layout-topbar-button">
+        <button (click)="changeTheme('lara-light-indigo', 'light')" *ngIf="checkTheme() === 'dark'" class="p-link layout-topbar-button">
             <i class="pi pi-sun"></i>
             <span>{{'logout' | translate}}</span>
         </button>
