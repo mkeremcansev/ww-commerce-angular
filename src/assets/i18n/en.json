@@ -92,10 +92,13 @@
     "image": {
         "index": "Image",
         "upload": "Image Upload",
+        "openSearch": "Open Search",
+        "closeSearch": "Close Search",
+        "searchByName": "Search by Name",
         "list": "List",
         "imageList": "Image List",
         "successMessage": "Images uploaded successfully",
-        "imageDetailInfo": "{{extension}} / {{size}} MB",
+        "imageDetailInfo": "{{extension}}",
         "uploadValidation": {
             "invalidFileLimitMessageSummary": "Maximum number of files exceeded,",
             "invalidFileLimitMessageDetail": "you can upload {0} file at most.",

@@ -3,6 +3,7 @@ import {ImageService} from "../service/image.service";
 import {AlertService} from "../../../../../service/alert/alert.service";
 import {MessageService} from "primeng/api";
 import {ImageIndexResponse} from "../entity/entity";
+import { DataView } from 'primeng/dataview';
 
 @Component({
     selector: 'app-image-list',
@@ -18,6 +19,8 @@ export class ImageListComponent extends AlertService {
     @Input() public selectedImages: ImageIndexResponse[] = [];
     public images : ImageIndexResponse[] = [];
     public isSpinner: boolean = true;
+
+    public isSearch: boolean = false;
 
     /**
      * @method constructor
@@ -96,5 +99,13 @@ export class ImageListComponent extends AlertService {
      */
     selectControl(media: ImageIndexResponse) {
         return this.selectedImages.some(item => item.id === media.id);
+    }
+
+    onFilter(dv: DataView, event: Event) {
+        dv.filter((event.target as HTMLInputElement).value);
+    }
+
+    search() {
+        this.isSearch = !this.isSearch;
     }
 }

@@ -1,8 +1,9 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { MenuItem } from 'primeng/api';
-import { LayoutService } from "./service/app.layout.service";
+import {Component, ElementRef, ViewChild} from '@angular/core';
+import {MenuItem} from 'primeng/api';
+import {LayoutService} from "./service/app.layout.service";
 import {UserService} from "../service/user/user.service";
 import {Router} from "@angular/router";
+import {ThemeService} from "../service/theme/theme.service";
 
 @Component({
     selector: 'app-topbar',
@@ -22,14 +23,16 @@ export class AppTopBarComponent {
 
     /**
      * @method constructor
-     * @param layoutService
      * @param userService
      * @param router
+     * @param themeService
+     * @param layoutService
      */
     constructor(
-        public layoutService: LayoutService,
         public userService: UserService,
-        public router: Router
+        public router: Router,
+        public themeService: ThemeService,
+        public layoutService: LayoutService,
     ) { }
 
     /**
@@ -42,5 +45,12 @@ export class AppTopBarComponent {
 
     profile(){
         this.router.navigate(['/user/profile']);
+    }
+    changeTheme(theme: string, colorScheme: string) {
+        this.themeService.changeTheme(theme, colorScheme);
+    }
+
+    checkTheme() {
+        return localStorage.getItem('colorScheme') ?? 'light';
     }
 }

@@ -15,7 +15,7 @@
                     <button *ngIf="deselect" pButton pRipple label="{{'deselect' | translate}}" icon="pi pi-times"
                             class="p-button-warning mr-2" (click)="deselectImages()"
                             [disabled]="selectedImages.length <= 0"></button>
-                    <button *ngIf="deleteSelections" pButton pRipple label="{{'deleteSelections' | translate}}"
+                    <button *ngIf="deleteSelections" pButton pRipple label="{{'destroy' | translate}}"
                             icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedImages()"
                             [disabled]="selectedImages.length <= 0"></button>
                     <div *ngIf="upload">
@@ -31,11 +31,24 @@
                             <app-image-upload></app-image-upload>
                         </p-overlayPanel>
                     </div>
+                    <button *ngIf="!isSearch" pButton pRipple label="{{'image.openSearch' | translate}}" icon="pi pi-search"
+                            class="p-button-primary ml-2" (click)="search()"></button>
+                    <button *ngIf="isSearch" pButton pRipple label="{{'image.closeSearch' | translate}}" icon="pi pi-times"
+                            class="p-button-primary ml-2" (click)="search()"></button>
                     <p class="ml-auto mb-auto mt-auto font-bold"
                        *ngIf="selectedImages.length > 0 && multiple">{{'selectedImageCount' | translate: {count: selectedImages.length} }}</p>
                 </div>
+
                 <p-dataView #dv [value]="images" [paginator]="images.length > 0" [rows]="12" layout="grid"
-                            [emptyMessage]="'dataNotFound' | translate">
+                            [emptyMessage]="'dataNotFound' | translate" filterBy="full_path">
+                    <ng-template pTemplate="header" class="data-view-custom">
+                        <div class="flex justify-content-center" *ngIf="isSearch">
+                            <span class="p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input type="search" pInputText placeholder="{{'image.searchByName' | translate}}" (input)="onFilter(dv, $event)">
+                        </span></div>
+
+                    </ng-template>
                     <ng-template let-media pTemplate="gridItem" let-i="rowIndex">
                         <div class="col-12 md:col-2">
                             <div class="card border-1 surface-border p-1 image-card">
@@ -45,7 +58,7 @@
                                          class="w-10 my-5 mx-0 media-image-list-item cursor-pointer selected-transparent image-object {{ selectControl(media) ? 'selected' : null}}"
                                          (click)="selectAndDelete(media)"/>
                                     <span class="image-mime-type-info"
-                                          (click)="selectAndDelete(media)">{{'image.imageDetailInfo' | translate: {extension: media.extension.toUpperCase(), size: (media.size / 1000).toFixed(2) | translate} }}</span>
+                                          (click)="selectAndDelete(media)">{{'image.imageDetailInfo' | translate: {extension: media.extension.toUpperCase() | translate} }}</span>
                                 </div>
                                 <div class="flex flex-column align-items-center text-center image-card-position"
                                      *ngIf="!multiple">
@@ -53,7 +66,10 @@
                                          class="w-9 my-5 mx-0 media-image-list-item cursor-pointer selected-transparent image-object {{ selectControl(media) ? 'selected' : null}}"
                                          (click)="selectAndDelete(media)"/>
                                     <span class="image-mime-type-info"
-                                          (click)="selectAndDelete(media)">{{'image.imageDetailInfo' | translate: {extension: media.extension.toUpperCase(), size: (media.size / 1000).toFixed(2) | translate} }}</span>
+                                          (click)="selectAndDelete(media)">{{'image.imageDetailInfo' | translate: {
+                                        extension: media.extension.toUpperCase(),
+                                        size: (media.size / 1000).toFixed(2) | translate
+                                    } }}</span>
                                 </div>
                             </div>
                         </div>

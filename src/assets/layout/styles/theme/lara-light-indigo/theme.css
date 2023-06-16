@@ -2954,9 +2954,6 @@ p-treeselect.p-treeselect-clearable .p-treeselect-clear-icon {
   border-radius: 0;
 }
 .p-dataview .p-dataview-header {
-  background: #f8f9fa;
-  color: #343a40;
-  border: 1px solid #dee2e6;
   border-width: 1px 0 1px 0;
   padding: 1rem 1rem;
   font-weight: 700;
