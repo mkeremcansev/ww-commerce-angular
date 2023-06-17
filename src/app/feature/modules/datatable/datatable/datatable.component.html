@@ -45,7 +45,7 @@
                 <td class="flex">
                     <div *ngFor="let button of table.buttons" class="flex">
                         <button pButton pRipple type="button" icon="{{button.icon}}"
-                                (click)="action(button.action, variable.id, variable)"
+                                (click)="confirm(button.action, variable.id, variable)"
                                 *ngIf="actionStatus(button.action, variable.id, variable)"
                                 class="p-button-rounded p-button-{{ button.className }} p-button-text"></button>
                     </div>
@@ -60,3 +60,12 @@
         </ng-template>
     </p-table>
 </div>
+
+<p-confirmDialog
+    header="{{ 'datatable.confirmation' | translate }}"
+    key="confirm"
+    icon="pi pi-exclamation-triangle"
+    message="Are you sure you want to proceed?"
+    acceptButtonStyleClass="p-button-text"
+    rejectButtonStyleClass="p-button-text"
+></p-confirmDialog>

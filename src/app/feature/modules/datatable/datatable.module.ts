@@ -6,6 +6,9 @@ import {TranslateModule} from "@ngx-translate/core";
 import {TableModule} from "primeng/table";
 import {ButtonModule} from "primeng/button";
 import {RippleModule} from "primeng/ripple";
+import {ConfirmDialogModule} from "primeng/confirmdialog";
+import {CheckboxModule} from "primeng/checkbox";
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -22,7 +25,10 @@ import {RippleModule} from "primeng/ripple";
         TableModule,
         ButtonModule,
         RippleModule,
-        TableModule
+        TableModule,
+        ConfirmDialogModule,
+        CheckboxModule,
+        FormsModule
     ]
 })
 export class DatatableModule { }

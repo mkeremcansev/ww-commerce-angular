@@ -12,6 +12,12 @@ export class ProductListComponent {
         "destroy": {
             "url": "/product/",
         },
+        "restore": {
+            "url": "/product/restore"
+        },
+        "forceDestroy": {
+            "url": "/product/forceDelete"
+        },
         "edit": {
             "url": "/product/edit/"
         },
@@ -63,21 +69,24 @@ export class ProductListComponent {
                 "className": "success",
                 "action": "restore",
                 "key": "id",
-                "url": "/product/restore"
             },
             {
                 "icon": "pi pi-pencil",
                 "className": "warning",
                 "action": "edit",
                 "key": "id",
-                "url": "/product/edit"
             },
             {
                 "icon": "pi pi-times",
                 "className": "danger",
                 "action": "destroy",
                 "key": "id",
-                "url": "/product/"
+            },
+            {
+                "icon": "pi pi-times",
+                "className": "danger",
+                "action": "forceDestroy",
+                "key": "id",
             }
         ]
     }

@@ -1,16 +1,18 @@
-import {Component, ElementRef, Input, ViewChild} from '@angular/core';
+import {Component, ElementRef, Inject, Input, LOCALE_ID, ViewChild} from '@angular/core';
 import {Router} from "@angular/router";
-import {LazyLoadEvent, MessageService} from "primeng/api";
+import {ConfirmationService, LazyLoadEvent, MessageService} from "primeng/api";
 import {AlertService} from "../../../../service/alert/alert.service";
 import {Table} from "primeng/table";
 import * as lodash from "lodash";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../../environments/environment";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
     selector: 'app-datatable',
     templateUrl: './datatable.component.html',
-    styleUrls: ['./datatable.component.scss']
+    styleUrls: ['./datatable.component.scss'],
+    providers: [ConfirmationService]
 })
 export class DatatableComponent extends AlertService {
     @Input() table: any;
@@ -28,11 +30,15 @@ export class DatatableComponent extends AlertService {
      * @param router
      * @param messageService
      * @param httpClient
+     * @param confirmationService
+     * @param translateService
      */
     constructor(
         public router: Router,
         public messageService: MessageService,
         public httpClient: HttpClient,
+        public confirmationService: ConfirmationService,
+        public translateService: TranslateService,
     ) {
         super();
     }
@@ -48,7 +54,7 @@ export class DatatableComponent extends AlertService {
                 "column": 0,
                 "dir": "desc"
             }
-        ]
+        ];
     }
 
     /**
@@ -128,36 +134,71 @@ export class DatatableComponent extends AlertService {
             });
     }
 
+    confirm(type: string, id: number, data: any = {}) {
+        this.confirmationService.confirm({
+            key: 'confirm',
+            message: this.translateService.instant('datatable.alert.' + type),
+            accept: () => {
+                switch (type) {
+                    case 'destroy':
+                        this.destroy(id);
+                        break;
+                    case 'forceDestroy':
+                        this.forceDestroy(id);
+                        break;
+                    case 'restore':
+                        this.restore(id);
+                        break;
+                    case 'edit':
+                        this.redirect(this.table.edit.url, id);
+                        break;
+                    default:
+                        break;
+                }
+            },
+        });
+    }
+
     /**
-     * @method action
+     * @method restore
+     * @param id
+     */
+    restore(id: number) {
+        this.httpClient.post<{ message: string, data: { id: number } }>(environment.api + this.table.restore.url, {ids: [id]}).subscribe((response) => {
+                this.messageService.add(this.success(response.message))
+                this.load({first: 0, rows: this.rows, filters: this.filterItems});
+            },
+            (error) => {
+                this.messageService.add(this.error(error.error.message))
+            });
+    }
+
+    /**
+     * @method forceDestroy
+     * @param id
+     */
+    forceDestroy(id: number) {
+        this.httpClient.post<{ message: string, data: { id: number } }>(environment.api + this.table.forceDestroy.url, {ids: [id]}).subscribe((response) => {
+                this.messageService.add(this.success(response.message))
+                this.load({first: 0, rows: this.rows, filters: this.filterItems});
+            },
+            (error) => {
+                this.messageService.add(this.error(error.error.message))
+            });
+    }
+
+    /**
+     * @method actionStatus
      * @param type
      * @param id
      * @param data
      */
-    action(type: string, id: number, data: any = {}) {
-        switch (type) {
-            case 'destroy':
-                if (data?.deleted_at){
-                    console.log('force destroy');
-                    break;
-                }
-                this.destroy(id);
-                break;
-            case 'restore':
-                console.log('restore');
-                break;
-            case 'edit':
-                this.redirect(this.table.edit.url, id);
-                break;
-            default:
-                break;
-        }
-    }
-
     actionStatus(type: string, id: number, data: any = {}) {
         switch (type) {
             case 'destroy':
-                return true;
+                return !data?.deleted_at;
+            case 'forceDestroy':
+                return data?.deleted_at;
             case 'restore':
                 return data?.deleted_at;
             case 'edit':

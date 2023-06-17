@@ -20,6 +20,15 @@
         "list": "Category List",
         "mainCategory": "Main Category"
     },
+    "datatable": {
+        "alert": {
+            "destroy": "Are you sure you want to delete this record?",
+            "forceDestroy": "Are you sure you want to delete this record permanently?",
+            "restore": "Are you sure you want to restore this record?",
+            "edit": "Are you sure you want to edit this record?"
+        },
+        "confirmation": "Confirmation"
+    },
     "product": {
         "index": "Product",
         "create": "Create Product",
