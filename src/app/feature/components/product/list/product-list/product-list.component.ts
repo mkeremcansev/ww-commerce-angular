@@ -59,6 +59,13 @@ export class ProductListComponent {
         ],
         "buttons": [
             {
+                "icon": "pi pi-refresh",
+                "className": "success",
+                "action": "restore",
+                "key": "id",
+                "url": "/product/restore"
+            },
+            {
                 "icon": "pi pi-pencil",
                 "className": "warning",
                 "action": "edit",

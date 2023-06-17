@@ -42,10 +42,14 @@
                 <td *ngFor="let view of viewColumnsForTable">
                     {{variable[view?.data]}}
                 </td>
-                <td>
-                    <button *ngFor="let button of table.buttons" pButton pRipple type="button" icon="{{button.icon}}"
-                            (click)="action(button.action, variable.id)"
-                            class="p-button-rounded p-button-{{ button.className }} p-button-text"></button>
+                <td class="flex">
+                    <div *ngFor="let button of table.buttons" class="flex">
+                        <button pButton pRipple type="button" icon="{{button.icon}}"
+                                (click)="action(button.action, variable.id, variable)"
+                                *ngIf="actionStatus(button.action, variable.id, variable)"
+                                class="p-button-rounded p-button-{{ button.className }} p-button-text"></button>
+                    </div>
+
                 </td>
             </tr>
         </ng-template>

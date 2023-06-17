@@ -137,13 +137,33 @@ export class DatatableComponent extends AlertService {
     action(type: string, id: number, data: any = {}) {
         switch (type) {
             case 'destroy':
+                if (data?.deleted_at){
+                    console.log('force destroy');
+                    break;
+                }
                 this.destroy(id);
+                break;
+            case 'restore':
+                console.log('restore');
                 break;
             case 'edit':
                 this.redirect(this.table.edit.url, id);
                 break;
             default:
                 break;
+        }
+    }
+
+    actionStatus(type: string, id: number, data: any = {}) {
+        switch (type) {
+            case 'destroy':
+                return true;
+            case 'restore':
+                return data?.deleted_at;
+            case 'edit':
+                return !data?.deleted_at;
+            default:
+                return false;
         }
     }
 
