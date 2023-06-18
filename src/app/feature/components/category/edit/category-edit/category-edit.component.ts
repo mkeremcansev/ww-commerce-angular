@@ -68,8 +68,9 @@ export class CategoryEditComponent extends AlertService {
                     this.isSpinner = false;
                     this.selected = this.deepSearch(this.tree, response.data.category_id);
                 },
-                () => {
-                    this.redirectService.redirect('/notfound', 0);
+                (error) => {
+                    this.messageService.add(this.error(error.error.message))
+                    this.redirectService.redirect('/notfound', 0)
                 })
             : this.redirectService.redirect('/notfound', 0);
     }

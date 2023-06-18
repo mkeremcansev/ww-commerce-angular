@@ -76,27 +76,31 @@ export class ProductEditComponent extends AlertService {
      */
     setValue(id: number) {
         !isNaN(id) ? this.productService.edit(id).subscribe((response) => {
-            this.attributes = response.attribute_id;
-            this.brands = response.brand_id;
-            this.statuses = response.status_type.map((status, index) => {
-                return {id: index, title: status};
-            });
-            response.media.forEach((media) => {
-                this.selectedImages.push(media);
-            });
-            this.form.patchValue({
-                title: response.title,
-                content: response.content,
-                price: response.price,
-                brand_id: response.brand,
-                status: response.status,
-                media: this.selectedImages
-            });
-            this.setVariation(response.variant_groups);
-            this.selectedCategories = this.format(response.categories);
-            this.tree = this.format(response.category_id);
-            this.isSpinner = false;
-        }) : this.redirectService.redirect('/notfound', 0);
+                this.attributes = response.attribute_id;
+                this.brands = response.brand_id;
+                this.statuses = response.status_type.map((status, index) => {
+                    return {id: index, title: status};
+                });
+                response.media.forEach((media) => {
+                    this.selectedImages.push(media);
+                });
+                this.form.patchValue({
+                    title: response.title,
+                    content: response.content,
+                    price: response.price,
+                    brand_id: response.brand,
+                    status: response.status,
+                    media: this.selectedImages
+                });
+                this.setVariation(response.variant_groups);
+                this.selectedCategories = this.format(response.categories);
+                this.tree = this.format(response.category_id);
+                this.isSpinner = false;
+            },
+            (error) => {
+                this.messageService.add(this.error(error.error.message))
+                this.redirectService.redirect('/notfound', 0)
+            }) : this.redirectService.redirect('/notfound', 0);
     }
 
     /**

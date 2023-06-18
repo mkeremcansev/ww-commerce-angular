@@ -59,8 +59,9 @@ export class BrandEditComponent extends AlertService {
                     response.data.media && this.selectedImages.push(response.data.media);
                     this.isSpinner = false;
                 },
-                () => {
-                    this.redirectService.redirect('/notfound', 0);
+                (error) => {
+                    this.messageService.add(this.error(error.error.message))
+                    this.redirectService.redirect('/notfound', 0)
                 })
             : this.redirectService.redirect('/notfound', 0);
     }
