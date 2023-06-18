@@ -9,6 +9,9 @@ import {RippleModule} from "primeng/ripple";
 import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {CheckboxModule} from "primeng/checkbox";
 import {FormsModule} from "@angular/forms";
+import {ToolbarModule} from "primeng/toolbar";
+import {FileUploadModule} from "primeng/fileupload";
+import {ChipsModule} from "primeng/chips";
 
 
 @NgModule({
@@ -28,7 +31,10 @@ import {FormsModule} from "@angular/forms";
         TableModule,
         ConfirmDialogModule,
         CheckboxModule,
-        FormsModule
+        FormsModule,
+        ToolbarModule,
+        FileUploadModule,
+        ChipsModule
     ]
 })
 export class DatatableModule { }

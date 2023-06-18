@@ -1,3 +1,35 @@
+<p-toolbar styleClass="mb-4">
+    <ng-template pTemplate="left">
+        <div class="my-2">
+            <button
+                (click)="trashedOrOginial()"
+                pButton
+                pRipple
+                label="{{(checkTrashedOrOginial() ? 'datatable.originalList' : 'datatable.trashedList') | translate}}"
+                icon="pi pi-{{checkTrashedOrOginial() ? 'align-center' : 'trash'}}"
+                class="p-button-{{checkTrashedOrOginial() ? 'success' : 'danger'}} mr-2">
+            </button>
+            <button
+                *ngIf="checkedItems.length > 0 && checkTrashedOrOginial() && table.restore"
+                (click)="confirm('restore', checkedItems)"
+                pButton
+                pRipple
+                label="{{ 'datatable.restore' | translate }}"
+                icon="pi pi-refresh"
+                class="p-button-success mr-2">
+            </button>
+            <button
+                *ngIf="checkedItems.length > 0 && checkTrashedOrOginial() && table.forceDestroy"
+                (click)="confirm('forceDestroy', checkedItems)"
+                pButton
+                pRipple
+                label="{{ 'datatable.forceDestroy' | translate }}"
+                icon="pi pi-trash"
+                class="p-button-danger mr-2">
+            </button>
+        </div>
+    </ng-template>
+</p-toolbar>
 <div class="card">
     <h3 class="mb-5">{{table.title | translate}}</h3>
     <p-table
@@ -15,6 +47,11 @@
         esponsiveLayout="scroll">
         <ng-template pTemplate="header">
             <tr>
+                <th><input
+                    class="datatable-checkbox"
+                    type="checkbox"
+                    (change)="checkboxEvent($event, 'multiple')">
+                </th>
                 <th *ngFor="let column of table.columns">
                     <div class="flex justify-content-between align-items-center">
                         {{column.data | translate}}
@@ -39,6 +76,14 @@
         </ng-template>
         <ng-template pTemplate="body" let-variable>
             <tr>
+                <td>
+                    <input
+                        class="datatable-checkbox"
+                        type="checkbox"
+                        [value]="variable.id"
+                        (change)="checkboxEvent($event, 'single')"
+                        [checked]="checkedItems.includes(variable.id)">
+                </td>
                 <td *ngFor="let view of viewColumnsForTable">
                     {{variable[view?.data]}}
                 </td>

@@ -25,6 +25,8 @@ export class DatatableComponent extends AlertService {
     public loading: boolean = true;
     public viewColumnsForTable: any = [];
 
+    public checkedItems: number[] = [];
+
     /**
      * @method constructor
      * @param router
@@ -99,6 +101,50 @@ export class DatatableComponent extends AlertService {
     }
 
     /**
+     * @method trashedOrOginial
+     */
+    trashedOrOginial() {
+        this.checkedItems = [];
+        const isTrashed = this.table.url.includes('trashed');
+        if (isTrashed) {
+            this.table.url = this.table.url.replace('?trashed=1', '');
+        } else {
+            this.table.url += '?trashed=1';
+        }
+        this.load({first: 0, rows: this.rows, filters: this.filterItems});
+    }
+
+    /**
+     * @method checkTrashedOrOginial
+     */
+    checkTrashedOrOginial() {
+        return this.table.url.includes('trashed');
+    }
+
+    checkboxEvent(event: any, type: string) {
+        switch (type) {
+            case 'multiple':
+                if (event.target.checked) {
+                    this.variables.forEach((item: any) => {
+                        this.checkedItems.push(item.id);
+                    });
+                } else {
+                    this.checkedItems = [];
+                }
+                break;
+            case 'single':
+                if (event.target.checked) {
+                    this.checkedItems.push(Number(event.target.value));
+                } else {
+                    this.checkedItems.splice(this.checkedItems.indexOf(Number(event.target.value)), 1);
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    /**
      * @method formatter
      */
     formatter() {
@@ -134,20 +180,30 @@ export class DatatableComponent extends AlertService {
             });
     }
 
-    confirm(type: string, id: number, data: any = {}) {
+    confirm(type: string, id: number|number[], data: any = {}) {
         this.confirmationService.confirm({
             key: 'confirm',
             message: this.translateService.instant('datatable.alert.' + type),
             accept: () => {
                 switch (type) {
                     case 'destroy':
-                        this.destroy(id);
+                        if (! lodash.isArray(id)){
+                            this.destroy(id);
+                        }
                         break;
                     case 'forceDestroy':
-                        this.forceDestroy(id);
+                        if (lodash.isArray(id)){
+                            this.forceDestroy(id);
+                        } else {
+                            this.forceDestroy([id]);
+                        }
                         break;
                     case 'restore':
-                        this.restore(id);
+                        if (lodash.isArray(id)){
+                            this.restore(id);
+                        } else {
+                            this.restore([id]);
+                        }
                         break;
                     case 'edit':
                         this.redirect(this.table.edit.url, id);
@@ -155,16 +211,17 @@ export class DatatableComponent extends AlertService {
                     default:
                         break;
                 }
+                this.checkedItems = [];
             },
         });
     }
 
     /**
      * @method restore
-     * @param id
+     * @param ids
      */
-    restore(id: number) {
-        this.httpClient.post<{ message: string, data: { id: number } }>(environment.api + this.table.restore.url, {ids: [id]}).subscribe((response) => {
+    restore(ids: number[]) {
+        this.httpClient.post<{ message: string, data: { id: number } }>(environment.api + this.table.restore.url, {ids: ids}).subscribe((response) => {
                 this.messageService.add(this.success(response.message))
                 this.load({first: 0, rows: this.rows, filters: this.filterItems});
             },
@@ -175,10 +232,10 @@ export class DatatableComponent extends AlertService {
 
     /**
      * @method forceDestroy
-     * @param id
+     * @param ids
      */
-    forceDestroy(id: number) {
-        this.httpClient.post<{ message: string, data: { id: number } }>(environment.api + this.table.forceDestroy.url, {ids: [id]}).subscribe((response) => {
+    forceDestroy(ids: number[]) {
+        this.httpClient.post<{ message: string, data: { id: number } }>(environment.api + this.table.forceDestroy.url, {ids: ids}).subscribe((response) => {
                 this.messageService.add(this.success(response.message))
                 this.load({first: 0, rows: this.rows, filters: this.filterItems});
             },

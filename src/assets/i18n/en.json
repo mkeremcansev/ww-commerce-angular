@@ -27,7 +27,11 @@
             "restore": "Are you sure you want to restore this record?",
             "edit": "Are you sure you want to edit this record?"
         },
-        "confirmation": "Confirmation"
+        "restore": "Restore",
+        "forceDestroy": "Force Destroy",
+        "confirmation": "Confirmation",
+        "originalList": "Original List",
+        "trashedList": "Trashed List"
     },
     "product": {
         "index": "Product",
