@@ -47,7 +47,8 @@
         esponsiveLayout="scroll">
         <ng-template pTemplate="header">
             <tr>
-                <th><input
+                <th *ngIf="variables.length > 0">
+                    <input
                     class="datatable-checkbox"
                     type="checkbox"
                     (change)="checkboxEvent($event, 'multiple')">
