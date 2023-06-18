@@ -12,6 +12,12 @@ export class CategoryListComponent {
         "destroy": {
             "url": "/category/",
         },
+        "restore": {
+            "url": "/category/restore"
+        },
+        "forceDestroy": {
+            "url": "/category/forceDelete"
+        },
         "edit": {
             "url": "/category/edit/"
         },
@@ -53,14 +59,24 @@ export class CategoryListComponent {
                 "className": "warning",
                 "action": "edit",
                 "key": "id",
-                "url": "/category/edit"
             },
             {
                 "icon": "pi pi-times",
                 "className": "danger",
                 "action": "destroy",
                 "key": "id",
-                "url": "/category/"
+            },
+            {
+                "icon": "pi pi-trash",
+                "className": "danger",
+                "action": "forceDestroy",
+                "key": "id",
+            },
+            {
+                "icon": "pi pi-refresh",
+                "className": "success",
+                "action": "restore",
+                "key": "id",
             }
         ]
     }
