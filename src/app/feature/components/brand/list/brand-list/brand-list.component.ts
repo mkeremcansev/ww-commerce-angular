@@ -12,6 +12,12 @@ export class BrandListComponent {
         "destroy": {
             "url": "/brand/",
         },
+        "restore": {
+            "url": "/brand/restore"
+        },
+        "forceDestroy": {
+            "url": "/brand/forceDelete"
+        },
         "edit": {
             "url": "/brand/edit/"
         },
@@ -53,14 +59,24 @@ export class BrandListComponent {
                 "className": "warning",
                 "action": "edit",
                 "key": "id",
-                "url": "/brand/edit"
             },
             {
                 "icon": "pi pi-times",
                 "className": "danger",
                 "action": "destroy",
                 "key": "id",
-                "url": "/brand/"
+            },
+            {
+                "icon": "pi pi-trash",
+                "className": "danger",
+                "action": "forceDestroy",
+                "key": "id",
+            },
+            {
+                "icon": "pi pi-refresh",
+                "className": "success",
+                "action": "restore",
+                "key": "id",
             }
         ]
     }
