@@ -55,7 +55,6 @@ export class RoleListComponent {
         ]
     }
 
-
     constructor() {
     }
 
