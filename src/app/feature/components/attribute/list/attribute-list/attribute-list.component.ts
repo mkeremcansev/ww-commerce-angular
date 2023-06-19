@@ -12,6 +12,12 @@ export class AttributeListComponent {
         "destroy": {
             "url": "/attribute/",
         },
+        "restore": {
+            "url": "/attribute/restore"
+        },
+        "forceDestroy": {
+            "url": "/attribute/forceDelete"
+        },
         "edit": {
             "url": "/attribute/edit/"
         },
@@ -43,14 +49,24 @@ export class AttributeListComponent {
                 "className": "warning",
                 "action": "edit",
                 "key": "id",
-                "url": "/attribute/edit"
             },
             {
                 "icon": "pi pi-times",
                 "className": "danger",
                 "action": "destroy",
                 "key": "id",
-                "url": "/attribute/"
+            },
+            {
+                "icon": "pi pi-refresh",
+                "className": "success",
+                "action": "restore",
+                "key": "id",
+            },
+            {
+                "icon": "pi pi-trash",
+                "className": "danger",
+                "action": "forceDestroy",
+                "key": "id",
             }
         ]
     }
