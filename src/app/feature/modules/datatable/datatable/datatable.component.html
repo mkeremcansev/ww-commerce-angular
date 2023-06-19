@@ -65,7 +65,6 @@
                             [showMatchModes]="false"
                             [showOperator]="false"
                         ></p-columnFilter>
-
                     </div>
                 </th>
                 <th>
@@ -95,7 +94,6 @@
                                 *ngIf="actionStatus(button.action, variable.id, variable)"
                                 class="p-button-rounded p-button-{{ button.className }} p-button-text"></button>
                     </div>
-
                 </td>
             </tr>
         </ng-template>
@@ -106,7 +104,6 @@
         </ng-template>
     </p-table>
 </div>
-
 <p-confirmDialog
     header="{{ 'datatable.confirmation' | translate }}"
     key="confirm"
