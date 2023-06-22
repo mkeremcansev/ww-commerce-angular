@@ -12,6 +12,12 @@ export class CouponListComponent {
         "destroy": {
             "url": "/coupon/",
         },
+        "restore": {
+            "url": "/coupon/restore"
+        },
+        "forceDestroy": {
+            "url": "/coupon/forceDelete"
+        },
         "edit": {
             "url": "/coupon/edit/"
         },
@@ -81,6 +87,18 @@ export class CouponListComponent {
                 "action": "destroy",
                 "key": "id",
                 "url": "/attribute/"
+            },
+            {
+                "icon": "pi pi-refresh",
+                "className": "success",
+                "action": "restore",
+                "key": "id",
+            },
+            {
+                "icon": "pi pi-trash",
+                "className": "danger",
+                "action": "forceDestroy",
+                "key": "id",
             }
         ]
     }
