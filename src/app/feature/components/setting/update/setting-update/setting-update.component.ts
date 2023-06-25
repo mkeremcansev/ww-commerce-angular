@@ -4,6 +4,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import * as lodash from "lodash";
 import {AlertService} from "../../../../../service/alert/alert.service";
 import {MessageService} from "primeng/api";
+import {ImageIndexResponse} from "../../../media/image/entity/entity";
 
 @Component({
     selector: 'app-setting-update',
@@ -17,10 +18,14 @@ export class SettingUpdateComponent extends AlertService {
         description: new FormControl('', Validators.required),
         keywords: new FormControl('', Validators.required),
         default_image_mime_type: new FormControl('', Validators.required),
+        logo: new FormControl('', Validators.required),
+        favicon: new FormControl('', Validators.required),
     });
     public mimeTypes: { value: number; title: string }[] = [];
     public isLoading: boolean = false;
     public isSpinner: boolean = true;
+    public selectedLogo: ImageIndexResponse[] = [];
+    public selectedFavicon: ImageIndexResponse[] = [];
 
     /**
      * @method constructor
@@ -47,8 +52,26 @@ export class SettingUpdateComponent extends AlertService {
                     title: value
                 }
             });
+            this.selectedLogo = res.data.logo ? [res.data.logo] : [];
+            this.selectedFavicon = res.data.favicon ? [res.data.favicon] : [];
             this.isSpinner = false;
         });
+    }
+
+    /**
+     * @method logoEmit
+     * @param event
+     */
+    logoEmit(event: ImageIndexResponse[]) {
+        event.length > 0 ? this.form.patchValue({logo: lodash.first(event)}) : this.form.patchValue({logo: ''});
+    }
+
+    /**
+     * @method faviconEmit
+     * @param event
+     */
+    faviconEmit(event: ImageIndexResponse[]) {
+        event.length > 0 ? this.form.patchValue({favicon: lodash.first(event)}) : this.form.patchValue({favicon: ''});
     }
 
     /**

@@ -6,12 +6,12 @@
             </div>
             <div *ngIf="!isSpinner">
                 <div class="flex">
-                    <h3 class="mb-5 ml-3 inline">{{'image.imageList' | translate}}
+                    <h3 class="mb-5 ml-3 inline">{{ title | translate}}
                         <i class="pi pi-question-circle question-icon-size ml-1"
                            pTooltip="{{'tooltip.media.image' | translate}}"></i>
                     </h3>
                 </div>
-                <div class="my-2 col-12 flex" *ngIf="deselect || deleteSelections || upload">
+                <div class="my-2 col-12 flex" *ngIf="deselect || deleteSelections || upload || searchStatus">
                     <button *ngIf="deselect" pButton pRipple label="{{'deselect' | translate}}" icon="pi pi-times"
                             class="p-button-warning mr-2" (click)="deselectImages()"
                             [disabled]="selectedImages.length <= 0"></button>
@@ -31,9 +31,9 @@
                             <app-image-upload></app-image-upload>
                         </p-overlayPanel>
                     </div>
-                    <button *ngIf="!isSearch" pButton pRipple label="{{'image.openSearch' | translate}}" icon="pi pi-search"
+                    <button *ngIf="!isSearch && searchStatus" pButton pRipple label="{{'image.openSearch' | translate}}" icon="pi pi-search"
                             class="p-button-primary ml-2" (click)="search()"></button>
-                    <button *ngIf="isSearch" pButton pRipple label="{{'image.closeSearch' | translate}}" icon="pi pi-times"
+                    <button *ngIf="isSearch && searchStatus" pButton pRipple label="{{'image.closeSearch' | translate}}" icon="pi pi-times"
                             class="p-button-primary ml-2" (click)="search()"></button>
                     <p class="ml-auto mb-auto mt-auto font-bold"
                        *ngIf="selectedImages.length > 0 && multiple">{{'selectedImageCount' | translate: {count: selectedImages.length} }}</p>

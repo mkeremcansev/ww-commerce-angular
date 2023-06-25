@@ -36,7 +36,9 @@
     "setting": {
         "index": "Setting",
         "update": "Update Setting",
-        "mimeType": "Mime Type"
+        "mimeType": "Mime Type",
+        "logo": "Logo",
+        "favicon": "Favicon"
     },
     "product": {
         "index": "Product",

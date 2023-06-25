@@ -42,3 +42,29 @@
         </div>
     </div>
 </div>
+<div class="grid">
+    <app-image-list
+        class="col-6"
+        [multiple]="false"
+        [selectedImages]="selectedLogo"
+        [deselect]="false"
+        [deleteSelections]="false"
+        [upload]="false"
+        [title]="'setting.logo'"
+        (selectedImagesEmitter)="logoEmit($event)"
+    >
+    </app-image-list>
+
+    <app-image-list
+        class="col-6"
+        [multiple]="false"
+        [selectedImages]="selectedFavicon"
+        [deselect]="false"
+        [deleteSelections]="false"
+        [upload]="false"
+        [title]="'setting.favicon'"
+        (selectedImagesEmitter)="faviconEmit($event)"
+    >
+    </app-image-list>
+</div>
+

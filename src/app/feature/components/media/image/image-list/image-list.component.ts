@@ -14,6 +14,8 @@ export class ImageListComponent extends AlertService {
     @Input() public multiple: boolean = true
     @Input() public deselect: boolean = true;
     @Input() public deleteSelections: boolean = true;
+    @Input() public searchStatus: boolean = true;
+    @Input() public title: string = 'image.imageList';
     @Input() public upload: boolean = true;
     @Output() public selectedImagesEmitter = new EventEmitter<ImageIndexResponse[]>();
     @Input() public selectedImages: ImageIndexResponse[] = [];
