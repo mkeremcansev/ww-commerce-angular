@@ -45,6 +45,8 @@ export class SettingUpdateComponent extends AlertService {
                 description: res.data.description,
                 keywords: res.data.keywords,
                 default_image_mime_type: res.data.default_image_mime_type,
+                logo: res.data.logo,
+                favicon: res.data.favicon,
             })
             this.mimeTypes = lodash.map(res.mime_types, (value, key) => {
                 return {
