@@ -33,6 +33,11 @@
         "originalList": "Original List",
         "trashedList": "Trashed List"
     },
+    "setting": {
+        "index": "Setting",
+        "update": "Update Setting",
+        "mimeType": "Mime Type"
+    },
     "product": {
         "index": "Product",
         "create": "Create Product",
@@ -90,6 +95,8 @@
     "update": "Update",
     "list": "List",
     "title": "Title",
+    "description": "Description",
+    "keywords": "Keywords",
     "usage_limit": "Usage Limit",
     "value": "Value",
     "expired_at": "Expired At",

@@ -93,6 +93,17 @@ import {PermissionGuard} from "./guard/permission/permission.guard";
                         loadChildren: () => import('./feature/components/role/role.module').then(m => m.RoleModule)
                     },
                     {
+                        path: 'setting',
+                        canActivate: [PermissionGuard],
+                        data: {
+                            permission: {
+                                group: 'Setting',
+                                name: 'setting.index'
+                            }
+                        },
+                        loadChildren: () => import('./feature/components/setting/setting.module').then(m => m.SettingModule)
+                    },
+                    {
                         path: 'user',
                         canActivate: [PermissionGuard],
                         data: {

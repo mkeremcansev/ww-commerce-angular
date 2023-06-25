@@ -1,0 +1,44 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="card p-fluid">
+            <div class="progress-spinner flex justify-content-center" *ngIf="isSpinner">
+                <p-progressSpinner></p-progressSpinner>
+            </div>
+            <div *ngIf="!isSpinner">
+                <h3 class="mb-5">{{'setting.update' | translate}}</h3>
+                <form [formGroup]="form" (ngSubmit)="submit()">
+                    <div class="field">
+                        <label htmlFor="title">{{'title' | translate}}</label>
+                        <input pInputText id="title" type="text" formControlName="title"/>
+                    </div>
+                    <div class="field">
+                        <label htmlFor="description">{{'description' | translate}}</label>
+                        <textarea pInputTextarea id="description" formControlName="description"></textarea>
+                    </div>
+                    <div class="field">
+                        <label htmlFor="keywords">{{'keywords' | translate}}</label>
+                        <textarea pInputTextarea id="keywords" formControlName="keywords"></textarea>
+                    </div>
+                    <div class="field">
+                        <label htmlFor="status">{{'setting.mimeType' | translate}}</label>
+                        <p-dropdown
+                            [options]="mimeTypes"
+                            [optionValue]="'value'"
+                            [optionLabel]="'title'"
+                            [required]="true"
+                            formControlName="default_image_mime_type"
+                            [ngClass]="form.invalid && form.touched ? 'ng-invalid ng-dirty' : null"
+                            placeholder="{{'setting.mimeType' | translate}}" [showClear]="true"
+                            id="status">
+                        </p-dropdown>
+                    </div>
+
+                    <div class="flex justify-content-end">
+                        <button class="w-auto" pButton [loading]="isLoading" label="{{'update' | translate}}"></button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -317,6 +317,29 @@ export class AppMenuComponent implements OnInit {
                         ]
                     },
                     {
+                        label: 'setting.index',
+                        icon: 'pi pi-fw pi-cog',
+                        data: {
+                            permission: {
+                                group: 'Setting',
+                                name: 'setting.index'
+                            }
+                        },
+                        items: [
+                            {
+                                label: 'update',
+                                icon: 'pi pi-fw pi-sync',
+                                data: {
+                                    permission: {
+                                        group: 'Setting',
+                                        name: 'setting.update'
+                                    }
+                                },
+                                routerLink: ['/setting/update']
+                            },
+                        ]
+                    },
+                    {
                         label: 'user.index',
                         icon: 'pi pi-fw pi-users',
                         data: {
@@ -338,7 +361,7 @@ export class AppMenuComponent implements OnInit {
                                 routerLink: ['/user/list']
                             }
                         ]
-                    }
+                    },
                 ]
             }
         ];
