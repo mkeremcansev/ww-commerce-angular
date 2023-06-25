@@ -5011,8 +5011,8 @@ p-treeselect.p-treeselect-clearable .p-treeselect-clear-icon {
 
 .p-tabview .p-tabview-nav {
     background: transparent;
-    border: 1px solid #0b213f;
-    border-width: 0 0 2px 0;
+    display: flex;
+    justify-content: center;
 }
 
 .p-tabview .p-tabview-nav li {
@@ -5049,6 +5049,7 @@ p-treeselect.p-treeselect-clearable .p-treeselect-clear-icon {
     background: #071426;
     border-color: #A5B4FC;
     color: #A5B4FC;
+    border: 1px solid var(--primary-color) !important;
 }
 
 .p-tabview .p-tabview-left-icon {
@@ -7367,6 +7368,7 @@ p-treeselect.p-treeselect-clearable .p-treeselect-clear-icon {
 
 .p-tabview .p-tabview-nav li .p-tabview-nav-link {
     transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    border: 1px solid transparent;
 }
 
 .p-tabview .p-tabview-nav .p-tabview-ink-bar {

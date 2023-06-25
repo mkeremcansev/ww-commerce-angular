@@ -7,109 +7,120 @@
             <div *ngIf="!isSpinner">
                 <h3 class="mb-5">{{'product.edit' | translate}}</h3>
                 <form [formGroup]="form" (ngSubmit)="submit()">
-                    <div class="field">
-                        <label htmlFor="title">{{'title' | translate}}</label>
-                        <input pInputText id="title" type="text" formControlName="title"/>
-                    </div>
-                    <div class="field">
-                        <label htmlFor="title">{{'product.content' | translate}}</label>
-                        <p-editor formControlName="content"></p-editor>
-                    </div>
-                    <div class="field">
-                        <label htmlFor="title">{{'product.price' | translate}}</label>
-                        <p-inputNumber mode="decimal" [minFractionDigits]="2" [maxFractionDigits]="2"
-                                       formControlName="price"></p-inputNumber>
-                    </div>
-                    <div class="field">
-                        <label htmlFor="brand_id">{{'product.brand' | translate}}</label>
-                        <p-dropdown
-                            [options]="brands"
-                            [optionValue]="'id'"
-                            [optionLabel]="'title'"
-                            formControlName="brand_id"
-                            [required]="true"
-                            [ngClass]="form.invalid && form.touched ? 'ng-invalid ng-dirty' : null"
-                            placeholder="{{'product.selectBrand' | translate}}"
-                            [showClear]="true"
-                            id="brand_id">
-                        </p-dropdown>
-                    </div>
-                    <div class="field">
-                        <label htmlFor="category">{{'product.category' | translate}}</label>
-                        <p-treeSelect
-                            id="category"
-                            selectionMode="checkbox"
-                            [options]="tree"
-                            [filter]="true"
-                            (cancel)="true"
-                            [emptyMessage]="'dataNotFound' | translate"
-                            [ngClass]="form.invalid && form.touched ? 'ng-invalid ng-dirty' : null"
-                            [(ngModel)]="selectedCategories"
-                            formControlName="category_id"
-                            [placeholder]="'product.selectCategory' | translate"
-                        >
-                        </p-treeSelect>
-                    </div>
-                    <div class="field">
-                        <label htmlFor="status">{{'product.status' | translate}}</label>
-                        <p-dropdown
-                            [options]="statuses"
-                            [optionValue]="'id'"
-                            [optionLabel]="'title'"
-                            formControlName="status"
-                            [required]="true"
-                            [ngClass]="form.invalid && form.touched ? 'ng-invalid ng-dirty' : null"
-                            placeholder="{{'product.selectStatus' | translate}}" [showClear]="true"
-                            id="status">
-                        </p-dropdown>
-                    </div>
-                    <div class="field">
-                        <p>{{'product.variantStatus' | translate}}</p>
-                        <p-inputSwitch [(ngModel)]="isVariant" formControlName="variant_status"></p-inputSwitch>
-                    </div>
-                    <div class="p-formgrid grid" *ngIf="isVariation && isVariant">
-                        <div class="field col" *ngFor="let attribute of attributes">
-                            <label htmlFor="{{attribute.title}}">{{attribute.title}}</label>
-                            <p-multiSelect
-                                [options]="attribute.attribute_values"
-                                [optionLabel]="'title'"
-                                [showClear]="true"
-                                (onChange)="onChange($event)"
-                                id="{{attribute.title}}"
-                            >
-                                <ng-template let-value pTemplate="item">
-                                    <div class="flex align-items-center">
-                                        <span class="ml-2">{{value.title}}</span>
-                                    </div>
-                                </ng-template>
-                            </p-multiSelect>
-                        </div>
-                    </div>
-                    <div class="flex justify-content-center">
-                        <button class="w-auto mb-5" *ngIf="!isVariationReset && isVariant && variants.length > 0" pButton type="button" (click)="resetVariant()"
-                                label="{{'product.variantReset' | translate}}"></button>
-                        <button *ngIf="selectedAttributes.length > 0 || isVariationReset" class="w-auto" pButton (click)="setCombination()"
-                                label="{{'product.variantCreate' | translate}}"></button>
-                    </div>
-                    <ng-container formArrayName="variants" *ngIf="isVariant">
-                        <div class="p-formgrid grid" [formGroupName]="i"
-                             *ngFor="let subItem of variants.controls; let i = index">
-                            <div class="field col" *ngFor="let variantItem of subItem.value.attributes">
-                                <label htmlFor="{{variantItem.title}}">{{'product.variant' | translate}}</label>
-                                <input pInputText id="{{variantItem.title}}" type="text" value="{{variantItem.title}}"
-                                       [disabled]="true"/>
+                    <p-tabView>
+                        <p-tabPanel header="{{ 'product.generalInformation' | translate }}">
+                            <div class="field">
+                                <label htmlFor="title">{{'title' | translate}}</label>
+                                <input pInputText id="title" type="text" formControlName="title"/>
                             </div>
-                            <div class="field col">
-                                <label htmlFor="price">{{'product.price' | translate}}</label>
-                                <p-inputNumber id="price" mode="decimal" [minFractionDigits]="2" [maxFractionDigits]="2"
+                            <div class="field">
+                                <label htmlFor="title">{{'product.content' | translate}}</label>
+                                <p-editor formControlName="content"></p-editor>
+                            </div>
+                            <div class="field">
+                                <label htmlFor="title">{{'product.price' | translate}}</label>
+                                <p-inputNumber mode="decimal" [minFractionDigits]="2" [maxFractionDigits]="2"
                                                formControlName="price"></p-inputNumber>
                             </div>
-                            <div class="field col">
-                                <label htmlFor="stock">{{'product.stock' | translate}}</label>
-                                <input pInputText id="stock" type="number" formControlName="stock"/>
+                            <div class="field">
+                                <label htmlFor="brand_id">{{'product.brand' | translate}}</label>
+                                <p-dropdown
+                                    [options]="brands"
+                                    [optionValue]="'id'"
+                                    [optionLabel]="'title'"
+                                    formControlName="brand_id"
+                                    [required]="true"
+                                    [ngClass]="form.invalid && form.touched ? 'ng-invalid ng-dirty' : null"
+                                    placeholder="{{'product.selectBrand' | translate}}"
+                                    [showClear]="true"
+                                    id="brand_id">
+                                </p-dropdown>
                             </div>
-                        </div>
-                    </ng-container>
+                            <div class="field">
+                                <label htmlFor="category">{{'product.category' | translate}}</label>
+                                <p-treeSelect
+                                    id="category"
+                                    selectionMode="checkbox"
+                                    [options]="tree"
+                                    [filter]="true"
+                                    (cancel)="true"
+                                    [emptyMessage]="'dataNotFound' | translate"
+                                    [ngClass]="form.invalid && form.touched ? 'ng-invalid ng-dirty' : null"
+                                    [(ngModel)]="selectedCategories"
+                                    formControlName="category_id"
+                                    [placeholder]="'product.selectCategory' | translate"
+                                >
+                                </p-treeSelect>
+                            </div>
+                            <div class="field">
+                                <label htmlFor="status">{{'product.status' | translate}}</label>
+                                <p-dropdown
+                                    [options]="statuses"
+                                    [optionValue]="'id'"
+                                    [optionLabel]="'title'"
+                                    formControlName="status"
+                                    [required]="true"
+                                    [ngClass]="form.invalid && form.touched ? 'ng-invalid ng-dirty' : null"
+                                    placeholder="{{'product.selectStatus' | translate}}" [showClear]="true"
+                                    id="status">
+                                </p-dropdown>
+                            </div>
+                        </p-tabPanel>
+                        <p-tabPanel header="{{ 'product.variant' | translate }}">
+                            <div class="field">
+                                <p>{{'product.variantStatus' | translate}}</p>
+                                <p-inputSwitch [(ngModel)]="isVariant" formControlName="variant_status"></p-inputSwitch>
+                            </div>
+                            <div class="p-formgrid grid" *ngIf="isVariation && isVariant">
+                                <div class="field col" *ngFor="let attribute of attributes">
+                                    <label htmlFor="{{attribute.title}}">{{attribute.title}}</label>
+                                    <p-multiSelect
+                                        [options]="attribute.attribute_values"
+                                        [optionLabel]="'title'"
+                                        [showClear]="true"
+                                        (onChange)="onChange($event)"
+                                        id="{{attribute.title}}"
+                                    >
+                                        <ng-template let-value pTemplate="item">
+                                            <div class="flex align-items-center">
+                                                <span class="ml-2">{{value.title}}</span>
+                                            </div>
+                                        </ng-template>
+                                    </p-multiSelect>
+                                </div>
+                            </div>
+                            <div class="flex justify-content-center">
+                                <button class="w-auto mb-5"
+                                        *ngIf="!isVariationReset && isVariant && variants.length > 0" pButton
+                                        type="button" (click)="resetVariant()"
+                                        label="{{'product.variantReset' | translate}}"></button>
+                                <button *ngIf="selectedAttributes.length > 0 && isVariationReset" class="w-auto" pButton
+                                        (click)="setCombination()"
+                                        label="{{'product.variantCreate' | translate}}"></button>
+                            </div>
+                            <ng-container formArrayName="variants" *ngIf="isVariant">
+                                <div class="p-formgrid grid" [formGroupName]="i"
+                                     *ngFor="let subItem of variants.controls; let i = index">
+                                    <div class="field col" *ngFor="let variantItem of subItem.value.attributes">
+                                        <label htmlFor="{{variantItem.title}}">{{'product.variant' | translate}}</label>
+                                        <input pInputText id="{{variantItem.title}}" type="text"
+                                               value="{{variantItem.title}}"
+                                               [disabled]="true"/>
+                                    </div>
+                                    <div class="field col">
+                                        <label htmlFor="price">{{'product.price' | translate}}</label>
+                                        <p-inputNumber id="price" mode="decimal" [minFractionDigits]="2"
+                                                       [maxFractionDigits]="2"
+                                                       formControlName="price"></p-inputNumber>
+                                    </div>
+                                    <div class="field col">
+                                        <label htmlFor="stock">{{'product.stock' | translate}}</label>
+                                        <input pInputText id="stock" type="number" formControlName="stock"/>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </p-tabPanel>
+                    </p-tabView>
                     <div class="flex justify-content-end">
                         <button class="w-auto" pButton [loading]="isLoading" label="{{'update' | translate}}"></button>
                     </div>
