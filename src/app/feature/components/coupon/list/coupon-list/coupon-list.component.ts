@@ -79,14 +79,12 @@ export class CouponListComponent {
                 "className": "warning",
                 "action": "edit",
                 "key": "id",
-                "url": "/attribute/edit"
             },
             {
                 "icon": "pi pi-times",
                 "className": "danger",
                 "action": "destroy",
                 "key": "id",
-                "url": "/attribute/"
             },
             {
                 "icon": "pi pi-refresh",

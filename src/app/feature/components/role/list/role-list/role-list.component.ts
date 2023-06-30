@@ -12,6 +12,12 @@ export class RoleListComponent {
         "destroy": {
             "url": "/role/",
         },
+        "restore": {
+            "url": "/role/restore"
+        },
+        "forceDestroy": {
+            "url": "/role/forceDelete"
+        },
         "edit": {
             "url": "/role/edit/"
         },
@@ -43,14 +49,24 @@ export class RoleListComponent {
                 "className": "warning",
                 "action": "edit",
                 "key": "id",
-                "url": "/role/edit"
             },
             {
                 "icon": "pi pi-times",
                 "className": "danger",
                 "action": "destroy",
                 "key": "id",
-                "url": "/role/"
+            },
+            {
+                "icon": "pi pi-refresh",
+                "className": "success",
+                "action": "restore",
+                "key": "id",
+            },
+            {
+                "icon": "pi pi-trash",
+                "className": "danger",
+                "action": "forceDestroy",
+                "key": "id",
             }
         ]
     }
