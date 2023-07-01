@@ -1,7 +1,12 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../../../environments/environment";
-import {ImageDestroyResponse, ImageIndexResponse} from "../entity/entity";
+import {
+    ImageDestroyResponse,
+    ImageForceDestroyResponse,
+    ImageIndexResponse,
+    ImageRestoreResponse
+} from "../entity/entity";
 
 @Injectable({
     providedIn: 'root'
@@ -20,8 +25,24 @@ export class ImageService {
     /**
      * @method index
      */
-    index() {
-        return this.httpClient.get<ImageIndexResponse[]>(environment.api + '/media');
+    index(trashed: boolean) {
+        return this.httpClient.get<ImageIndexResponse[]>(environment.api + `/media?trashed=${trashed ? '1' : '0'}`);
+    }
+
+    /**
+     * @method forceDestroy
+     * @param ids
+     */
+    forceDestroy(ids: number[]) {
+        return this.httpClient.post<ImageForceDestroyResponse>(environment.api + '/media/forceDelete', {ids: ids});
+    }
+
+    /**
+     * @method restore
+     * @param ids
+     */
+    restore(ids: number[]) {
+        return this.httpClient.post<ImageRestoreResponse>(environment.api + '/media/restore', {ids: ids});
     }
 
     /**

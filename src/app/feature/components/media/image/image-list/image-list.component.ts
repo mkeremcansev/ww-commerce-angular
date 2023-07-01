@@ -3,7 +3,8 @@ import {ImageService} from "../service/image.service";
 import {AlertService} from "../../../../../service/alert/alert.service";
 import {MessageService} from "primeng/api";
 import {ImageIndexResponse} from "../entity/entity";
-import { DataView } from 'primeng/dataview';
+import {DataView} from 'primeng/dataview';
+import * as lodash from 'lodash';
 
 @Component({
     selector: 'app-image-list',
@@ -19,9 +20,9 @@ export class ImageListComponent extends AlertService {
     @Input() public upload: boolean = true;
     @Output() public selectedImagesEmitter = new EventEmitter<ImageIndexResponse[]>();
     @Input() public selectedImages: ImageIndexResponse[] = [];
-    public images : ImageIndexResponse[] = [];
+    public images: ImageIndexResponse[] = [];
     public isSpinner: boolean = true;
-
+    public isTrashed: boolean = false;
     public isSearch: boolean = false;
 
     /**
@@ -46,10 +47,14 @@ export class ImageListComponent extends AlertService {
     /**
      * @method index
      */
-    index() {
-        this.imageService.index().subscribe((data: any) => {
+    index(trashed = false) {
+        this.imageService.index(trashed).subscribe((data: any) => {
             this.isSpinner = false;
-            this.images = data;
+            if (lodash.isArray(data)){
+                this.images = data;
+            } else {
+                this.images = [];
+            }
         });
     }
 
@@ -77,8 +82,10 @@ export class ImageListComponent extends AlertService {
         this.selectedImages = [];
     }
 
-    reloadImages() {
-        this.index();
+    reloadImages(trashed = false) {
+        this.isTrashed = trashed;
+        this.selectedImages = [];
+        this.index(trashed);
     }
 
     /**
@@ -86,6 +93,34 @@ export class ImageListComponent extends AlertService {
      */
     deleteSelectedImages() {
         this.imageService.destroy(this.selectedImages).subscribe((response: any) => {
+                this.images = this.images.filter(item => !this.selectedImages.includes(item));
+                this.selectedImages = [];
+                this.messageService.add(this.success(response.message));
+            },
+            (error: any) => {
+                this.messageService.add(this.error(error.error.message));
+            });
+    }
+
+    restore(){
+        const ids = this.selectedImages.map(item => item.id);
+        this.imageService.restore(ids).subscribe((response: any) => {
+                this.images = this.images.filter(item => !this.selectedImages.includes(item));
+                this.selectedImages = [];
+                this.messageService.add(this.success(response.message));
+            },
+            (error: any) => {
+                this.messageService.add(this.error(error.error.message));
+            });
+    }
+
+    selectAll(){
+        this.selectedImages = this.images;
+    }
+
+    forceDestroy(){
+        const ids = this.selectedImages.map(item => item.id);
+        this.imageService.forceDestroy(ids).subscribe((response: any) => {
                 this.images = this.images.filter(item => !this.selectedImages.includes(item));
                 this.selectedImages = [];
                 this.messageService.add(this.success(response.message));

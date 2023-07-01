@@ -12,13 +12,37 @@
                     </h3>
                 </div>
                 <div class="my-2 col-12 flex" *ngIf="deselect || deleteSelections || upload || searchStatus">
+                    <button *ngIf="!isTrashed" pButton pRipple label="{{'datatable.trashedList' | translate}}"
+                            icon="pi pi-trash"
+                            class="p-button-danger mr-2"
+                            (click)="reloadImages(true)"
+                    ></button>
+                    <button *ngIf="isTrashed" pButton pRipple label="{{'datatable.originalList' | translate}}"
+                            icon="pi pi-align-center"
+                            class="p-button-success mr-2"
+                            (click)="reloadImages(false)"
+                    ></button>
                     <button *ngIf="deselect" pButton pRipple label="{{'deselect' | translate}}" icon="pi pi-times"
                             class="p-button-warning mr-2" (click)="deselectImages()"
                             [disabled]="selectedImages.length <= 0"></button>
-                    <button *ngIf="deleteSelections" pButton pRipple label="{{'destroy' | translate}}"
-                            icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedImages()"
-                            [disabled]="selectedImages.length <= 0"></button>
-                    <div *ngIf="upload">
+                    <button *ngIf="isTrashed" pButton pRipple
+                            label="{{ 'restore' | translate }}"
+                            icon="pi pi-refresh" class="p-button-success mr-2"
+                            [disabled]="selectedImages.length <= 0"
+                            (click)="restore()"
+                    ></button>
+                    <button pButton pRipple
+                            label="{{ 'selectAll' | translate }}"
+                            icon="pi pi-list" class="p-button-info mr-2"
+                            (click)="selectAll()"
+                    ></button>
+                    <button *ngIf="deleteSelections" pButton pRipple
+                            label="{{ isTrashed ? ('forceDestroy' | translate) : ('destroy' | translate) }}"
+                            icon="pi pi-trash" class="p-button-danger"
+                            (click)="isTrashed ? forceDestroy() : deleteSelectedImages()"
+                            [disabled]="selectedImages.length <= 0">
+                    </button>
+                    <div *ngIf="upload && !isTrashed">
                         <button
                             type="button"
                             pButton
@@ -27,13 +51,15 @@
                             (click)="image_upload.toggle($event)"
                             class="p-button-success ml-2"
                         ></button>
-                        <p-overlayPanel #image_upload [showCloseIcon]="true" (onHide)="reloadImages()">
+                        <p-overlayPanel #image_upload [showCloseIcon]="true" (onHide)="reloadImages(false)">
                             <app-image-upload></app-image-upload>
                         </p-overlayPanel>
                     </div>
-                    <button *ngIf="!isSearch && searchStatus" pButton pRipple label="{{'image.openSearch' | translate}}" icon="pi pi-search"
+                    <button *ngIf="!isSearch && searchStatus" pButton pRipple label="{{'image.openSearch' | translate}}"
+                            icon="pi pi-search"
                             class="p-button-primary ml-2" (click)="search()"></button>
-                    <button *ngIf="isSearch && searchStatus" pButton pRipple label="{{'image.closeSearch' | translate}}" icon="pi pi-times"
+                    <button *ngIf="isSearch && searchStatus" pButton pRipple label="{{'image.closeSearch' | translate}}"
+                            icon="pi pi-times"
                             class="p-button-primary ml-2" (click)="search()"></button>
                     <p class="ml-auto mb-auto mt-auto font-bold"
                        *ngIf="selectedImages.length > 0 && multiple">{{'selectedImageCount' | translate: {count: selectedImages.length} }}</p>
@@ -45,7 +71,8 @@
                         <div class="flex justify-content-center" *ngIf="isSearch">
                             <span class="p-input-icon-left">
                             <i class="pi pi-search"></i>
-                            <input type="search" pInputText placeholder="{{'image.searchByName' | translate}}" (input)="onFilter(dv, $event)">
+                            <input type="search" pInputText placeholder="{{'image.searchByName' | translate}}"
+                                   (input)="onFilter(dv, $event)">
                         </span></div>
 
                     </ng-template>

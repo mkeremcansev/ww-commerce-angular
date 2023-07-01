@@ -14,3 +14,13 @@ export interface ImageIndexResponse {
     mime_type: string;
     size: number;
 }
+
+export interface ImageForceDestroyResponse {
+    message: string;
+    data: {}
+}
+
+export interface ImageRestoreResponse {
+    message: string;
+    data: {}
+}
