@@ -22,15 +22,15 @@
                             class="p-button-success mr-2"
                             (click)="reloadImages(false)"
                     ></button>
-                    <button *ngIf="deselect" pButton pRipple label="{{'deselect' | translate}}" icon="pi pi-times"
-                            class="p-button-warning mr-2" (click)="deselectImages()"
-                            [disabled]="selectedImages.length <= 0"></button>
                     <button *ngIf="isTrashed" pButton pRipple
                             label="{{ 'restore' | translate }}"
                             icon="pi pi-refresh" class="p-button-success mr-2"
                             [disabled]="selectedImages.length <= 0"
                             (click)="restore()"
                     ></button>
+                    <button *ngIf="deselect" pButton pRipple label="{{'deselect' | translate}}" icon="pi pi-times"
+                            class="p-button-warning mr-2" (click)="deselectImages()"
+                            [disabled]="selectedImages.length <= 0"></button>
                     <button pButton pRipple
                             label="{{ 'selectAll' | translate }}"
                             icon="pi pi-list" class="p-button-info mr-2"
