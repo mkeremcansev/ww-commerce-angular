@@ -169,37 +169,45 @@ export class DatatableComponent extends AlertService {
     /**
      * @method destroy
      * @param id
+     * @param multiple
      */
-    destroy(id: number) {
-        this.httpClient.delete<{ message: string, data: { id: number } }>(environment.api + this.table.destroy.url + id + '/destroy').subscribe((response) => {
-                this.messageService.add(this.success(response.message))
+    destroy(id: number, multiple: boolean = false) {
+        this.httpClient.delete<{
+            message: string,
+            data: { id: number }
+        }>(environment.api + this.table.destroy.url + id + '/destroy').subscribe((response) => {
+                if (!multiple) {
+                    this.messageService.add(this.success(response.message))
+                }
                 this.load({first: 0, rows: this.rows, filters: this.filterItems});
             },
             (error) => {
-                this.messageService.add(this.error(error.error.message))
+                if (!multiple) {
+                    this.messageService.add(this.error(error.error.message))
+                }
             });
     }
 
-    confirm(type: string, id: number|number[], data: any = {}) {
+    confirm(type: string, id: number | number[], data: any = {}) {
         this.confirmationService.confirm({
             key: 'confirm',
             message: this.translateService.instant('datatable.alert.' + type),
             accept: () => {
                 switch (type) {
                     case 'destroy':
-                        if (! lodash.isArray(id)){
+                        if (!lodash.isArray(id)) {
                             this.destroy(id);
                         }
                         break;
                     case 'forceDestroy':
-                        if (lodash.isArray(id)){
+                        if (lodash.isArray(id)) {
                             this.forceDestroy(id);
                         } else {
                             this.forceDestroy([id]);
                         }
                         break;
                     case 'restore':
-                        if (lodash.isArray(id)){
+                        if (lodash.isArray(id)) {
                             this.restore(id);
                         } else {
                             this.restore([id]);
@@ -221,7 +229,10 @@ export class DatatableComponent extends AlertService {
      * @param ids
      */
     restore(ids: number[]) {
-        this.httpClient.post<{ message: string, data: { id: number } }>(environment.api + this.table.restore.url, {ids: ids}).subscribe((response) => {
+        this.httpClient.post<{
+            message: string,
+            data: { id: number }
+        }>(environment.api + this.table.restore.url, {ids: ids}).subscribe((response) => {
                 this.messageService.add(this.success(response.message))
                 this.load({first: 0, rows: this.rows, filters: this.filterItems});
             },
@@ -235,13 +246,33 @@ export class DatatableComponent extends AlertService {
      * @param ids
      */
     forceDestroy(ids: number[]) {
-        this.httpClient.post<{ message: string, data: { id: number } }>(environment.api + this.table.forceDestroy.url, {ids: ids}).subscribe((response) => {
+        this.httpClient.post<{
+            message: string,
+            data: { id: number }
+        }>(environment.api + this.table.forceDestroy.url, {ids: ids}).subscribe((response) => {
                 this.messageService.add(this.success(response.message))
                 this.load({first: 0, rows: this.rows, filters: this.filterItems});
             },
             (error) => {
                 this.messageService.add(this.error(error.error.message))
             });
+    }
+
+    /**
+     * @method multipleDestroy
+     */
+    multipleDestroy() {
+        this.confirmationService.confirm({
+            key: 'confirm',
+            message: this.translateService.instant('datatable.alert.destroy'),
+            accept: () => {
+                this.checkedItems.forEach((id: number) => {
+                    this.destroy(id, true);
+                });
+                this.checkedItems = [];
+                this.messageService.add(this.success(this.translateService.instant('datatable.alert.destroySuccess')))
+            },
+        });
     }
 
     /**

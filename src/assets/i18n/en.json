@@ -27,8 +27,10 @@
             "destroy": "Are you sure you want to delete this record?",
             "forceDestroy": "Are you sure you want to delete this record permanently?",
             "restore": "Are you sure you want to restore this record?",
-            "edit": "Are you sure you want to edit this record?"
+            "edit": "Are you sure you want to edit this record?",
+            "destroySuccess": "Record deleted successfully."
         },
+        "destroy": "Destroy",
         "restore": "Restore",
         "forceDestroy": "Force Destroy",
         "confirmation": "Confirmation",

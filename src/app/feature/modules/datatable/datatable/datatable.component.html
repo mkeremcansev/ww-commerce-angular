@@ -19,6 +19,15 @@
                 class="p-button-success mr-2">
             </button>
             <button
+                *ngIf="checkedItems.length > 0 && !checkTrashedOrOginial() && table.destroy"
+                (click)="multipleDestroy()"
+                pButton
+                pRipple
+                label="{{ 'datatable.destroy' | translate }}"
+                icon="pi pi-trash"
+                class="p-button-danger mr-2">
+            </button>
+            <button
                 *ngIf="checkedItems.length > 0 && checkTrashedOrOginial() && table.forceDestroy"
                 (click)="confirm('forceDestroy', checkedItems)"
                 pButton
