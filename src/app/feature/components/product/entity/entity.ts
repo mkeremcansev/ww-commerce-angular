@@ -15,6 +15,7 @@ export interface ProductEditResponse {
     price: number;
     brand: number;
     status: number;
+    variant_status: number;
     categories:CategoryCreateResponse[];
     media: ImageIndexResponse[];
     attribute_id: Attribute[];

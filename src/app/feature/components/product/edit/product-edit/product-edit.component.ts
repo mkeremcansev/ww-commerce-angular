@@ -90,8 +90,10 @@ export class ProductEditComponent extends AlertService {
                     price: response.price,
                     brand_id: response.brand,
                     status: response.status,
+                    variant_status: response.variant_status,
                     media: this.selectedImages
                 });
+                this.isVariant = response.variant_status > 0;
                 this.setVariation(response.variant_groups);
                 this.selectedCategories = this.format(response.categories);
                 this.tree = this.format(response.category_id);
