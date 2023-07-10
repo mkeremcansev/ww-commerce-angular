@@ -332,7 +332,7 @@ export class AppMenuComponent implements OnInit {
                                 data: {
                                     permission: {
                                         group: 'Setting',
-                                        name: 'setting.update'
+                                        name: 'setting.edit'
                                     }
                                 },
                                 routerLink: ['/setting/update']
