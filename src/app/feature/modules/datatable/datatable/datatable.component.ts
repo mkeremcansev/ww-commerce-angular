@@ -24,7 +24,6 @@ export class DatatableComponent extends AlertService {
     public recordsTotal: number = 0;
     public loading: boolean = true;
     public viewColumnsForTable: any = [];
-
     public checkedItems: number[] = [];
 
     /**
