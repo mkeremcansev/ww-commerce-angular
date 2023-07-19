@@ -8,9 +8,8 @@ import {
 } from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
-import {NavigationExtras, Router} from '@angular/router';
+import {Router} from '@angular/router';
 import {LocalStorageService} from "../../service/storage/local-storage.service";
-import {MessageService} from "primeng/api";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
