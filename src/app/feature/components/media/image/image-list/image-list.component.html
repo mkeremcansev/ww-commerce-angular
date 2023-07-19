@@ -12,12 +12,12 @@
                     </h3>
                 </div>
                 <div class="my-2 col-12 flex" *ngIf="deselect || deleteSelections || upload || searchStatus">
-                    <button *ngIf="!isTrashed" pButton pRipple label="{{'datatable.trashedList' | translate}}"
+                    <button *ngIf="!isTrashed && trashedStatus" pButton pRipple label="{{'datatable.trashedList' | translate}}"
                             icon="pi pi-trash"
                             class="p-button-danger mr-2"
                             (click)="reloadImages(true)"
                     ></button>
-                    <button *ngIf="isTrashed" pButton pRipple label="{{'datatable.originalList' | translate}}"
+                    <button *ngIf="isTrashed && trashedStatus" pButton pRipple label="{{'datatable.originalList' | translate}}"
                             icon="pi pi-align-center"
                             class="p-button-success mr-2"
                             (click)="reloadImages(false)"

@@ -18,6 +18,7 @@ export class ImageListComponent extends AlertService {
     @Input() public searchStatus: boolean = true;
     @Input() public title: string = 'image.imageList';
     @Input() public upload: boolean = true;
+    @Input() public trashedStatus: boolean = false;
     @Output() public selectedImagesEmitter = new EventEmitter<ImageIndexResponse[]>();
     @Input() public selectedImages: ImageIndexResponse[] = [];
     public images: ImageIndexResponse[] = [];
