@@ -2,15 +2,15 @@
     <ng-template pTemplate="left">
         <div class="my-2">
             <button
-                (click)="trashedOrOginial()"
+                (click)="trashedOrOriginal()"
                 pButton
                 pRipple
-                label="{{(checkTrashedOrOginial() ? 'datatable.originalList' : 'datatable.trashedList') | translate}}"
-                icon="pi pi-{{checkTrashedOrOginial() ? 'align-center' : 'trash'}}"
-                class="p-button-{{checkTrashedOrOginial() ? 'success' : 'danger'}} mr-2">
+                label="{{(checkTrashedOrOriginal() ? 'datatable.originalList' : 'datatable.trashedList') | translate}}"
+                icon="pi pi-{{checkTrashedOrOriginal() ? 'align-center' : 'trash'}}"
+                class="p-button-{{checkTrashedOrOriginal() ? 'success' : 'danger'}} mr-2">
             </button>
             <button
-                *ngIf="checkedItems.length > 0 && checkTrashedOrOginial() && table.restore"
+                *ngIf="checkedItems.length > 0 && checkTrashedOrOriginal() && table.restore"
                 (click)="confirm('restore', checkedItems)"
                 pButton
                 pRipple
@@ -19,7 +19,7 @@
                 class="p-button-success mr-2">
             </button>
             <button
-                *ngIf="checkedItems.length > 0 && !checkTrashedOrOginial() && table.destroy"
+                *ngIf="checkedItems.length > 0 && !checkTrashedOrOriginal() && table.destroy"
                 (click)="multipleDestroy()"
                 pButton
                 pRipple
@@ -28,7 +28,7 @@
                 class="p-button-danger mr-2">
             </button>
             <button
-                *ngIf="checkedItems.length > 0 && checkTrashedOrOginial() && table.forceDestroy"
+                *ngIf="checkedItems.length > 0 && checkTrashedOrOriginal() && table.forceDestroy"
                 (click)="confirm('forceDestroy', checkedItems)"
                 pButton
                 pRipple

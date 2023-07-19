@@ -59,15 +59,6 @@ export class DatatableComponent extends AlertService {
     }
 
     /**
-     * @method clear
-     * @param table
-     */
-    clear(table: Table) {
-        table.clear();
-        this.filter.nativeElement.value = '';
-    }
-
-    /**
      * @method load
      * @param event
      */
@@ -102,7 +93,7 @@ export class DatatableComponent extends AlertService {
     /**
      * @method trashedOrOginial
      */
-    trashedOrOginial() {
+    trashedOrOriginal() {
         this.checkedItems = [];
         const isTrashed = this.table.url.includes('trashed');
         if (isTrashed) {
@@ -114,9 +105,9 @@ export class DatatableComponent extends AlertService {
     }
 
     /**
-     * @method checkTrashedOrOginial
+     * @method checkTrashedOrOriginal
      */
-    checkTrashedOrOginial() {
+    checkTrashedOrOriginal() {
         return this.table.url.includes('trashed');
     }
 
