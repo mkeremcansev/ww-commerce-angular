@@ -32,6 +32,7 @@
                             class="p-button-warning mr-2" (click)="deselectImages()"
                             [disabled]="selectedImages.length <= 0"></button>
                     <button pButton pRipple
+                            *ngIf="selectAllStatus"
                             label="{{ 'selectAll' | translate }}"
                             icon="pi pi-list" class="p-button-info mr-2"
                             (click)="selectAll()"
