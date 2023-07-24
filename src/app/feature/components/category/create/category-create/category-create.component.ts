@@ -5,7 +5,7 @@ import {Router} from "@angular/router";
 import {RedirectService} from "../../../../../service/redirect/redirect.service";
 import {CategoryService} from "../../service/category.service";
 import {AlertService} from "../../../../../service/alert/alert.service";
-import {CategoryCreateResponse, CategorySelectedItem} from "../../entity/entity";
+import {Category, CategoryAttributeResponse} from "../../entity/entity";
 import * as lodash from "lodash";
 import {ImageIndexResponse} from "../../../media/image/entity/entity";
 
@@ -19,12 +19,14 @@ export class CategoryCreateComponent extends AlertService {
     public form: FormGroup = new FormGroup({
         title: new FormControl('', Validators.required),
         category_id: new FormControl('', Validators.nullValidator),
-        media: new FormControl('', Validators.required)
+        media: new FormControl('', Validators.required),
+        attribute_ids: new FormControl([], Validators.required),
     });
     public isLoading: boolean = false;
     public isSpinner: boolean = true;
     public tree: TreeNode[] = [];
     public selected: TreeNode = {};
+    public attributes : CategoryAttributeResponse[]= [];
 
     /**
      * @param categoryService
@@ -54,7 +56,8 @@ export class CategoryCreateComponent extends AlertService {
     setTree() {
         this.categoryService.create().subscribe((response: any) => {
             this.isSpinner = false;
-            this.tree = this.format(response.data);
+            this.attributes = response.data.attributes;
+            this.tree = this.format(response.data.categories);
         });
     }
 
@@ -62,8 +65,8 @@ export class CategoryCreateComponent extends AlertService {
      * @method format
      * @param categories
      */
-    format(categories: CategoryCreateResponse[]): any {
-        return categories.map((category: CategoryCreateResponse) => {
+    format(categories: Category[]): any {
+        return categories.map((category: Category) => {
             return {
                 key: category.id,
                 label: category.title,

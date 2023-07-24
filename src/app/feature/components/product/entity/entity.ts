@@ -1,9 +1,9 @@
-import {CategoryCreateResponse} from "../../category/entity/entity";
+import {Category} from "../../category/entity/entity";
 import {ImageIndexResponse} from "../../media/image/entity/entity";
 
 export interface ProductCreateResponse {
     attribute_id: Attribute[];
-    category_id: CategoryCreateResponse[];
+    category_id: Category[];
     brand_id: Brand[];
     status: string[];
 }
@@ -16,10 +16,10 @@ export interface ProductEditResponse {
     brand: number;
     status: number;
     variant_status: number;
-    categories:CategoryCreateResponse[];
+    categories:Category[];
     media: ImageIndexResponse[];
     attribute_id: Attribute[];
-    category_id: CategoryCreateResponse[];
+    category_id: Category[];
     brand_id: Brand[];
     status_type: string[];
     variant_groups: ProductEditVariantGroup[];

@@ -9,7 +9,7 @@ import {
 import {MultiSelect} from "primeng/multiselect";
 import {first} from "lodash";
 import {MessageService, TreeNode} from "primeng/api";
-import {CategoryCreateResponse} from "../../../category/entity/entity";
+import {Category, CategoryCreateResponse} from "../../../category/entity/entity";
 import {AlertService} from "../../../../../service/alert/alert.service";
 import {RedirectService} from "../../../../../service/redirect/redirect.service";
 import * as _ from "lodash";
@@ -88,8 +88,8 @@ export class ProductCreateComponent extends AlertService {
      * @method format
      * @param categories
      */
-    format(categories: CategoryCreateResponse[]): any {
-        return categories.map((category: CategoryCreateResponse) => {
+    format(categories: Category[]): any {
+        return categories.map((category: Category) => {
             return {
                 key: category.id,
                 label: category.title,

@@ -6,7 +6,7 @@ import {CategoryService} from "../../service/category.service";
 import {AlertService} from "../../../../../service/alert/alert.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import * as lodash from "lodash";
-import {CategoryCreateResponse} from "../../entity/entity";
+import {Category, CategoryAttributeResponse, CategoryCreateResponse} from "../../entity/entity";
 import {ImageIndexResponse} from "../../../media/image/entity/entity";
 
 @Component({
@@ -21,11 +21,14 @@ export class CategoryEditComponent extends AlertService {
     public selectedImages: ImageIndexResponse[] = [];
     public tree: TreeNode[] = [];
     public selected: TreeNode = {};
+    public attributes: CategoryAttributeResponse[] = [];
+    public selectedAttributes: number[] = [];
 
     public form: FormGroup = new FormGroup({
         title: new FormControl('', Validators.required),
         category_id: new FormControl('', Validators.nullValidator),
-        media: new FormControl('', Validators.required)
+        media: new FormControl('', Validators.required),
+        attribute_ids: new FormControl([], Validators.required),
     });
 
     /**
@@ -58,9 +61,12 @@ export class CategoryEditComponent extends AlertService {
      */
     setValue(id: number) {
         !isNaN(id) ? this.categoryService.edit(id).subscribe((response: any) => {
+                    this.selectedAttributes = response.data.selected_attributes.map((attribute: CategoryAttributeResponse) => attribute.id);
+                    this.attributes = response.data.attributes;
                     this.form.patchValue({
                         title: response.data.title,
                         category_id: response.data.category_id,
+                        attribute_ids: response.data.selected_attributes.map((attribute: CategoryAttributeResponse) => attribute.id),
                         media: response.data.media
                     })
                     response.data.media && this.selectedImages.push(response.data.media);
@@ -87,8 +93,8 @@ export class CategoryEditComponent extends AlertService {
      * @method format
      * @param categories
      */
-    format(categories: CategoryCreateResponse[]): any {
-        return categories.map((category: CategoryCreateResponse) => {
+    format(categories: Category[]): any {
+        return categories.map((category: Category) => {
             return {
                 key: category.id,
                 label: category.title,

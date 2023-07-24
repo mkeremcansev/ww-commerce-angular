@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {ProductService} from "../../service/product.service";
-import {CategoryCreateResponse} from "../../../category/entity/entity";
+import {Category, CategoryCreateResponse} from "../../../category/entity/entity";
 import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import {
     CombinationAttributeValue,
@@ -109,8 +109,8 @@ export class ProductEditComponent extends AlertService {
      * @method format
      * @param categories
      */
-    format(categories: CategoryCreateResponse[]): any {
-        return categories.map((category: CategoryCreateResponse) => {
+    format(categories: Category[]): any {
+        return categories.map((category: Category) => {
             return {
                 key: category.id,
                 label: category.title,

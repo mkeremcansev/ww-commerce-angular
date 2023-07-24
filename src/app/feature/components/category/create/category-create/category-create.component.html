@@ -24,6 +24,16 @@
                         >
                         </p-treeSelect>
                     </div>
+
+                    <div class="field">
+                        <label htmlFor="attribute_ids">{{'attribute.index' | translate}}</label>
+                        <p-multiSelect
+                            [options]="attributes"
+                            formControlName="attribute_ids"
+                            [optionValue]="'id'"
+                            [optionLabel]="'title'"
+                        ></p-multiSelect>
+                    </div>
                     <div class="flex justify-content-end">
                         <button class="w-auto" pButton [loading]="isLoading" label="{{'create' | translate}}"></button>
                     </div>

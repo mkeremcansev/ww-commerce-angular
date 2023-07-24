@@ -1,11 +1,19 @@
 import {ImageIndexResponse} from "../../media/image/entity/entity";
 
 export interface CategoryCreateResponse {
+    categories: {
+        id: number;
+        title: string;
+        slug: string;
+        parent_id: number;
+        parents: Category[];
+    }
+    attributes: CategoryAttributeResponse[];
+}
+
+export interface CategoryAttributeResponse {
     id: number;
     title: string;
-    slug: string;
-    parent_id: number;
-    parents: Category[];
 }
 
 export interface Category {
@@ -53,7 +61,9 @@ export interface CategoryEditResponse {
     id: number;
     title: string;
     slug: string;
-    path: string;
+    media: ImageIndexResponse;
     category_id: number | null;
+    selected_attributes: CategoryAttributeResponse[];
+    attributes: CategoryAttributeResponse[];
     categories: Category[];
 }

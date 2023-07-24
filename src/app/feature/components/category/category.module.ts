@@ -14,6 +14,7 @@ import { CategoryEditComponent } from './edit/category-edit/category-edit.compon
 import {ProgressSpinnerModule} from "primeng/progressspinner";
 import { CategoryListComponent } from './list/category-list/category-list.component';
 import {DatatableModule} from "../../modules/datatable/datatable.module";
+import {MultiSelectModule} from "primeng/multiselect";
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import {DatatableModule} from "../../modules/datatable/datatable.module";
         FormsModule,
         MediaModule,
         ProgressSpinnerModule,
-        DatatableModule
+        DatatableModule,
+        MultiSelectModule
     ]
 })
 export class CategoryModule {
