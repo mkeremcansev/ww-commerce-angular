@@ -12,9 +12,19 @@
                         <input pInputText id="title" type="text" formControlName="title"/>
                     </div>
                     <div class="field">
-                        <label htmlFor="title">{{'product.content' | translate}}</label>
-                        <p-editor formControlName="content"></p-editor>
+                        <label htmlFor="content">{{'product.content' | translate}}</label>
+                        <editor
+                            formControlName="content"
+                            [apiKey]="''"
+                            [init]="tinyInit"
+                        ></editor>
                     </div>
+                    <p-dialog [(visible)]="isImageListShow">
+                        <app-image-list></app-image-list>
+                    </p-dialog>
+                    <p-overlayPanel #image_list [showCloseIcon]="true">
+                        <app-image-list></app-image-list>
+                    </p-overlayPanel>
                     <div class="field">
                         <label htmlFor="title">{{'product.price' | translate}}</label>
                         <p-inputNumber mode="decimal" [minFractionDigits]="2" [maxFractionDigits]="2"

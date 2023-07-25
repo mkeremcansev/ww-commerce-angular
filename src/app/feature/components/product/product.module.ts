@@ -18,6 +18,9 @@ import {MediaModule} from "../media/media.module";
 import { ProductListComponent } from './list/product-list/product-list.component';
 import {DatatableModule} from "../../modules/datatable/datatable.module";
 import {TabViewModule} from "primeng/tabview";
+import {EditorComponent} from "@tinymce/tinymce-angular";
+import {OverlayPanelModule} from "primeng/overlaypanel";
+import {DialogModule} from "primeng/dialog";
 
 
 @NgModule({
@@ -43,7 +46,10 @@ import {TabViewModule} from "primeng/tabview";
         InputSwitchModule,
         MediaModule,
         DatatableModule,
-        TabViewModule
+        TabViewModule,
+        EditorComponent,
+        OverlayPanelModule,
+        DialogModule
     ]
 })
 export class ProductModule { }

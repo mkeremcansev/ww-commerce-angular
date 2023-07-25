@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ProductService} from "../../service/product.service";
 import {
@@ -9,10 +9,9 @@ import {
 import {MultiSelect} from "primeng/multiselect";
 import {first} from "lodash";
 import {MessageService, TreeNode} from "primeng/api";
-import {Category, CategoryCreateResponse} from "../../../category/entity/entity";
+import {Category} from "../../../category/entity/entity";
 import {AlertService} from "../../../../../service/alert/alert.service";
 import {RedirectService} from "../../../../../service/redirect/redirect.service";
-import * as _ from "lodash";
 import {ImageIndexResponse} from "../../../media/image/entity/entity";
 
 @Component({
@@ -21,6 +20,7 @@ import {ImageIndexResponse} from "../../../media/image/entity/entity";
     styleUrls: ['./product-create.component.scss']
 })
 export class ProductCreateComponent extends AlertService {
+    @ViewChild('image_list', {static: false}) image_list: any;
     public form: FormGroup = new FormGroup({
         title: new FormControl('', Validators.required),
         content: new FormControl('', Validators.required),
@@ -47,6 +47,25 @@ export class ProductCreateComponent extends AlertService {
     public isVariant: boolean = true;
     public isVariationReset: boolean = false;
     public selectedImages: ImageIndexResponse[] = [];
+    public isImageListShow: boolean = false;
+    public tinyInit = {
+        height: 500,
+        menubar: false,
+        plugins: [
+            'lists', 'link', 'charmap', 'preview', 'anchor', 'searchreplace', 'visualblocks',
+            'fullscreen', 'insertdatetime', 'media', 'table', 'help', 'wordcount'
+        ],
+        toolbar: 'undo redo | formatselect | bold italic backcolor image eyupButton',
+        setup: (editor: any) => {
+            editor.ui.registry.addButton('image', {
+                icon: 'image',
+                onAction: () => {
+                    console.log(1);
+                    this.isImageListShow = true;
+                }
+            });
+        }
+    };
 
     /**
      * @method constructor
@@ -213,7 +232,7 @@ export class ProductCreateComponent extends AlertService {
             this.productService.store(this.form.value).subscribe((response) => {
                 this.messageService.add(this.success(response.message))
                 this.form.disable();
-                this.redirectService.redirect('/product/edit/'+response.data.id, 3);
+                this.redirectService.redirect('/product/edit/' + response.data.id, 3);
             }, (error: any) => {
                 this.isLoading = false;
                 this.messageService.add(this.error(error.error.message))
