@@ -6,7 +6,6 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ButtonModule} from "primeng/button";
 import {TranslateModule} from "@ngx-translate/core";
 import {InputTextModule} from "primeng/inputtext";
-import {EditorModule} from "primeng/editor";
 import {InputNumberModule} from "primeng/inputnumber";
 import {DropdownModule} from "primeng/dropdown";
 import {MultiSelectModule} from "primeng/multiselect";
@@ -35,7 +34,6 @@ import {DialogModule} from "primeng/dialog";
         ButtonModule,
         TranslateModule,
         InputTextModule,
-        EditorModule,
         FormsModule,
         InputNumberModule,
         DropdownModule,
