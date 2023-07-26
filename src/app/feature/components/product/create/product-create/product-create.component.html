@@ -13,18 +13,8 @@
                     </div>
                     <div class="field">
                         <label htmlFor="content">{{'product.content' | translate}}</label>
-                        <editor
-                            formControlName="content"
-                            [apiKey]="''"
-                            [init]="tinyInit"
-                        ></editor>
+                        <p-editor formControlName="content"></p-editor>
                     </div>
-                    <p-dialog [(visible)]="isImageListShow">
-                        <app-image-list></app-image-list>
-                    </p-dialog>
-                    <p-overlayPanel #image_list [showCloseIcon]="true">
-                        <app-image-list></app-image-list>
-                    </p-overlayPanel>
                     <div class="field">
                         <label htmlFor="title">{{'product.price' | translate}}</label>
                         <p-inputNumber mode="decimal" [minFractionDigits]="2" [maxFractionDigits]="2"
