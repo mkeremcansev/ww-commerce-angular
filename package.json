@@ -23,6 +23,7 @@
     "@casl/ability": "^6.3.3",
     "@ngx-translate/core": "^14.0.0",
     "@ngx-translate/http-loader": "^7.0.0",
+    "@tinymce/tinymce-angular": "^7.0.0",
     "chart.js": "^3.3.2",
     "primeflex": "^3.2.1",
     "primeicons": "6.0.1",
