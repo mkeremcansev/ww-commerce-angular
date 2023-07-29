@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {ChangeDetectorRef, Component} from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ProductService} from "../../service/product.service";
 import {
@@ -46,17 +46,32 @@ export class ProductCreateComponent extends AlertService {
     public isVariant: boolean = true;
     public isVariationReset: boolean = false;
     public selectedImages: ImageIndexResponse[] = [];
+    isShowImageList: boolean = false;
+    public tinyConfig = {
+        toolbar: 'customImage', menubar: false,
+        setup: (editor: any) => {
+            editor.ui.registry.addButton('customImage', {
+                icon: 'image',
+                onAction: () => {
+                    this.isShowImageList = !this.isShowImageList;
+                    this.cdr.detectChanges();
+                }
+            });
+        }
+    }
 
     /**
      * @method constructor
      * @param productService
      * @param messageService
      * @param redirectService
+     * @param cdr
      */
     constructor(
         public productService: ProductService,
         public messageService: MessageService,
-        public redirectService: RedirectService
+        public redirectService: RedirectService,
+        public cdr: ChangeDetectorRef
     ) {
         super();
     }
