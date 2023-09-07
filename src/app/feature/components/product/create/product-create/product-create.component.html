@@ -13,16 +13,10 @@
                     </div>
                     <div class="field">
                         <label htmlFor="content">{{'product.content' | translate}}</label>
-                        <editor
+                        <textarea
                             formControlName="content"
-                            apiKey="6747fzdmaynebbnjtj7jandzzmcyze84upkn01f688ofirz5"
-                            [init]="tinyConfig"
-                        ></editor>
+                        ></textarea>
                     </div>
-
-                   <p-dialog [(visible)]="isShowImageList" position="bottom">
-                       <app-image-list></app-image-list>
-                   </p-dialog>
                     <div class="field">
                         <label htmlFor="title">{{'product.price' | translate}}</label>
                         <p-inputNumber mode="decimal" [minFractionDigits]="2" [maxFractionDigits]="2"

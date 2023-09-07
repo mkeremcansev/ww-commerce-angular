@@ -46,19 +46,6 @@ export class ProductCreateComponent extends AlertService {
     public isVariant: boolean = true;
     public isVariationReset: boolean = false;
     public selectedImages: ImageIndexResponse[] = [];
-    isShowImageList: boolean = false;
-    public tinyConfig = {
-        toolbar: 'customImage', menubar: false,
-        setup: (editor: any) => {
-            editor.ui.registry.addButton('customImage', {
-                icon: 'image',
-                onAction: () => {
-                    this.isShowImageList = !this.isShowImageList;
-                    this.cdr.detectChanges();
-                }
-            });
-        }
-    }
 
     /**
      * @method constructor

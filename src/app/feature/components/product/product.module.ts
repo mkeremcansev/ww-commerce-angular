@@ -19,7 +19,6 @@ import {DatatableModule} from "../../modules/datatable/datatable.module";
 import {TabViewModule} from "primeng/tabview";
 import {OverlayPanelModule} from "primeng/overlaypanel";
 import {DialogModule} from "primeng/dialog";
-import {EditorComponent} from "@tinymce/tinymce-angular";
 
 
 @NgModule({
@@ -47,7 +46,6 @@ import {EditorComponent} from "@tinymce/tinymce-angular";
         TabViewModule,
         OverlayPanelModule,
         DialogModule,
-        EditorComponent
     ]
 })
 export class ProductModule { }
